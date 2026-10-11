@@ -1,0 +1,1000 @@
+[
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK_NO",
+    "expression": "grel:value.replace(' ','')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column PARK_NO using expression grel:value.replace(' ','')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK_NO",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column PARK_NO using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "X_COORD",
+    "expression": "grel:value.replace(',','.')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column X_COORD using expression grel:value.replace(',','.')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "X_COORD",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column X_COORD using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Y_COORD",
+    "expression": "grel:value.replace(',','.')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Y_COORD using expression grel:value.replace(',','.')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Y_COORD",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Y_COORD using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "GISOBJID",
+    "expression": "grel:value.replace(' ',' ')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column GISOBJID using expression grel:value.replace(' ',' ')"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "MCKINLEY (WILLIAM)",
+          "McKINLEY (WILLIAM)"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "MCKINLEY (WILLIAM)"
+      }
+    ],
+    "description": "Mass edit cells in column PARK"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "COMMERCIAL CLUB PGD. OF CHICAGO",
+          "COMMERCIAL CLUB PGD. of CHICAGO"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "COMMERCIAL CLUB PGD. OF CHICAGO"
+      }
+    ],
+    "description": "Mass edit cells in column PARK"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "PARK_NO",
+          "expression": "value",
+          "columnName": "PARK_NO",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": 100,
+                "l": "100"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "PARK",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "LINCOLN (ABRAHAM)",
+          "LINCOLN"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "LINCOLN (ABRAHAM)"
+      }
+    ],
+    "description": "Mass edit cells in column PARK"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "NAME",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Fountain",
+          "Fountains"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Fountain"
+      }
+    ],
+    "description": "Mass edit cells in column NAME"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "NAME",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Untitled Mosaic",
+          "Untitled Mosaics"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Untitled Mosaic"
+      }
+    ],
+    "description": "Mass edit cells in column NAME"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OBJECTID",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column OBJECTID using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "GISOBJID",
+    "expression": "grel:value.replace(' ','')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column GISOBJID using expression grel:value.replace(' ','')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "GISOBJID",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column GISOBJID using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "GISOBJID",
+    "expression": "grel:if(value == 0, null, value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column GISOBJID using expression grel:if(value == 0, null, value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK",
+    "expression": "grel:value.toUppercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column PARK using expression grel:value.toUppercase()"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "the_geom",
+    "description": "Remove column the_geom"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "OBJECTID",
+    "newColumnName": "ARTWORK_ID",
+    "description": "Rename column OBJECTID to ARTWORK_ID"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PARK",
+    "newColumnName": "PARK_NAME",
+    "description": "Rename column PARK to PARK_NAME"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "NAME",
+    "newColumnName": "ARTWORK_NAME",
+    "description": "Rename column NAME to ARTWORK_NAME"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "GISOBJID",
+    "newColumnName": "GIS_OBJECT_ID",
+    "description": "Rename column GISOBJID to GIS_OBJECT_ID"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "OFFICIAL_N",
+    "newColumnName": "OFFICIAL_NAME",
+    "description": "Rename column OFFICIAL_N to OFFICIAL_NAME"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "X_COORD",
+    "newColumnName": "LONGITUDE",
+    "description": "Rename column X_COORD to LONGITUDE"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Y_COORD",
+    "newColumnName": "LATITUDE",
+    "description": "Rename column Y_COORD to LATITUDE"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "PARK_NAME",
+          "expression": "value",
+          "columnName": "PARK_NAME",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "PETERSON (PAHR SAMUEL)",
+                "l": "PETERSON (PAHR SAMUEL)"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "PARK_NAME",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "PETERSON (PAHR SAMUEL)"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "PETERSON (PEHR SAMUEL)"
+      }
+    ],
+    "description": "Mass edit cells in column PARK_NAME"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK_NO",
+    "expression": "grel:if(cells['PARK_NAME'].value == 'PRINZ (TOBEY) BEACH', 1261, if(cells['PARK_NAME'].value == 'KING (MARTIN LUTHER, JR.)', 334, value))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column PARK_NO using expression grel:if(cells['PARK_NAME'].value == 'PRINZ (TOBEY) BEACH', 1261, if(cells['PARK_NAME'].value == 'KING (MARTIN LUTHER, JR.)', 334, value))"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "FOUNTAIN"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Various"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Unknown",
+          "Unknown Artist"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "unknown - Erected by Americans of Danish Origin"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "grel:value.replace(' &',',')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column ARTIST using expression grel:value.replace(' &',',')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "grel:value.replace(' &',',')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column OWNER using expression grel:value.replace(' &',',')"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "On loan to Notebaert Musuem"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Notebaert Musuem"
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Notebaert Museum",
+          "Notebaert Musuem"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Notebaert Museum"
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "CPD"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Chicago Park District"
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "COC"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "City of Chicago"
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "grel:value.replace('COC','City of Chicago')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column OWNER using expression grel:value.replace('COC','City of Chicago')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "grel:value.replace('CPD','Chicago Park District')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column OWNER using expression grel:value.replace('CPD','Chicago Park District')"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "CTA"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Chicago Transit Authority"
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "COD"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "City of Chicago"
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Marshall Scendsen, John Alaniz"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Marshall Svendsen, John Alaniz"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "John Pittman Webber, CPAG"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "John Pittman Weber, CPAG"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "DeStefano, Partners"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "DeStefano"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "DeStefano+Partners"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "DeStefano"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Patricia M. Murphy",
+          "Patricia Murphy"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Patricia M. Murphy"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Albin Polasek",
+          "Albin Polásek"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Albin Polásek"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Gast Monuments",
+          "Gast Monuments Inc."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Gast Monuments Inc."
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Robinson Iron Works",
+          "Robinson Iron"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Robinson Iron Works"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Pottowattomie Art Class"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Pottawattomie Art Class"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "ARTIST",
+    "expression": "grel:if(isBlank(value), null, forEach(value.split('; '), a, a.replace('ø','o').replace('á','a').replace('ñ','n').replace('é','e').replace(/[^A-Za-z0-9]+/,'_').replace(/^_+|_+$/,'')).join('; '))",
+    "onError": "set-to-blank",
+    "newColumnName": "ARTIST_ID",
+    "columnInsertIndex": 7,
+    "description": "Create column ARTIST_ID at index 7 based on column ARTIST using expression grel:if(isBlank(value), null, forEach(value.split('; '), a, a.replace('ø','o').replace('á','a').replace('ñ','n').replace('é','e').replace(/[^A-Za-z0-9]+/,'_').replace(/^_+|_+$/,'')).join('; '))"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "ARTIST_ID",
+    "description": "Remove column ARTIST_ID"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTWORK_NAME",
+    "expression": "grel:if(isNonBlank(cells['OFFICIAL_NAME'].value), cells['OFFICIAL_NAME'].value, value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column ARTWORK_NAME using expression grel:if(isNonBlank(cells['OFFICIAL_NAME'].value), cells['OFFICIAL_NAME'].value, value)"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "OFFICIAL_NAME",
+    "description": "Remove column OFFICIAL_NAME"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "GIS_OBJECT_ID",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [],
+        "fromBlank": true,
+        "fromError": false,
+        "to": "0"
+      }
+    ],
+    "description": "Mass edit cells in column GIS_OBJECT_ID"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [],
+        "fromBlank": true,
+        "fromError": false,
+        "to": "Unknown"
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "ARTIST",
+    "keyColumnName": "ARTWORK_ID",
+    "mode": "separator",
+    "separator": ", ",
+    "regex": false,
+    "description": "Split multi-valued cells in column ARTIST"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTWORK_ID",
+    "description": "Fill down cells in column ARTWORK_ID"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK_NAME",
+    "description": "Fill down cells in column PARK_NAME"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK_NO",
+    "description": "Fill down cells in column PARK_NO"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTWORK_NAME",
+    "description": "Fill down cells in column ARTWORK_NAME"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "LONGITUDE",
+    "description": "Fill down cells in column LONGITUDE"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "LATITUDE",
+    "description": "Fill down cells in column LATITUDE"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "description": "Fill down cells in column OWNER"
+  },
+  {
+    "op": "core/fill-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "GIS_OBJECT_ID",
+    "description": "Fill down cells in column GIS_OBJECT_ID"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "ARTIST",
+    "expression": "jython:return value",
+    "onError": "set-to-blank",
+    "newColumnName": "ARTIST_ID",
+    "columnInsertIndex": 7,
+    "description": "Create column ARTIST_ID at index 7 based on column ARTIST using expression jython:return value"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST_ID",
+    "expression": "jython:if 'lookup_dict' not in vars():\n    names = ['A.C. Goddard','Actual Size Artworks','Adler','Adolff Johnson','Albin Polásek','Alexander Calder','Alexander Proctor','Alfonso \"Piloto\" Nieves','Alfonso Iannelli','Alicia Lee','Alison Svoboda','Andy Bellomo','Andy Hunt','Anna Koh Varilla','Anna Soltys','Anthony Heinz May','Antonio T. Mondejar','Ary R. Perez','Assoc','Assoc.','Augustus Saint-Gaudens','Ausbra Ford','Barbara Miller','Baumann','Beatriz Santiago Muñoz','Ben Seamons','Bennett','Bernard Williams','Bill Wieger','Boris Gilbertson','Bradford L. Gilbert','Brett Whitacre','Bronislaw Koniuszy','Bucktown Arts Fest','Camille Leavitt','Capraro','Carl Brioschi','Carl J. Epiing','Carol Tarnoff','Carolyn Elaine','Carrie Fischer','Charles J. Mulligan','Charles Keck','Charles Mulligan','Chester Dryan','Chicago Mosaic School','Chris Perri','Chris Williams','Chueh Ming-Teh','Clements','Connie Hinkle','Corinne D. Peterson','Cosmo Campoli','Count Jacque de la Laing','CPAG','Craig Brant','Cyrus Edwin Dallin','Dale Chihuly','Dame Elisabeth Frink','Damon Lamar Reed','Damon Reed','Dan Yarborough','Daniel Chester French','Darlene McGhee','Darrell Davis','David L. Rodgers','David Smith','David Woodhouse','Deborah Butterfield','Debra Hand','Denise Milan','Dessa Kirk','DeStefano','Diana Solis-Contratiempo','Dino C. Crisanti','Dorian Sylvain','Dusty Folwarczny','Ed Fu','Edmond Gueringer','Edward C. Potter','Edward Kemeys','Edward McCartan','Elisabeth Hibbard','Ellen Lanyon','Ellsworth Kelly','Eric Blome','Eric Stephenson','Ernest Moore Viquesney','Ernest Wong','Ernst Bilhauer Rau','Evelyn Henton','Felix Gorling','Franz Engelsman','Franz Machtl','Fred Arroyo','Frederick','Frederick C. Hibbard','Frederick Cleveland Hibbard','Frederick MacMonnies','Frithiof Kjellberg','Frost','Gabriel Ponzanelli','Gabriel Villa','Gary Lehman','Gary Wojcik','Gast Monuments Inc.','George Hruska','George Segal','George Suyeoka','George Wade','Georgina Valverder','Gerry Lang','Ginny Sykes','Green Star Movement','Greg','Gutzon Borglum','H. Wheatley Allen','Haida Indians','Hector Duarte','Hector Guimard','Henry Ives Cobb','Henry Manger','Henry Mitchell','Henry Moore','Herman Hahn','Ignacio Perez Salono','Indira Johnson','Isamu Noguchi','Isiah and Rachel Terry','Ivan Mestrovic','James Edwin McBurney','James G. Gilbert','James J. Egan','Janet Austin','Janet Rosetta','Jeff Littleton','Jeff Zimmerman','Jeffrey Hanson Varilla','Jen Z. Johns','Jenney','Jerzy Kenar','Jesse Shipley','Jesus Chucho Rodriguez','Jewell Pates','Jill N. Parker','Jim Long','Johannes Gelert','John Alaniz','John Angel','John David Brcin','John David Mooney','John Hatleshad','John J. Boyle','John Kearney','John Mason','John Pittman Weber','John Warner Norton','Jose Moreno','Joseph Strachovsky','Josh Holland','JR Cadawas','Juan Carlos Perez','Julia Barlow','Julia Sowles-Barlow','Julie Rotblatt-Amrany','Kamelia Hristeva','Kara James','Karen J Gubitz','Karl and Indira Johnson','Kasimir Chodzinski','Kathleen McCullough','Kathy Gemperle','Keith Haring','Komar','Lameck Bonjisi','Laurie Shaman','Lawrence E. Taylor','Leonard Crunelle','Liao Huilan','Liu Zhengde','Lorado Taft','Loring','Louis T. Rebisso','Louise Bourgeois','Lucy Slivinski','Luftwerk','Luxon Karise','Lynn Takata','Magdalena Abakanowicz','Marc Schneider','Marcel Francois Loyau','Margo McMahon','Margot McMahon','Maria Gaspar','Maria Whiteman','Marshall Svendsen','Martha Crandall','Maurice Harron','Maurice Moore Memorials','Max Robert Decker','Max Sansing','Mia Capodilupo','Miklos Simon','Millicent Gordon','Milton Horn','Milton Mizenburg Jr.','Mirtes Zwierzynski','Moses Ezekiel','Nancy Deborah Wicker','Nick Goettling','Nicolette Ross','Norman Tait Nishga','Patricia M. Murphy','Patricia Murphy','Patti Adachi','Paul Fjelde','Peter Darro','Peter Lindsay Schaudt','Phil Schuster','Phillip Shore','Pottawattomie Art Class','Rachel Slotnick','Raout Josset','Richard Henry Park','Richard Hunt','Richard Serra','Richard W. Bock','Robinson Iron Works','Roman Villareal','Roman Villareal et al','Rookwood Potteries','Roy L. Terwilliger','S.B. Braidwood et al','Said Ben Adiba','Samantha Rausch','Sandie Bacon','Shana Pearlmutter','Sheila Klein','Shenchen Xu','Sigvald Asbjørnsen','Sonata Kazimieraitiene','Sonja Henderson','South Park Commission Architects','Stella Brown','Stephan Balkenhol','Stephanie George','Steve Tobin','Sullivan','Susan Clinard','Tamsie Ringler','Tannis Langdon','the Soul Stitchers','Thom Cicchelli','Thomas','Tim Portlock','Tina Allen','Todd Osborne','Tom Lea','Tom Tischler','Tom White','Tracy van Duinen','Tracy van Duinen et al','US Army Corps of Engineers','Van Osdel','Veryl Goodnight','Victor Gheradi','Victor Velez','Victoria Bianco','Viktor Bougaev','Virginio Ferrari','Vito Acconci','Vivian Visser','Walter Arnold','Will Nicholson','William Edouard Scott','William Grant Stevenson','William Ordway Partridge','William Patterson','Wolff','Yoko Ono','Yu Jiyong']\n    lookup_dict = {name: idx + 1 for idx, name in enumerate(names)}\n\nif value:\n    return lookup_dict.get(value.strip())\nreturn None",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column ARTIST_ID using expression jython:if 'lookup_dict' not in vars():\n    names = ['A.C. Goddard','Actual Size Artworks','Adler','Adolff Johnson','Albin Polásek','Alexander Calder','Alexander Proctor','Alfonso \"Piloto\" Nieves','Alfonso Iannelli','Alicia Lee','Alison Svoboda','Andy Bellomo','Andy Hunt','Anna Koh Varilla','Anna Soltys','Anthony Heinz May','Antonio T. Mondejar','Ary R. Perez','Assoc','Assoc.','Augustus Saint-Gaudens','Ausbra Ford','Barbara Miller','Baumann','Beatriz Santiago Muñoz','Ben Seamons','Bennett','Bernard Williams','Bill Wieger','Boris Gilbertson','Bradford L. Gilbert','Brett Whitacre','Bronislaw Koniuszy','Bucktown Arts Fest','Camille Leavitt','Capraro','Carl Brioschi','Carl J. Epiing','Carol Tarnoff','Carolyn Elaine','Carrie Fischer','Charles J. Mulligan','Charles Keck','Charles Mulligan','Chester Dryan','Chicago Mosaic School','Chris Perri','Chris Williams','Chueh Ming-Teh','Clements','Connie Hinkle','Corinne D. Peterson','Cosmo Campoli','Count Jacque de la Laing','CPAG','Craig Brant','Cyrus Edwin Dallin','Dale Chihuly','Dame Elisabeth Frink','Damon Lamar Reed','Damon Reed','Dan Yarborough','Daniel Chester French','Darlene McGhee','Darrell Davis','David L. Rodgers','David Smith','David Woodhouse','Deborah Butterfield','Debra Hand','Denise Milan','Dessa Kirk','DeStefano','Diana Solis-Contratiempo','Dino C. Crisanti','Dorian Sylvain','Dusty Folwarczny','Ed Fu','Edmond Gueringer','Edward C. Potter','Edward Kemeys','Edward McCartan','Elisabeth Hibbard','Ellen Lanyon','Ellsworth Kelly','Eric Blome','Eric Stephenson','Ernest Moore Viquesney','Ernest Wong','Ernst Bilhauer Rau','Evelyn Henton','Felix Gorling','Franz Engelsman','Franz Machtl','Fred Arroyo','Frederick','Frederick C. Hibbard','Frederick Cleveland Hibbard','Frederick MacMonnies','Frithiof Kjellberg','Frost','Gabriel Ponzanelli','Gabriel Villa','Gary Lehman','Gary Wojcik','Gast Monuments Inc.','George Hruska','George Segal','George Suyeoka','George Wade','Georgina Valverder','Gerry Lang','Ginny Sykes','Green Star Movement','Greg','Gutzon Borglum','H. Wheatley Allen','Haida Indians','Hector Duarte','Hector Guimard','Henry Ives Cobb','Henry Manger','Henry Mitchell','Henry Moore','Herman Hahn','Ignacio Perez Salono','Indira Johnson','Isamu Noguchi','Isiah and Rachel Terry','Ivan Mestrovic','James Edwin McBurney','James G. Gilbert','James J. Egan','Janet Austin','Janet Rosetta','Jeff Littleton','Jeff Zimmerman','Jeffrey Hanson Varilla','Jen Z. Johns','Jenney','Jerzy Kenar','Jesse Shipley','Jesus Chucho Rodriguez','Jewell Pates','Jill N. Parker','Jim Long','Johannes Gelert','John Alaniz','John Angel','John David Brcin','John David Mooney','John Hatleshad','John J. Boyle','John Kearney','John Mason','John Pittman Weber','John Warner Norton','Jose Moreno','Joseph Strachovsky','Josh Holland','JR Cadawas','Juan Carlos Perez','Julia Barlow','Julia Sowles-Barlow','Julie Rotblatt-Amrany','Kamelia Hristeva','Kara James','Karen J Gubitz','Karl and Indira Johnson','Kasimir Chodzinski','Kathleen McCullough','Kathy Gemperle','Keith Haring','Komar','Lameck Bonjisi','Laurie Shaman','Lawrence E. Taylor','Leonard Crunelle','Liao Huilan','Liu Zhengde','Lorado Taft','Loring','Louis T. Rebisso','Louise Bourgeois','Lucy Slivinski','Luftwerk','Luxon Karise','Lynn Takata','Magdalena Abakanowicz','Marc Schneider','Marcel Francois Loyau','Margo McMahon','Margot McMahon','Maria Gaspar','Maria Whiteman','Marshall Svendsen','Martha Crandall','Maurice Harron','Maurice Moore Memorials','Max Robert Decker','Max Sansing','Mia Capodilupo','Miklos Simon','Millicent Gordon','Milton Horn','Milton Mizenburg Jr.','Mirtes Zwierzynski','Moses Ezekiel','Nancy Deborah Wicker','Nick Goettling','Nicolette Ross','Norman Tait Nishga','Patricia M. Murphy','Patricia Murphy','Patti Adachi','Paul Fjelde','Peter Darro','Peter Lindsay Schaudt','Phil Schuster','Phillip Shore','Pottawattomie Art Class','Rachel Slotnick','Raout Josset','Richard Henry Park','Richard Hunt','Richard Serra','Richard W. Bock','Robinson Iron Works','Roman Villareal','Roman Villareal et al','Rookwood Potteries','Roy L. Terwilliger','S.B. Braidwood et al','Said Ben Adiba','Samantha Rausch','Sandie Bacon','Shana Pearlmutter','Sheila Klein','Shenchen Xu','Sigvald Asbjørnsen','Sonata Kazimieraitiene','Sonja Henderson','South Park Commission Architects','Stella Brown','Stephan Balkenhol','Stephanie George','Steve Tobin','Sullivan','Susan Clinard','Tamsie Ringler','Tannis Langdon','the Soul Stitchers','Thom Cicchelli','Thomas','Tim Portlock','Tina Allen','Todd Osborne','Tom Lea','Tom Tischler','Tom White','Tracy van Duinen','Tracy van Duinen et al','US Army Corps of Engineers','Van Osdel','Veryl Goodnight','Victor Gheradi','Victor Velez','Victoria Bianco','Viktor Bougaev','Virginio Ferrari','Vito Acconci','Vivian Visser','Walter Arnold','Will Nicholson','William Edouard Scott','William Grant Stevenson','William Ordway Partridge','William Patterson','Wolff','Yoko Ono','Yu Jiyong']\n    lookup_dict = {name: idx + 1 for idx, name in enumerate(names)}\n\nif value:\n    return lookup_dict.get(value.strip())\nreturn None"
+  }
+]
