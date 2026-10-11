@@ -4,21 +4,21 @@
 
 **Data import:**
 
-- [ ] The selected dataset(s) has been imported into OpenRefine
+- [X] The selected dataset(s) has been imported into OpenRefine
 
 **Data analysis and cleaning:**
 
-- [ ] The analysis from the previous assignment has been reviewed and updated with new findings, if any
-- [ ] Errors in the data have been fixed
-- [ ] The data has been transformed to facilitate the generation of RDF
+- [X] The analysis from the previous assignment has been reviewed and updated with new findings, if any
+- [X] Errors in the data have been fixed
+- [X] The data has been transformed to facilitate the generation of RDF
 
 **The "openrefine" directory:**
 
-- [ ] Contains a JSON file(s) with the operations performed over the data
+- [X] Contains a JSON file(s) with the operations performed over the data
 
 **The "csv" directory:**
 
-- [ ] Contains a CSV file(s) with the updated version of the dataset ("\*-updated.csv")
+- [X] Contains a CSV file(s) with the updated version of the dataset ("\*-updated.csv")
 
 ## Comments on the self-assessment
 _(If required)_

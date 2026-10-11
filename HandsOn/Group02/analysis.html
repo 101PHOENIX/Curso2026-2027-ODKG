@@ -45,6 +45,7 @@
                 <li><code>the_geom</code> duplicates <code>X_COORD</code>/<code>Y_COORD</code>, and the two disagree by more than 1 m in 66 rows (up to about 200 m).</li>
                 <li><code>GISOBJID</code> is not a reliable identifier: it contains two <code>0</code> placeholders.</li>
                 <li>The <code>FACILITY_N</code> column has some rows with similar names that represent the same facility (e.g. <code>FITNESS CENTER</code>/<code>FITNESS COURSE</code>).</li>
+                <li><code>FACILITY_N</code> also contains typos (<code>SPORT ROLLER COIRT</code>), two spellings of the same category (<code>NATURE PLAY AREA</code>/<code>NATURAL PLAY AREA</code>) and abbreviated labels that are unsuitable for a user interface (<code>ICESKATING</code>, <code>WHEELCHR ACCSSBLE BALLFLD</code>, <code>FOOTBALL/SOCCER COMBO FLD</code>).</li>
             </ul>
         </li>
     </ul>
@@ -128,8 +129,8 @@
         </li>
         <li><strong>Consistency Issues:</strong>
             <ul>
-                <li><strong>Artists:</strong> besides the 15 blanks, 10 rows contain the literal value "Unknown". 55 cells list several artists or a firm (e.g. <code>Frederick &amp; Elisabeth Hibbard</code>, <code>Adler &amp; Sullivan</code>), and the same person is sometimes written differently (<code>Frederick C. Hibbard</code> / <code>Frederick Cleveland Hibbard</code>). Some names contain characters that are not URI-safe (<code>&amp;</code>, commas, <code>ø</code>).</li>
-                <li><strong>Owners:</strong> the same organisation appears under several labels (<code>CPD</code>, <code>City of Chicago</code>, <code>COC</code>, <code>City of Chicago &amp; CPD</code>), there are typos (<code>On loan to Notebaert Musuem</code>), and a few owners are individuals.</li>
+                <li><strong>Artists:</strong> besides the 15 blanks, 10 rows contain the literal value "Unknown" (plus <code>Various</code>, <code>Unknown Artist</code> and one cell holding the word <code>FOUNTAIN</code>). 54 cells use <code>,</code> and <code>&amp;</code> to list several creators, but the same separators also appear inside names that denote a single creator: architecture firms (<code>Adler &amp; Sullivan</code>, <code>Jenney &amp; Loring</code>, <code>Wolff, Clements &amp; Assoc</code>, <code>Bennett, Frost &amp; Thomas</code>) and couples that share a surname (<code>Frederick &amp; Elisabeth Hibbard</code>, <code>Greg &amp; Camille Leavitt</code>), so a plain split on the separator produces meaningless "artists" such as <code>Frederick</code> or <code>Assoc.</code>. The same person is sometimes written differently (<code>Frederick C. Hibbard</code> / <code>Frederick Cleveland Hibbard</code>, <code>Margo</code> / <code>Margot McMahon</code>, <code>Charles</code> / <code>Charles J. Mulligan</code>, <code>Damon Reed</code> / <code>Damon Lamar Reed</code>) or with an <code>et al</code> suffix. Some names contain characters that are not URI-safe (<code>&amp;</code>, commas, <code>ø</code>, <code>á</code>, <code>ñ</code>).</li>
+                <li><strong>Owners:</strong> the same organisation appears under several labels (<code>CPD</code>, <code>City of Chicago</code>, <code>COC</code>, <code>COD</code>, <code>City of Chicago &amp; CPD</code>), there are typos (<code>On loan to Notebaert Musuem</code>), two cells list several owners, one value is the generic <code>Private</code>, and a few owners are individuals (artists who own their own work).</li>
                 <li><strong>Artwork names:</strong> <code>NAME</code> is not unique ("Playground Art" appears 10 times, "Mosaic" 5 times), so it cannot be used in URIs. <code>OFFICIAL_N</code> is an optional formal title: identical to <code>NAME</code> in 122 rows and different in 60, so it is modelled as an alternative label.</li>
                 <li><strong>Parks:</strong> a few park names vary under the same number (<code>McKINLEY</code>/<code>MCKINLEY</code>, <code>LINCOLN</code>/<code>LINCOLN (ABRAHAM)</code>), and King Park appears under both 265 and 334.</li>
                 <li><code>GISOBJID</code> contains 38 placeholder <code>0</code> values.</li>
@@ -219,7 +220,7 @@
     <ul>
         <li><strong>Join key:</strong> <code>PARK_NO</code> links both datasets. A park has many facilities and many artworks, so <strong>Park</strong> is the central entity of the graph.</li>
         <li><strong>Overlap:</strong> 111 of the 117 parks with art also appear in the facilities dataset. The other 6 (e.g. Ogden Plaza, Washington Square, Mid-North) only appear in the art data, so Park resources are generated from the union of both datasets: 555 distinct parks.</li>
-        <li><strong>Name agreement:</strong> for 7 park numbers present in both datasets the names never match. Most are spelling variants (<code>PETERSON (PAHR SAMUEL)</code> / <code>PETERSON (PEHR SAMUEL)</code>, <code>GARIBALDI (GIUSEPPE)</code> / <code>GARIBALDI (GIUSEPPI)</code>), but parks 115 and 265 carry completely different names and need manual review.</li>
+        <li><strong>Name agreement:</strong> for 7 park numbers present in both datasets the names never match. Most are spelling variants (<code>PETERSON (PAHR SAMUEL)</code> / <code>PETERSON (PEHR SAMUEL)</code>, <code>GARIBALDI (GIUSEPPE)</code> / <code>GARIBALDI (GIUSEPPI)</code>), but parks 115 and 265 carry completely different names and need manual review. Three more parks are labelled slightly differently in the two files (<code>BESSEMER</code> / <code>BESSEMER (HENRY)</code>, <code>ROBICHAUX</code> / <code>ROBICHAUX (JOSEPH)</code>, <code>LOGAN SQUARE SKATE</code> / <code>LOGAN SQUARE SKATE PARK</code>); since both files feed the same Park resource, one label per park number has to be chosen.</li>
     </ul>
 
     <h2>2. Licensing Analysis</h2>
@@ -267,7 +268,7 @@
     </table>
 
     <h3>3.2. Individual Identifier Mapping</h3>
-    <p>The <code>[identifier]</code> for each individual is derived directly from the source datasets:</p>
+    <p>The <code>[identifier]</code> for each individual is derived directly from the cleaned datasets:</p>
     <table>
         <thead>
             <tr>
@@ -279,23 +280,23 @@
         <tbody>
             <tr>
                 <td><code>:ChicagoPark</code></td>
-                <td>Cleaned integer from <code>PARK_NO</code></td>
+                <td>Integer <code>PARK_NO</code> (shared by both datasets)</td>
                 <td><code>.../resource/ChicagoPark/165</code></td>
             </tr>
             <tr>
                 <td><code>:Facility</code></td>
-                <td>Cleaned integer from <code>OBJECTID_1</code></td>
-                <td><code>.../resource/Facility/2494</code></td>
+                <td>Integer <code>FACILITY_ID</code> (the original <code>OBJECTID_1</code>)</td>
+                <td><code>.../resource/Facility/1</code></td>
             </tr>
             <tr>
                 <td><code>:Artwork</code></td>
-                <td>Cleaned integer from <code>OBJECTID</code></td>
+                <td>Integer <code>ARTWORK_ID</code> (the original <code>OBJECTID</code>)</td>
                 <td><code>.../resource/Artwork/1</code></td>
             </tr>
             <tr>
                 <td><code>:Artist</code></td>
-                <td>Sanitized artist name string (URI-safe)</td>
-                <td><code>.../resource/Artist/Phil_Schuster</code></td>
+                <td>URI-safe slug <code>ARTIST_ID</code> derived from the harmonised <code>ARTIST_NAME</code>: accented letters folded (ø&rarr;o, á&rarr;a, ñ&rarr;n) and every run of other characters replaced by one underscore. It is deterministic, readable and unique for all 264 artists; the name itself is kept in <code>ARTIST_NAME</code> as the label.</td>
+                <td><code>.../resource/Artist/Phil_Schuster</code>, <code>.../resource/Artist/Wolff_Clements_Assoc</code></td>
             </tr>
             <tr>
                 <td><code>schema:GeoCoordinates</code></td>

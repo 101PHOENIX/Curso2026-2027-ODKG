@@ -20,6 +20,9 @@ schema:Place a owl:Class ;
 schema:Person a owl:Class ;
     rdfs:label "Person" .
 
+schema:Organization a owl:Class ;
+    rdfs:label "Organization" .
+
 schema:GeoCoordinates a owl:Class ;
     rdfs:label "Geo Coordinates" .
 
@@ -54,7 +57,9 @@ schema:longitude a owl:DatatypeProperty ;
 
 :Artist a owl:Class ;
     rdfs:label "Artist" ;
-    rdfs:subClassOf schema:Person .
+    rdfs:comment "A creator credited for an artwork: a person (e.g. Phil Schuster) or an organisation such as an architecture firm, a collective or an agency (e.g. Adler & Sullivan, Chicago Mosaic School, US Army Corps of Engineers)." ;
+    rdfs:subClassOf [ a owl:Class ;
+        owl:unionOf ( schema:Person schema:Organization ) ] .
 
 ### Object Properties ###
 
@@ -98,7 +103,7 @@ schema:longitude a owl:DatatypeProperty ;
 :facilityGisObjectId a owl:DatatypeProperty ;
     rdfs:label "facility gis object id" ;
     rdfs:domain :Facility ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:integer .
 
 :artworkName a owl:DatatypeProperty ;
     rdfs:label "artwork name" ;
@@ -118,10 +123,11 @@ schema:longitude a owl:DatatypeProperty ;
 :artworkGisObjectId a owl:DatatypeProperty ;
     rdfs:label "artwork gis object id" ;
     rdfs:domain :Artwork ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:integer .
 
 :owner a owl:DatatypeProperty ;
     rdfs:label "owner" ;
+    rdfs:comment "Owner of the artwork; an artwork can have several owners (one value each)." ;
     rdfs:domain :Artwork ;
     rdfs:range xsd:string .
 
