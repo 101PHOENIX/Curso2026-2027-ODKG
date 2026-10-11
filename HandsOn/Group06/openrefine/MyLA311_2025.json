@@ -6,7 +6,7 @@
         {
           "type": "list",
           "name": "Owner",
-          "expression": "value",
+          "expression": "grel:value",
           "columnName": "Owner",
           "invert": false,
           "omitBlank": false,
@@ -26,23 +26,13 @@
     "description": "Rimuovi la colonna Anonymous"
   },
   {
-    "op": "core/column-removal",
-    "columnName": "Latitude",
-    "description": "Rimuovi la colonna Latitude"
-  },
-  {
-    "op": "core/column-removal",
-    "columnName": "Longitude",
-    "description": "Rimuovi la colonna Longitude"
-  },
-  {
     "op": "core/row-removal",
     "engineConfig": {
       "facets": [
         {
           "type": "list",
           "name": "AddressVerified",
-          "expression": "value",
+          "expression": "grel:value",
           "columnName": "AddressVerified",
           "invert": false,
           "omitBlank": false,
@@ -70,7 +60,7 @@
         {
           "type": "list",
           "name": "AddressVerified",
-          "expression": "value",
+          "expression": "grel:value",
           "columnName": "AddressVerified",
           "invert": false,
           "omitBlank": false,
@@ -103,11 +93,11 @@
       "mode": "row-based"
     },
     "baseColumnName": "RequestSource",
-    "expression": "grel:if(cells[\"MobileOS\"].value != null, cells[\"MobileOS\"].value, value)",
+    "expression": "grel:if(cells.get(\"MobileOS\").value != null, cells.get(\"MobileOS\").value, value)",
     "onError": "set-to-blank",
     "newColumnName": "Source",
     "columnInsertIndex": 8,
-    "description": "Crea la colonna Source allindice {1} basato sulla colonna {2} utilizzando lespressione grel:if(cells[\"MobileOS\"].value != null, cells[\"MobileOS\"].value, value)"
+    "description": "Crea la colonna Source allindice {1} basato sulla colonna {2} utilizzando lespressione grel:if(cells.get(\"MobileOS\").value != null, cells.get(\"MobileOS\").value, value)"
   },
   {
     "op": "core/column-removal",
@@ -120,10 +110,17 @@
     "description": "Rimuovi la colonna RequestSource"
   },
   {
-    "op": "core/column-rename",
-    "oldColumnName": "Source",
-    "newColumnName": "RequestSource",
-    "description": "Rinomina la colonna Source a RequestSource"
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Source",
+    "expression": "grel:value.replace(\"iOS\", \"Mobile App (iOS)\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Trasforma il testo delle celle nella colonna Source utilizzando l'espressione grel:value.replace(\"iOS\", \"Mobile App (iOS)\")"
   },
   {
     "op": "core/text-transform",
@@ -131,25 +128,12 @@
       "facets": [],
       "mode": "row-based"
     },
-    "columnName": "RequestSource",
-    "expression": "value.replace(\"iOS\",\"Mobile App (iOS)\")",
+    "columnName": "Source",
+    "expression": "grel:value.replace(\"Android\", \"Mobile App (Android)\")",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Trasforma il testo delle celle nella colonna RequestSource utilizzando l'espressione value.replace(\"iOS\",\"Mobile App (iOS)\")"
-  },
-  {
-    "op": "core/text-transform",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "columnName": "RequestSource",
-    "expression": "value.replace(\"Android\",\"Mobile App (Android)\")",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10,
-    "description": "Trasforma il testo delle celle nella colonna RequestSource utilizzando l'espressione value.replace(\"Android\",\"Mobile App (Android)\")"
+    "description": "Trasforma il testo delle celle nella colonna Source utilizzando l'espressione grel:value.replace(\"Android\", \"Mobile App (Android)\")"
   },
   {
     "op": "core/column-removal",
@@ -173,7 +157,7 @@
         {
           "type": "list",
           "name": "CDMember",
-          "expression": "value",
+          "expression": "grel:value",
           "columnName": "CDMember",
           "invert": false,
           "omitBlank": false,
@@ -193,11 +177,11 @@
       "mode": "row-based"
     },
     "columnName": "CDMember",
-    "expression": "value.replace(\"贸\",\"o\")",
+    "expression": "grel:value.replace(\"贸\", \"o\")",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Trasforma il testo delle celle nella colonna CDMember utilizzando l'espressione value.replace(\"贸\",\"o\")"
+    "description": "Trasforma il testo delle celle nella colonna CDMember utilizzando l'espressione grel:value.replace(\"贸\", \"o\")"
   },
   {
     "op": "core/text-transform",
@@ -271,7 +255,7 @@
         {
           "type": "list",
           "name": "ZipCode",
-          "expression": "isBlank(value)",
+          "expression": "grel:isBlank(value)",
           "columnName": "ZipCode",
           "invert": false,
           "omitBlank": false,
@@ -291,11 +275,11 @@
       "mode": "row-based"
     },
     "columnName": "ZipCode",
-    "expression": "grel:cells[\"Address\"].value.split(\",\")[1].trim()",
+    "expression": "grel:cells.get(\"Address\").value.split(\",\").get(1).trim()",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Trasforma il testo delle celle nella colonna ZipCode utilizzando l'espressione grel:cells[\"Address\"].value.split(\",\")[1].trim()"
+    "description": "Trasforma il testo delle celle nella colonna ZipCode utilizzando l'espressione grel:cells.get(\"Address\").value.split(\",\").get(1).trim()"
   },
   {
     "op": "core/text-transform",
@@ -304,7 +288,7 @@
         {
           "type": "list",
           "name": "Address",
-          "expression": "isBlank(value)",
+          "expression": "grel:isBlank(value)",
           "columnName": "Address",
           "invert": false,
           "omitBlank": false,
@@ -324,11 +308,11 @@
       "mode": "row-based"
     },
     "columnName": "HouseNumber",
-    "expression": "value.replace(\".\",\"\")",
+    "expression": "grel:value.replace(\".\", \"\")",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Trasforma il testo delle celle nella colonna HouseNumber utilizzando l'espressione value.replace(\".\",\"\")"
+    "description": "Trasforma il testo delle celle nella colonna HouseNumber utilizzando l'espressione grel:value.replace(\".\", \"\")"
   },
   {
     "op": "core/text-transform",
@@ -337,7 +321,7 @@
         {
           "type": "list",
           "name": "Address",
-          "expression": "isBlank(value)",
+          "expression": "grel:isBlank(value)",
           "columnName": "Address",
           "invert": false,
           "omitBlank": false,
@@ -356,7 +340,7 @@
         {
           "type": "list",
           "name": "StreetName",
-          "expression": "isBlank(value)",
+          "expression": "grel:isBlank(value)",
           "columnName": "StreetName",
           "invert": false,
           "omitBlank": false,
@@ -376,10 +360,16 @@
       "mode": "row-based"
     },
     "columnName": "StreetName",
-    "expression": "grel:cells[\"Address\"].value.replace(/(^\\d+\\s+)/, \"\").replace(/(,.*$)/, \"\").replace(/(^[NSWE]{1,2}\\b\\s+)/, \"\").replace(/(\\s+[a-zA-Z]+$)/, \"\")",
+    "expression": "grel:cells.get(\"Address\").value.replace(/(^\\d+\\s+)/, \"\").replace(/(,.*$)/, \"\").replace(/(^[NSWE]{1,2}\\b\\s+)/, \"\").replace(/(\\s+[a-zA-Z]+$)/, \"\")",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Trasforma il testo delle celle nella colonna StreetName utilizzando l'espressione grel:cells[\"Address\"].value.replace(/(^\\d+\\s+)/, \"\").replace(/(,.*$)/, \"\").replace(/(^[NSWE]{1,2}\\b\\s+)/, \"\").replace(/(\\s+[a-zA-Z]+$)/, \"\")"
+    "description": "Trasforma il testo delle celle nella colonna StreetName utilizzando l'espressione grel:cells.get(\"Address\").value.replace(/(^\\d+\\s+)/, \"\").replace(/(,.*$)/, \"\").replace(/(^[NSWE]{1,2}\\b\\s+)/, \"\").replace(/(\\s+[a-zA-Z]+$)/, \"\")"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Source",
+    "newColumnName": "RequestSource",
+    "description": "Rinomina la colonna Source a RequestSource"
   }
 ]
