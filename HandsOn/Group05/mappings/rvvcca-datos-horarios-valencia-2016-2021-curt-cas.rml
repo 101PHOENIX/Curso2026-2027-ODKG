@@ -1,0 +1,255 @@
+@prefix rr:  <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:  <http://semweb.mmlab.be/ns/ql#> .
+@prefix aq:  <https://w3id.org/valencia-airquality/ontology/airquality#> .
+@prefix station: <https://w3id.org/valencia-airquality/resource/MonitoringStation/> .
+@prefix prop: <https://w3id.org/valencia-airquality/resource/ObservableProperty/> .
+@prefix obs: <https://w3id.org/valencia-airquality/resource/Observation/> .
+@prefix data: <https://w3id.org/valencia-airquality/dataset/property/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+_:csvSource
+  rml:source "csv/rvvcca-datos-horarios-valencia-2016-2021-curt-cas-updated.csv" ;
+  rml:referenceFormulation ql:CSV .
+
+<#RecordContextMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [
+    rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ;
+    rr:class data:Record
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate data:date ;
+    rr:objectMap [ rml:reference "Fecha" ; rr:datatype xsd:date ]
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate data:dayOfWeek ;
+    rr:objectMap [ rml:reference "Día de la semana" ]
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate data:dayOfMonth ;
+    rr:objectMap [ rml:reference "Día del mes" ; rr:datatype xsd:integer ]
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate data:hour ;
+    rr:objectMap [ rml:reference "Hora" ]
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate data:station ;
+    rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ]
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate data:hasNoMeasurements ;
+    rr:objectMap [ rml:reference "sin_mediciones" ; rr:datatype xsd:boolean ]
+  ] .
+
+<#StationMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [
+    rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ;
+    rr:class aq:MonitoringStation
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate aq:stationName ;
+    rr:objectMap [ rml:reference "Estación" ; rr:datatype xsd:string ]
+  ] .
+
+<#PM1Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_PM1" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:PM1 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "PM1" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#PM25Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_PM25" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:PM25 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "PM2.5" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#PM10Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_PM10" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:PM10 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "PM10" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#NOMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_NO" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:NO ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "NO" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#NO2Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_NO2" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:NO2 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "NO2" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#NOxMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_NOx" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:NOx ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "NOx" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#O3Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_O3" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:O3 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "O3" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#SO2Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_SO2" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:SO2 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "SO2" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#COMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_CO" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:CO ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "CO" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#WindSpeedMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_WindSpeed" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:WindSpeed ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Velocidad del viento" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#WindDirectionMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_WindDirection" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:WindDirection ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Dirección del viento" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#NH3Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_NH3" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:NH3 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "NH3" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#C7H8Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_C7H8" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:C7H8 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "C7H8" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#C6H6Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_C6H6" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:C6H6 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "C6H6" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#NoiseMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_Noise" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:Noise ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Ruido" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#C8H10Map>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_C8H10" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:C8H10 ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "C8H10" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#TemperatureMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_Temperature" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:Temperature ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Temperatura" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#HumidityMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_Humidity" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:Humidity ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Humedad relativa" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#PressureMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_Pressure" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:Pressure ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Presión" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#RadiationMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_Radiation" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:Radiation ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Radiación" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#PrecipitationMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_Precipitation" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:Precipitation ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Precipitación" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
+
+<#MaximumWindSpeedMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [ rr:template "https://w3id.org/valencia-airquality/resource/Observation/{id}_MaximumWindSpeed" ; rr:class aq:Observation ] ;
+  rr:predicateObjectMap [ rr:predicate aq:hasStation ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/resource/MonitoringStation/{Estación}" ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:observedProperty ; rr:objectMap [ rr:constant prop:MaximumWindSpeed ] ] ;
+  rr:predicateObjectMap [ rr:predicate aq:resultValue ; rr:objectMap [ rml:reference "Velocidad máxima del viento" ; rr:datatype xsd:decimal ] ] ;
+  rr:predicateObjectMap [ rr:predicate data:fromRecord ; rr:objectMap [ rr:template "https://w3id.org/valencia-airquality/dataset/record/{id}" ] ] .
