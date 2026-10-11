@@ -996,5 +996,162 @@
     "repeat": false,
     "repeatCount": 10,
     "description": "Text transform on cells in column ARTIST_ID using expression jython:if 'lookup_dict' not in vars():\n    names = ['A.C. Goddard','Actual Size Artworks','Adler','Adolff Johnson','Albin Polásek','Alexander Calder','Alexander Proctor','Alfonso \"Piloto\" Nieves','Alfonso Iannelli','Alicia Lee','Alison Svoboda','Andy Bellomo','Andy Hunt','Anna Koh Varilla','Anna Soltys','Anthony Heinz May','Antonio T. Mondejar','Ary R. Perez','Assoc','Assoc.','Augustus Saint-Gaudens','Ausbra Ford','Barbara Miller','Baumann','Beatriz Santiago Muñoz','Ben Seamons','Bennett','Bernard Williams','Bill Wieger','Boris Gilbertson','Bradford L. Gilbert','Brett Whitacre','Bronislaw Koniuszy','Bucktown Arts Fest','Camille Leavitt','Capraro','Carl Brioschi','Carl J. Epiing','Carol Tarnoff','Carolyn Elaine','Carrie Fischer','Charles J. Mulligan','Charles Keck','Charles Mulligan','Chester Dryan','Chicago Mosaic School','Chris Perri','Chris Williams','Chueh Ming-Teh','Clements','Connie Hinkle','Corinne D. Peterson','Cosmo Campoli','Count Jacque de la Laing','CPAG','Craig Brant','Cyrus Edwin Dallin','Dale Chihuly','Dame Elisabeth Frink','Damon Lamar Reed','Damon Reed','Dan Yarborough','Daniel Chester French','Darlene McGhee','Darrell Davis','David L. Rodgers','David Smith','David Woodhouse','Deborah Butterfield','Debra Hand','Denise Milan','Dessa Kirk','DeStefano','Diana Solis-Contratiempo','Dino C. Crisanti','Dorian Sylvain','Dusty Folwarczny','Ed Fu','Edmond Gueringer','Edward C. Potter','Edward Kemeys','Edward McCartan','Elisabeth Hibbard','Ellen Lanyon','Ellsworth Kelly','Eric Blome','Eric Stephenson','Ernest Moore Viquesney','Ernest Wong','Ernst Bilhauer Rau','Evelyn Henton','Felix Gorling','Franz Engelsman','Franz Machtl','Fred Arroyo','Frederick','Frederick C. Hibbard','Frederick Cleveland Hibbard','Frederick MacMonnies','Frithiof Kjellberg','Frost','Gabriel Ponzanelli','Gabriel Villa','Gary Lehman','Gary Wojcik','Gast Monuments Inc.','George Hruska','George Segal','George Suyeoka','George Wade','Georgina Valverder','Gerry Lang','Ginny Sykes','Green Star Movement','Greg','Gutzon Borglum','H. Wheatley Allen','Haida Indians','Hector Duarte','Hector Guimard','Henry Ives Cobb','Henry Manger','Henry Mitchell','Henry Moore','Herman Hahn','Ignacio Perez Salono','Indira Johnson','Isamu Noguchi','Isiah and Rachel Terry','Ivan Mestrovic','James Edwin McBurney','James G. Gilbert','James J. Egan','Janet Austin','Janet Rosetta','Jeff Littleton','Jeff Zimmerman','Jeffrey Hanson Varilla','Jen Z. Johns','Jenney','Jerzy Kenar','Jesse Shipley','Jesus Chucho Rodriguez','Jewell Pates','Jill N. Parker','Jim Long','Johannes Gelert','John Alaniz','John Angel','John David Brcin','John David Mooney','John Hatleshad','John J. Boyle','John Kearney','John Mason','John Pittman Weber','John Warner Norton','Jose Moreno','Joseph Strachovsky','Josh Holland','JR Cadawas','Juan Carlos Perez','Julia Barlow','Julia Sowles-Barlow','Julie Rotblatt-Amrany','Kamelia Hristeva','Kara James','Karen J Gubitz','Karl and Indira Johnson','Kasimir Chodzinski','Kathleen McCullough','Kathy Gemperle','Keith Haring','Komar','Lameck Bonjisi','Laurie Shaman','Lawrence E. Taylor','Leonard Crunelle','Liao Huilan','Liu Zhengde','Lorado Taft','Loring','Louis T. Rebisso','Louise Bourgeois','Lucy Slivinski','Luftwerk','Luxon Karise','Lynn Takata','Magdalena Abakanowicz','Marc Schneider','Marcel Francois Loyau','Margo McMahon','Margot McMahon','Maria Gaspar','Maria Whiteman','Marshall Svendsen','Martha Crandall','Maurice Harron','Maurice Moore Memorials','Max Robert Decker','Max Sansing','Mia Capodilupo','Miklos Simon','Millicent Gordon','Milton Horn','Milton Mizenburg Jr.','Mirtes Zwierzynski','Moses Ezekiel','Nancy Deborah Wicker','Nick Goettling','Nicolette Ross','Norman Tait Nishga','Patricia M. Murphy','Patricia Murphy','Patti Adachi','Paul Fjelde','Peter Darro','Peter Lindsay Schaudt','Phil Schuster','Phillip Shore','Pottawattomie Art Class','Rachel Slotnick','Raout Josset','Richard Henry Park','Richard Hunt','Richard Serra','Richard W. Bock','Robinson Iron Works','Roman Villareal','Roman Villareal et al','Rookwood Potteries','Roy L. Terwilliger','S.B. Braidwood et al','Said Ben Adiba','Samantha Rausch','Sandie Bacon','Shana Pearlmutter','Sheila Klein','Shenchen Xu','Sigvald Asbjørnsen','Sonata Kazimieraitiene','Sonja Henderson','South Park Commission Architects','Stella Brown','Stephan Balkenhol','Stephanie George','Steve Tobin','Sullivan','Susan Clinard','Tamsie Ringler','Tannis Langdon','the Soul Stitchers','Thom Cicchelli','Thomas','Tim Portlock','Tina Allen','Todd Osborne','Tom Lea','Tom Tischler','Tom White','Tracy van Duinen','Tracy van Duinen et al','US Army Corps of Engineers','Van Osdel','Veryl Goodnight','Victor Gheradi','Victor Velez','Victoria Bianco','Viktor Bougaev','Virginio Ferrari','Vito Acconci','Vivian Visser','Walter Arnold','Will Nicholson','William Edouard Scott','William Grant Stevenson','William Ordway Partridge','William Patterson','Wolff','Yoko Ono','Yu Jiyong']\n    lookup_dict = {name: idx + 1 for idx, name in enumerate(names)}\n\nif value:\n    return lookup_dict.get(value.strip())\nreturn None"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTWORK_NAME",
+    "expression": "value.toString()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column ARTWORK_NAME using expression value.toString()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PARK_NAME",
+    "expression": "value.toString()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column PARK_NAME using expression value.toString()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "range",
+          "name": "GIS_OBJECT_ID",
+          "expression": "value",
+          "columnName": "GIS_OBJECT_ID",
+          "from": 1200,
+          "to": 6800,
+          "selectNumeric": false,
+          "selectNonNumeric": true,
+          "selectBlank": true,
+          "selectError": true
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "GIS_OBJECT_ID",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column GIS_OBJECT_ID using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "GIS_OBJECT_ID",
+    "expression": "grel:value.replace('0','')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column GIS_OBJECT_ID using expression grel:value.replace('0','')"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Frederick C. Hibbard"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Frederick Cleveland Hibbard"
+      }
+    ],
+    "description": "Mass edit cells in column ARTIST"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "grel:value.replace('ø','')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column ARTIST using expression grel:value.replace('ø','')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ARTIST",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column ARTIST using expression value.trim()"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Private"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Unknown"
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Unknown"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "ARTIST",
+    "newColumnName": "ARTIST_NAME",
+    "description": "Rename column ARTIST to ARTIST_NAME"
   }
 ]
