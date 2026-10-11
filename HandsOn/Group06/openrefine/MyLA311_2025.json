@@ -371,5 +371,31 @@
     "oldColumnName": "Source",
     "newColumnName": "RequestSource",
     "description": "Rinomina la colonna Source a RequestSource"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Latitude",
+    "expression": "value.replace(\",\",\".\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Trasforma il testo delle celle nella colonna Latitude utilizzando l'espressione value.replace(\",\",\".\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Longitude",
+    "expression": "value.replace(\",\",\".\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Trasforma il testo delle celle nella colonna Longitude utilizzando l'espressione value.replace(\",\",\".\")"
   }
 ]
