@@ -1,0 +1,253 @@
+# SPARQL queries to verify rdf/madridnoise.ttl (Group03 - Madrid urban noise)
+# Load rdf/madridnoise.ttl (and optionally ontology/ontology.ttl) in any
+# SPARQL engine (Jena, GraphDB, Blazegraph...) and run each query separately.
+# "Expected" values refer to the committed RDF (noise observations from
+# 2025-01-01 to 2026-10-04, 31 stations, 6,594 terraces).
+# Each query carries its own PREFIX block so it can be run on its own.
+
+# ---------------------------------------------------------------------------
+# Q1. Number of individuals per class.
+# Expected: 31 stations, 4 periods, 78,230 observations, 6,594 terraces,
+# 21 districts and 129 neighbourhoods (from the terrace census).
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?class (COUNT(DISTINCT ?s) AS ?individuals)
+WHERE { ?s a ?class }
+GROUP BY ?class
+ORDER BY DESC(?individuals)
+
+# ---------------------------------------------------------------------------
+# Q2. Every individual has a label. Expected: 0.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT (COUNT(DISTINCT ?s) AS ?withoutLabel)
+WHERE {
+  ?s a ?class .
+  FILTER NOT EXISTS { ?s rdfs:label ?label }
+}
+
+# ---------------------------------------------------------------------------
+# Q3. Every subject has a type. Expected: 0.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT (COUNT(DISTINCT ?s) AS ?withoutType)
+WHERE {
+  ?s ?p ?o .
+  FILTER NOT EXISTS { ?s a ?class }
+}
+
+# ---------------------------------------------------------------------------
+# Q4. Links point to existing resources of the right class (no dangling
+# station, period, district or neighbourhood IRIs). Expected: 0.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT (COUNT(*) AS ?danglingLinks)
+WHERE {
+  {
+    ?obs mn:recordedAt ?target .
+    FILTER NOT EXISTS { ?target a mn:NoiseMonitoringStation }
+  } UNION {
+    ?obs mn:forPeriod ?target .
+    FILTER NOT EXISTS { ?target a mn:DayPeriod }
+  } UNION {
+    ?t mn:hasDistrict ?target .
+    FILTER NOT EXISTS { ?target a mn:District }
+  } UNION {
+    ?t mn:hasNeighbourhood ?target .
+    FILTER NOT EXISTS { ?target a mn:Neighbourhood }
+  }
+}
+
+# ---------------------------------------------------------------------------
+# Q5. Typed values: every measurement is an xsd:decimal, every date an
+# xsd:date and every terrace id an xsd:integer. Expected: 0.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT (COUNT(*) AS ?wronglyTyped)
+WHERE {
+  {
+    ?s mn:laeq|mn:las01|mn:las10|mn:las50|mn:las90|mn:las99|mn:latitude|mn:longitude ?v .
+    FILTER (datatype(?v) != xsd:decimal)
+  } UNION {
+    ?s mn:observationDate ?v .
+    FILTER (datatype(?v) != xsd:date)
+  } UNION {
+    ?s mn:terraceId ?v .
+    FILTER (datatype(?v) != xsd:integer)
+  }
+}
+
+# ---------------------------------------------------------------------------
+# Q6. Each observation is unique per station, date and period and has
+# exactly one LAeq. Expected: no rows.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?station ?date ?period (COUNT(?obs) AS ?n)
+WHERE {
+  ?obs mn:recordedAt ?station ;
+       mn:observationDate ?date ;
+       mn:forPeriod ?period ;
+       mn:laeq ?laeq .
+}
+GROUP BY ?station ?date ?period
+HAVING (COUNT(?obs) > 1)
+
+# ---------------------------------------------------------------------------
+# Q7. Unavailable (N/D) percentiles were omitted, not turned into zeros:
+# observations with LAeq but no L1. Expected: 17, the N/D rows in the
+# source for this period (no zero values were invented).
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT (COUNT(?obs) AS ?withoutPercentiles)
+WHERE {
+  ?obs a mn:DailyNoiseObservation ; mn:laeq ?laeq .
+  FILTER NOT EXISTS { ?obs mn:las01 ?l1 }
+}
+
+# ---------------------------------------------------------------------------
+# Q8. Spot check against the source CSV: station 2 (RF-02), 1 January 2025,
+# night period. Source row: 2;2025;1;1;N;68,1;78,7;68,4;64,2;58,9;55,8
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?name ?laeq ?l1 ?l10 ?l50 ?l90 ?l99
+WHERE {
+  ?obs mn:recordedAt station:RF-02 ;
+       mn:forPeriod period:N ;
+       mn:observationDate "2025-01-01"^^xsd:date ;
+       mn:laeq ?laeq ; mn:las01 ?l1 ; mn:las10 ?l10 ;
+       mn:las50 ?l50 ; mn:las90 ?l90 ; mn:las99 ?l99 .
+  station:RF-02 mn:stationName ?name .
+}
+
+# ---------------------------------------------------------------------------
+# Q9. Application query: average night LAeq per station in 2025 and the
+# share of nights above 55 dB(A) (descriptive threshold, not a legal limit).
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?code ?name
+       (ROUND(AVG(?laeq) * 10) / 10 AS ?avgNightLAeq)
+       (COUNT(?obs) AS ?nights)
+       (ROUND(100 * SUM(IF(?laeq > 55, 1, 0)) / COUNT(?obs)) AS ?pctAbove55)
+WHERE {
+  ?obs mn:recordedAt ?st ;
+       mn:forPeriod period:N ;
+       mn:observationDate ?date ;
+       mn:laeq ?laeq .
+  ?st mn:stationCode ?code ; mn:stationName ?name .
+  FILTER (?date >= "2025-01-01"^^xsd:date && ?date < "2026-01-01"^^xsd:date)
+}
+GROUP BY ?code ?name
+ORDER BY DESC(?avgNightLAeq)
+
+# ---------------------------------------------------------------------------
+# Q10. Terraces per district, and how many have usable coordinates.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?district (COUNT(?t) AS ?terraces) (COUNT(?lat) AS ?withCoordinates)
+WHERE {
+  ?t a mn:Terrace ; mn:hasDistrict ?d .
+  ?d rdfs:label ?district .
+  OPTIONAL { ?t mn:latitude ?lat }
+}
+GROUP BY ?district
+ORDER BY DESC(?terraces)
+
+# ---------------------------------------------------------------------------
+# Q11. All coordinates fall inside the Madrid municipality bounding box.
+# Expected: 0.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT (COUNT(?s) AS ?outOfMadrid)
+WHERE {
+  ?s mn:latitude ?lat ; mn:longitude ?lon .
+  FILTER (?lat < 40.30 || ?lat > 40.65 || ?lon < -3.90 || ?lon > -3.50)
+}
+
+# ---------------------------------------------------------------------------
+# Q12. Terraces within roughly 300 m of a station (equirectangular
+# approximation in metres), the link the application is built around.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?code (COUNT(DISTINCT ?t) AS ?terracesWithin300m)
+WHERE {
+  ?st a mn:NoiseMonitoringStation ; mn:stationCode ?code ;
+      mn:latitude ?slat ; mn:longitude ?slon .
+  ?t a mn:Terrace ; mn:latitude ?tlat ; mn:longitude ?tlon .
+  BIND ((?tlat - ?slat) * 111320 AS ?dy)
+  BIND ((?tlon - ?slon) * 111320 * 0.7627 AS ?dx)
+  FILTER (?dx * ?dx + ?dy * ?dy < 90000)
+}
+GROUP BY ?code
+ORDER BY DESC(?terracesWithin300m)
