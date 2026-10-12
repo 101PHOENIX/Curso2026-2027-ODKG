@@ -3912,7 +3912,7 @@ fountain:03-173 a hr:DrinkingFountain ;
     hr:streetAddress "C ALTS FORNS, 29" .
 
 fountain:03-175 a hr:DrinkingFountain ;
-    rdfs:label "-"@ca ;
+    rdfs:label "Font 03-175"@ca ;
     geo:lat 41.361167615 ;
     geo:long 2.146016066 ;
     hr:etrs89X 428571.781983747 ;
@@ -5460,7 +5460,7 @@ fountain:04-096 a hr:DrinkingFountain ;
     hr:streetAddress "C ABADESSA OLZET, 16" .
 
 fountain:04-097 a hr:DrinkingFountain ;
-    rdfs:label "-"@ca ;
+    rdfs:label "Font 04-097"@ca ;
     geo:lat 41.375865565 ;
     geo:long 2.121973744 ;
     hr:etrs89X 426577.361440599 ;
@@ -7026,7 +7026,7 @@ fountain:06-012 a hr:DrinkingFountain ;
     hr:streetAddress "PG GRACIA, 126" .
 
 fountain:06-013 a hr:DrinkingFountain ;
-    rdfs:label "-"@ca ;
+    rdfs:label "Font 06-013"@ca ;
     geo:lat 41.399549241 ;
     geo:long 2.152858597 ;
     hr:etrs89X 429185.755248132 ;
@@ -7809,7 +7809,7 @@ fountain:06-148 a hr:DrinkingFountain ;
     hr:streetAddress "C SANT CAMIL, 5" .
 
 fountain:06-150 a hr:DrinkingFountain ;
-    rdfs:label "-"@ca ;
+    rdfs:label "Font 06-150"@ca ;
     geo:lat 41.404443894 ;
     geo:long 2.153786742 ;
     hr:etrs89X 429268.649502905 ;
