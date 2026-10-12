@@ -339684,8 +339684,8 @@
     la311:longitude -118.227620216 .
 
 <http://linkeddata.la311.com/resource/Location/34.0449132202,-118.253427007> a la311:Location ;
-    rdfs:label "700 1/2 S BROADWAY  , 90014"^^xsd:string ;
-    la311:address "700 1/2 S BROADWAY  , 90014"^^xsd:string ;
+    rdfs:label "700 1/2 S BROADWAY, 90014"^^xsd:string ;
+    la311:address "700 1/2 S BROADWAY, 90014"^^xsd:string ;
     la311:isWithin <http://linkeddata.la311.com/resource/AdministrativeRegion/52_14> ;
     la311:latitude 34.0449132202 ;
     la311:longitude -118.253427007 .
