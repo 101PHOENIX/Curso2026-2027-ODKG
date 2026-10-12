@@ -4,6 +4,7 @@ prefixes:
   rdfs: http://www.w3.org/2000/01/rdf-schema#
   xsd: http://www.w3.org/2001/XMLSchema#
   dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
   mn: https://madridnoise.linkeddata.es/ontology#
   station: https://madridnoise.linkeddata.es/resource/station/
   observation: https://madridnoise.linkeddata.es/resource/observation/
@@ -12,6 +13,7 @@ prefixes:
   district: https://madridnoise.linkeddata.es/resource/district/
   neighbourhood: https://madridnoise.linkeddata.es/resource/neighbourhood/
   dataset: https://madridnoise.linkeddata.es/dataset/
+  agent: https://madridnoise.linkeddata.es/resource/agent/
 
 mappings:
   station:
@@ -52,6 +54,7 @@ mappings:
       - [mn:las50, $(l50), xsd:decimal]
       - [mn:las90, $(l90), xsd:decimal]
       - [mn:las99, $(l99), xsd:decimal]
+      - [mn:percentileOrderViolation, $(percentile_order_violation), xsd:boolean]
       - [dcterms:isPartOf, dataset:daily-noise~iri]
 
   terrace:
@@ -87,3 +90,26 @@ mappings:
     po:
       - [a, mn:Neighbourhood]
       - [rdfs:label, $(neighbourhood_label), es~lang]
+
+  dataset:
+    sources:
+      - [csv/datasets.csv~csv]
+    s: dataset:$(dataset_id)
+    po:
+      - [a, dcat:Dataset]
+      - [rdfs:label, $(label), en~lang]
+      - [dcterms:title, $(title), en~lang]
+      - [dcterms:description, $(description), en~lang]
+      - [dcterms:license, https://creativecommons.org/licenses/by/4.0/~iri]
+      - [dcterms:creator, agent:group03~iri]
+      - [dcterms:publisher, agent:group03~iri]
+      - [dcterms:modified, $(modified), xsd:date]
+      - [dcterms:source, $(source)~iri]
+
+  group:
+    sources:
+      - [csv/datasets.csv~csv]
+    s: agent:$(agent_id)
+    po:
+      - [a, dcterms:Agent]
+      - [rdfs:label, ODKG 2026-2027 Group03, en~lang]

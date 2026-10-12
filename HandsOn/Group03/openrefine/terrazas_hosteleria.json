@@ -8,9 +8,13 @@
       "id_barrio_local",
       "desc_barrio_local",
       "coordenada_x_local",
-      "coordenada_y_local"
+      "coordenada_y_local",
+      "id_tipo_acceso_local",
+      "id_situacion_local",
+      "coordenada_x_agrupacion",
+      "coordenada_y_agrupacion"
     ],
-    "description": "Reorder columns"
+    "description": "Keep identifiers, labels and all inputs needed to select valid entrance coordinates"
   },
   {
     "op": "core/text-transform",
@@ -84,11 +88,11 @@
       "mode": "row-based"
     },
     "baseColumnName": "coordenada_x_local",
-    "expression": "jython:import math\ntry:\n    x = float(cells[\"coordenada_x_local\"][\"value\"])\n    y = float(cells[\"coordenada_y_local\"][\"value\"])\nexcept Exception:\n    return None\nif x <= 0 or y <= 0:\n    return None\na = 6378137.0; f = 1 / 298.257222101; k0 = 0.9996\nn = f / (2 - f)\nA = a / (1 + n) * (1 + n**2 / 4 + n**4 / 64)\nbeta = [n/2 - 2*n**2/3 + 37*n**3/96, n**2/48 + n**3/15, 17*n**3/480]\ndelta = [2*n - 2*n**2/3 - 2*n**3, 7*n**2/3 - 8*n**3/5, 56*n**3/15]\nxi = y / (k0 * A); eta = (x - 500000.0) / (k0 * A)\nxp = xi; ep = eta\nfor j in range(1, 4):\n    xp -= beta[j-1] * math.sin(2*j*xi) * math.cosh(2*j*eta)\n    ep -= beta[j-1] * math.cos(2*j*xi) * math.sinh(2*j*eta)\nchi = math.asin(math.sin(xp) / math.cosh(ep))\nlat = chi\nfor j in range(1, 4):\n    lat += delta[j-1] * math.sin(2*j*chi)\nlat = math.degrees(lat)\nlon = math.degrees(math.radians(-3) + math.atan2(math.sinh(ep), math.cos(xp)))\nif not (40.2 < lat < 40.7 and -4.0 < lon < -3.4):\n    return None\nreturn \"%.9f\" % (lat if True else lon)",
+    "expression": "jython:import math\ndef number(column):\n    try:\n        return float(cells[column][\"value\"])\n    except Exception:\n        return None\naccess = number(\"id_tipo_acceso_local\")\nstatus = number(\"id_situacion_local\")\nif access == 1 and status is not None and status not in (8, 9):\n    x = number(\"coordenada_x_local\")\n    y = number(\"coordenada_y_local\")\nelif access == 0:\n    x = number(\"coordenada_x_agrupacion\")\n    y = number(\"coordenada_y_agrupacion\")\nelse:\n    return None\nif x is None or y is None or x <= 0 or y <= 0:\n    return None\na = 6378137.0; f = 1 / 298.257222101; k0 = 0.9996\nn = f / (2 - f)\nA = a / (1 + n) * (1 + n**2 / 4 + n**4 / 64)\nbeta = [n/2 - 2*n**2/3 + 37*n**3/96, n**2/48 + n**3/15, 17*n**3/480]\ndelta = [2*n - 2*n**2/3 - 2*n**3, 7*n**2/3 - 8*n**3/5, 56*n**3/15]\nxi = y / (k0 * A); eta = (x - 500000.0) / (k0 * A)\nxp = xi; ep = eta\nfor j in range(1, 4):\n    xp -= beta[j-1] * math.sin(2*j*xi) * math.cosh(2*j*eta)\n    ep -= beta[j-1] * math.cos(2*j*xi) * math.sinh(2*j*eta)\nchi = math.asin(math.sin(xp) / math.cosh(ep))\nlat = chi\nfor j in range(1, 4):\n    lat += delta[j-1] * math.sin(2*j*chi)\nlat = math.degrees(lat)\nlon = math.degrees(math.radians(-3) + math.atan2(math.sinh(ep), math.cos(xp)))\nif not (40.2 < lat < 40.7 and -4.0 < lon < -3.4):\n    return None\nreturn \"%.9f\" % (lat if True else lon)",
     "onError": "set-to-blank",
     "newColumnName": "latitude",
     "columnInsertIndex": 7,
-    "description": "Create column latitude at index 7 based on column coordenada_x_local using expression jython:import math\ntry:\n    x = float(cells[\"coordenada_x_local\"][\"value\"])\n    y = float(cells[\"coordenada_y_local\"][\"value\"])\nexcept Exception:\n    return None\nif x <= 0 or y <= 0:\n    return None\na = 6378137.0; f = 1 / 298.257222101; k0 = 0.9996\nn = f / (2 - f)\nA = a / (1 + n) * (1 + n**2 / 4 + n**4 / 64)\nbeta = [n/2 - 2*n**2/3 + 37*n**3/96, n**2/48 + n**3/15, 17*n**3/480]\ndelta = [2*n - 2*n**2/3 - 2*n**3, 7*n**2/3 - 8*n**3/5, 56*n**3/15]\nxi = y / (k0 * A); eta = (x - 500000.0) / (k0 * A)\nxp = xi; ep = eta\nfor j in range(1, 4):\n    xp -= beta[j-1] * math.sin(2*j*xi) * math.cosh(2*j*eta)\n    ep -= beta[j-1] * math.cos(2*j*xi) * math.sinh(2*j*eta)\nchi = math.asin(math.sin(xp) / math.cosh(ep))\nlat = chi\nfor j in range(1, 4):\n    lat += delta[j-1] * math.sin(2*j*chi)\nlat = math.degrees(lat)\nlon = math.degrees(math.radians(-3) + math.atan2(math.sinh(ep), math.cos(xp)))\nif not (40.2 < lat < 40.7 and -4.0 < lon < -3.4):\n    return None\nreturn \"%.9f\" % (lat if True else lon)"
+    "description": "Convert valid street or grouping entrance coordinates from EPSG:25830 to latitude"
   },
   {
     "op": "core/column-addition",
@@ -97,11 +101,11 @@
       "mode": "row-based"
     },
     "baseColumnName": "coordenada_x_local",
-    "expression": "jython:import math\ntry:\n    x = float(cells[\"coordenada_x_local\"][\"value\"])\n    y = float(cells[\"coordenada_y_local\"][\"value\"])\nexcept Exception:\n    return None\nif x <= 0 or y <= 0:\n    return None\na = 6378137.0; f = 1 / 298.257222101; k0 = 0.9996\nn = f / (2 - f)\nA = a / (1 + n) * (1 + n**2 / 4 + n**4 / 64)\nbeta = [n/2 - 2*n**2/3 + 37*n**3/96, n**2/48 + n**3/15, 17*n**3/480]\ndelta = [2*n - 2*n**2/3 - 2*n**3, 7*n**2/3 - 8*n**3/5, 56*n**3/15]\nxi = y / (k0 * A); eta = (x - 500000.0) / (k0 * A)\nxp = xi; ep = eta\nfor j in range(1, 4):\n    xp -= beta[j-1] * math.sin(2*j*xi) * math.cosh(2*j*eta)\n    ep -= beta[j-1] * math.cos(2*j*xi) * math.sinh(2*j*eta)\nchi = math.asin(math.sin(xp) / math.cosh(ep))\nlat = chi\nfor j in range(1, 4):\n    lat += delta[j-1] * math.sin(2*j*chi)\nlat = math.degrees(lat)\nlon = math.degrees(math.radians(-3) + math.atan2(math.sinh(ep), math.cos(xp)))\nif not (40.2 < lat < 40.7 and -4.0 < lon < -3.4):\n    return None\nreturn \"%.9f\" % (lat if False else lon)",
+    "expression": "jython:import math\ndef number(column):\n    try:\n        return float(cells[column][\"value\"])\n    except Exception:\n        return None\naccess = number(\"id_tipo_acceso_local\")\nstatus = number(\"id_situacion_local\")\nif access == 1 and status is not None and status not in (8, 9):\n    x = number(\"coordenada_x_local\")\n    y = number(\"coordenada_y_local\")\nelif access == 0:\n    x = number(\"coordenada_x_agrupacion\")\n    y = number(\"coordenada_y_agrupacion\")\nelse:\n    return None\nif x is None or y is None or x <= 0 or y <= 0:\n    return None\na = 6378137.0; f = 1 / 298.257222101; k0 = 0.9996\nn = f / (2 - f)\nA = a / (1 + n) * (1 + n**2 / 4 + n**4 / 64)\nbeta = [n/2 - 2*n**2/3 + 37*n**3/96, n**2/48 + n**3/15, 17*n**3/480]\ndelta = [2*n - 2*n**2/3 - 2*n**3, 7*n**2/3 - 8*n**3/5, 56*n**3/15]\nxi = y / (k0 * A); eta = (x - 500000.0) / (k0 * A)\nxp = xi; ep = eta\nfor j in range(1, 4):\n    xp -= beta[j-1] * math.sin(2*j*xi) * math.cosh(2*j*eta)\n    ep -= beta[j-1] * math.cos(2*j*xi) * math.sinh(2*j*eta)\nchi = math.asin(math.sin(xp) / math.cosh(ep))\nlat = chi\nfor j in range(1, 4):\n    lat += delta[j-1] * math.sin(2*j*chi)\nlat = math.degrees(lat)\nlon = math.degrees(math.radians(-3) + math.atan2(math.sinh(ep), math.cos(xp)))\nif not (40.2 < lat < 40.7 and -4.0 < lon < -3.4):\n    return None\nreturn \"%.9f\" % (lat if False else lon)",
     "onError": "set-to-blank",
     "newColumnName": "longitude",
     "columnInsertIndex": 8,
-    "description": "Create column longitude at index 8 based on column coordenada_x_local using expression jython:import math\ntry:\n    x = float(cells[\"coordenada_x_local\"][\"value\"])\n    y = float(cells[\"coordenada_y_local\"][\"value\"])\nexcept Exception:\n    return None\nif x <= 0 or y <= 0:\n    return None\na = 6378137.0; f = 1 / 298.257222101; k0 = 0.9996\nn = f / (2 - f)\nA = a / (1 + n) * (1 + n**2 / 4 + n**4 / 64)\nbeta = [n/2 - 2*n**2/3 + 37*n**3/96, n**2/48 + n**3/15, 17*n**3/480]\ndelta = [2*n - 2*n**2/3 - 2*n**3, 7*n**2/3 - 8*n**3/5, 56*n**3/15]\nxi = y / (k0 * A); eta = (x - 500000.0) / (k0 * A)\nxp = xi; ep = eta\nfor j in range(1, 4):\n    xp -= beta[j-1] * math.sin(2*j*xi) * math.cosh(2*j*eta)\n    ep -= beta[j-1] * math.cos(2*j*xi) * math.sinh(2*j*eta)\nchi = math.asin(math.sin(xp) / math.cosh(ep))\nlat = chi\nfor j in range(1, 4):\n    lat += delta[j-1] * math.sin(2*j*chi)\nlat = math.degrees(lat)\nlon = math.degrees(math.radians(-3) + math.atan2(math.sinh(ep), math.cos(xp)))\nif not (40.2 < lat < 40.7 and -4.0 < lon < -3.4):\n    return None\nreturn \"%.9f\" % (lat if False else lon)"
+    "description": "Convert valid street or grouping entrance coordinates from EPSG:25830 to longitude"
   },
   {
     "op": "core/column-addition",

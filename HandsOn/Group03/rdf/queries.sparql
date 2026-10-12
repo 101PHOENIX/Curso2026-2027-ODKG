@@ -4,11 +4,13 @@
 # "Expected" values refer to the committed RDF (noise observations from
 # 2025-01-01 to 2026-10-04, 31 stations, 6,594 terraces).
 # Each query carries its own PREFIX block so it can be run on its own.
+# Expected counts describe this source snapshot; quality flags preserve all measurements.
 
 # ---------------------------------------------------------------------------
 # Q1. Number of individuals per class.
 # Expected: 31 stations, 4 periods, 78,230 observations, 6,594 terraces,
-# 21 districts and 129 neighbourhoods (from the terrace census).
+# 21 districts, 129 neighbourhoods, 3 dcat:Dataset resources and 1 publisher Agent.
+# With the ontology loaded, schema types are also listed.
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
@@ -23,7 +25,8 @@ GROUP BY ?class
 ORDER BY DESC(?individuals)
 
 # ---------------------------------------------------------------------------
-# Q2. Every individual has a label. Expected: 0.
+# Q2. Every locally owned individual has a nonblank literal label. Expected: 0.
+# Includes object-only resource and dataset IRIs; excludes ontology/schema IRIs.
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
@@ -32,14 +35,28 @@ PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
 PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
 PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
 
-SELECT (COUNT(DISTINCT ?s) AS ?withoutLabel)
+SELECT (COUNT(?s) AS ?withoutLabel)
 WHERE {
-  ?s a ?class .
-  FILTER NOT EXISTS { ?s rdfs:label ?label }
+  {
+    SELECT DISTINCT ?s WHERE {
+      {
+        SELECT DISTINCT ?s WHERE {
+          { ?s ?p ?o } UNION { ?other ?p ?s }
+        }
+      }
+      FILTER (isIRI(?s))
+      FILTER (STRSTARTS(STR(?s), "https://madridnoise.linkeddata.es/resource/") ||
+              STRSTARTS(STR(?s), "https://madridnoise.linkeddata.es/dataset/"))
+    }
+  }
+  FILTER NOT EXISTS {
+    ?s rdfs:label ?label .
+    FILTER (isLiteral(?label) && STRLEN(REPLACE(STR(?label), "\\s", "")) > 0)
+  }
 }
-
 # ---------------------------------------------------------------------------
-# Q3. Every subject has a type. Expected: 0.
+# Q3. Every locally owned individual has an IRI type. Expected: 0.
+# Includes object-only resource and dataset IRIs; excludes ontology/schema IRIs.
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
@@ -48,12 +65,22 @@ PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
 PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
 PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
 
-SELECT (COUNT(DISTINCT ?s) AS ?withoutType)
+SELECT (COUNT(?s) AS ?withoutType)
 WHERE {
-  ?s ?p ?o .
-  FILTER NOT EXISTS { ?s a ?class }
+  {
+    SELECT DISTINCT ?s WHERE {
+      {
+        SELECT DISTINCT ?s WHERE {
+          { ?s ?p ?o } UNION { ?other ?p ?s }
+        }
+      }
+      FILTER (isIRI(?s))
+      FILTER (STRSTARTS(STR(?s), "https://madridnoise.linkeddata.es/resource/") ||
+              STRSTARTS(STR(?s), "https://madridnoise.linkeddata.es/dataset/"))
+    }
+  }
+  FILTER NOT EXISTS { ?s a ?class . FILTER (isIRI(?class)) }
 }
-
 # ---------------------------------------------------------------------------
 # Q4. Links point to existing resources of the right class (no dangling
 # station, period, district or neighbourhood IRIs). Expected: 0.
@@ -83,8 +110,11 @@ WHERE {
 }
 
 # ---------------------------------------------------------------------------
-# Q5. Typed values: every measurement is an xsd:decimal, every date an
-# xsd:date and every terrace id an xsd:integer. Expected: 0.
+# Q5. Values have the required datatype and a valid lexical form. Expected: 0.
+# Explicitly catches IRIs/blank nodes before calling datatype; casts reject
+# invalid decimal/integer/date/boolean lexical forms, even with a datatype tag.
+# Date lexical forms are checked then converted to xsd:dateTime for validation;
+# xsd:date is not a standard SPARQL 1.1 constructor supported by every engine.
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
@@ -96,20 +126,45 @@ PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
 SELECT (COUNT(*) AS ?wronglyTyped)
 WHERE {
   {
-    ?s mn:laeq|mn:las01|mn:las10|mn:las50|mn:las90|mn:las99|mn:latitude|mn:longitude ?v .
-    FILTER (datatype(?v) != xsd:decimal)
+    VALUES (?property ?expectedDatatype) {
+      (mn:laeq xsd:decimal) (mn:las01 xsd:decimal) (mn:las10 xsd:decimal)
+      (mn:las50 xsd:decimal) (mn:las90 xsd:decimal) (mn:las99 xsd:decimal)
+      (mn:latitude xsd:decimal) (mn:longitude xsd:decimal)
+      (mn:observationDate xsd:date) (mn:terraceId xsd:integer)
+      (mn:percentileOrderViolation xsd:boolean)
+    }
+    ?s ?property ?v .
+    FILTER (!isLiteral(?v))
   } UNION {
-    ?s mn:observationDate ?v .
-    FILTER (datatype(?v) != xsd:date)
-  } UNION {
-    ?s mn:terraceId ?v .
-    FILTER (datatype(?v) != xsd:integer)
+    VALUES (?property ?expectedDatatype) {
+      (mn:laeq xsd:decimal) (mn:las01 xsd:decimal) (mn:las10 xsd:decimal)
+      (mn:las50 xsd:decimal) (mn:las90 xsd:decimal) (mn:las99 xsd:decimal)
+      (mn:latitude xsd:decimal) (mn:longitude xsd:decimal)
+      (mn:observationDate xsd:date) (mn:terraceId xsd:integer)
+      (mn:percentileOrderViolation xsd:boolean)
+    }
+    ?s ?property ?v .
+    FILTER (isLiteral(?v))
+    BIND (IF(?expectedDatatype = xsd:decimal, xsd:decimal(?v),
+          IF(?expectedDatatype = xsd:integer, xsd:integer(?v),
+          IF(?expectedDatatype = xsd:date,
+             IF(REGEX(STR(?v), "^(-?[0-9]{4,}-[0-9]{2}-[0-9]{2})(Z|[+-](0[0-9]|1[0-3]):[0-5][0-9]|[+-]14:00)?$"),
+                xsd:dateTime(REPLACE(STR(?v),
+                  "^(-?[0-9]{4,}-[0-9]{2}-[0-9]{2})(Z|[+-](0[0-9]|1[0-3]):[0-5][0-9]|[+-]14:00)?$",
+                  "$1T00:00:00$2")), xsd:dateTime("")),
+             xsd:boolean(?v)))) AS ?validatedValue)
+    FILTER (datatype(?v) != ?expectedDatatype || !BOUND(?validatedValue) ||
+            (?expectedDatatype = xsd:decimal &&
+             !REGEX(STR(?v), "^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$")) ||
+            (?expectedDatatype = xsd:integer && !REGEX(STR(?v), "^[+-]?[0-9]+$")) ||
+            (?expectedDatatype = xsd:boolean && !REGEX(STR(?v), "^(true|false|1|0)$")))
   }
 }
-
 # ---------------------------------------------------------------------------
-# Q6. Each observation is unique per station, date and period and has
-# exactly one LAeq. Expected: no rows.
+# Q6. Each observation has the DailyNoiseObservation type and exactly one
+# station, date, period and LAeq. Expected: no rows; additional rdf:types are allowed.
+# OPTIONAL preserves missing-property failures; DISTINCT avoids multiplication
+# when another property has several values.
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
@@ -118,16 +173,32 @@ PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
 PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
 PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
 
-SELECT ?station ?date ?period (COUNT(?obs) AS ?n)
+SELECT ?obs (COUNT(DISTINCT ?type) AS ?types)
+       (COUNT(DISTINCT ?station) AS ?stations)
+       (COUNT(DISTINCT ?date) AS ?dates)
+       (COUNT(DISTINCT ?period) AS ?periods)
+       (COUNT(DISTINCT ?laeq) AS ?laeqValues)
 WHERE {
-  ?obs mn:recordedAt ?station ;
-       mn:observationDate ?date ;
-       mn:forPeriod ?period ;
-       mn:laeq ?laeq .
+  {
+    SELECT DISTINCT ?obs WHERE {
+      { ?obs a mn:DailyNoiseObservation }
+      UNION {
+        ?obs ?p ?o .
+        FILTER (isIRI(?obs) && STRSTARTS(STR(?obs),
+                "https://madridnoise.linkeddata.es/resource/observation/"))
+      }
+    }
+  }
+  OPTIONAL { ?obs a ?type }
+  OPTIONAL { ?obs mn:recordedAt ?station }
+  OPTIONAL { ?obs mn:observationDate ?date }
+  OPTIONAL { ?obs mn:forPeriod ?period }
+  OPTIONAL { ?obs mn:laeq ?laeq }
 }
-GROUP BY ?station ?date ?period
-HAVING (COUNT(?obs) > 1)
-
+GROUP BY ?obs
+HAVING (SUM(IF(COALESCE(?type = mn:DailyNoiseObservation, false), 1, 0)) = 0 ||
+        COUNT(DISTINCT ?station) != 1 || COUNT(DISTINCT ?date) != 1 ||
+        COUNT(DISTINCT ?period) != 1 || COUNT(DISTINCT ?laeq) != 1)
 # ---------------------------------------------------------------------------
 # Q7. Unavailable (N/D) percentiles were omitted, not turned into zeros:
 # observations with LAeq but no L1. Expected: 17, the N/D rows in the
@@ -230,8 +301,10 @@ WHERE {
 }
 
 # ---------------------------------------------------------------------------
-# Q12. Terraces within roughly 300 m of a station (equirectangular
-# approximation in metres), the link the application is built around.
+# Q12. Terraces within roughly 300 m of every station (equirectangular
+# approximation in metres), including stations with no nearby terraces.
+# Expected: 31 rows, RF-24 = 0; RF-03 = 71, RF-04 = 55, RF-26 = 3, RF-50 = 30.
+# Proximity counts use WGS84 coordinates and the documented distance approximation.
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
@@ -242,12 +315,142 @@ PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
 
 SELECT ?code (COUNT(DISTINCT ?t) AS ?terracesWithin300m)
 WHERE {
-  ?st a mn:NoiseMonitoringStation ; mn:stationCode ?code ;
-      mn:latitude ?slat ; mn:longitude ?slon .
-  ?t a mn:Terrace ; mn:latitude ?tlat ; mn:longitude ?tlon .
-  BIND ((?tlat - ?slat) * 111320 AS ?dy)
-  BIND ((?tlon - ?slon) * 111320 * 0.7627 AS ?dx)
-  FILTER (?dx * ?dx + ?dy * ?dy < 90000)
+  ?st a mn:NoiseMonitoringStation ; mn:stationCode ?code .
+  OPTIONAL {
+    ?st mn:latitude ?slat ; mn:longitude ?slon .
+    ?t a mn:Terrace ; mn:latitude ?tlat ; mn:longitude ?tlon .
+    BIND ((?tlat - ?slat) * 111320 AS ?dy)
+    BIND ((?tlon - ?slon) * 111320 * 0.7627 AS ?dx)
+    FILTER (?dx * ?dx + ?dy * ?dy < 90000)
+  }
 }
 GROUP BY ?code
-ORDER BY DESC(?terracesWithin300m)
+ORDER BY DESC(?terracesWithin300m) ?code
+# ---------------------------------------------------------------------------
+# Q13. No two observations share a station/date/period key. Expected: no rows.
+# Q6 separately checks missing or multiple values on an individual observation.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?station ?date ?period (COUNT(DISTINCT ?obs) AS ?observations)
+WHERE {
+  ?obs a mn:DailyNoiseObservation ;
+       mn:recordedAt ?station ; mn:observationDate ?date ; mn:forPeriod ?period .
+}
+GROUP BY ?station ?date ?period
+HAVING (COUNT(DISTINCT ?obs) > 1)
+# ---------------------------------------------------------------------------
+# Q14. Percentile-order quality flag distribution. Expected: true = 213,
+# false = 78,000, unavailable = 17 (the N/D rows). Original percentile
+# measurements remain in the graph; this flag reports their ordering quality.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?quality (COUNT(DISTINCT ?obs) AS ?observations)
+WHERE {
+  ?obs a mn:DailyNoiseObservation .
+  OPTIONAL { ?obs mn:percentileOrderViolation ?flag }
+  BIND (IF(!BOUND(?flag), "unavailable", IF(?flag, "true", "false")) AS ?quality)
+}
+GROUP BY ?quality
+ORDER BY ?quality
+# ---------------------------------------------------------------------------
+# Q15. Quality flags agree with the five original percentile measurements.
+# Expected: no rows. Complete percentiles must have exactly one boolean flag;
+# rows with missing percentiles must have none. No percentiles are reordered.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?obs
+WHERE {
+  ?obs a mn:DailyNoiseObservation .
+  OPTIONAL { ?obs mn:las01 ?l1 }
+  OPTIONAL { ?obs mn:las10 ?l10 }
+  OPTIONAL { ?obs mn:las50 ?l50 }
+  OPTIONAL { ?obs mn:las90 ?l90 }
+  OPTIONAL { ?obs mn:las99 ?l99 }
+  OPTIONAL { ?obs mn:percentileOrderViolation ?flag }
+  BIND (BOUND(?l1) && BOUND(?l10) && BOUND(?l50) &&
+        BOUND(?l90) && BOUND(?l99) AS ?complete)
+  BIND (?l1 < ?l10 || ?l10 < ?l50 || ?l50 < ?l90 || ?l90 < ?l99 AS ?violation)
+  FILTER ((?complete && (!BOUND(?flag) || !isLiteral(?flag) ||
+                         datatype(?flag) != xsd:boolean || ?flag != ?violation)) ||
+          (!?complete && BOUND(?flag)) ||
+          EXISTS { ?obs mn:percentileOrderViolation ?otherFlag .
+                   FILTER (?otherFlag != ?flag) })
+}
+ORDER BY ?obs
+# ---------------------------------------------------------------------------
+# Q16. Coordinate coverage includes terraces with no source location.
+# Expected: located = 6,534, missing = 60; partial coordinate pairs = 0.
+# Missing source coordinates remain absent; no replacement locations are invented.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX station: <https://madridnoise.linkeddata.es/resource/station/>
+PREFIX period:  <https://madridnoise.linkeddata.es/resource/period/>
+
+SELECT ?coordinateStatus (COUNT(DISTINCT ?terrace) AS ?terraces)
+WHERE {
+  ?terrace a mn:Terrace .
+  OPTIONAL { ?terrace mn:latitude ?lat }
+  OPTIONAL { ?terrace mn:longitude ?lon }
+  BIND (IF(BOUND(?lat) && BOUND(?lon), "located",
+        IF(!BOUND(?lat) && !BOUND(?lon), "missing", "partial")) AS ?coordinateStatus)
+}
+GROUP BY ?coordinateStatus
+ORDER BY ?coordinateStatus
+
+# ---------------------------------------------------------------------------
+# Q17. Regressions for coordinate-source selection, independently recomputed
+# from the source ETRS89 / UTM zone 30N (EPSG:25830) coordinates. Expected: no rows.
+# Grouped terrace 637 uses 442895.59 / 4478512.51 rather than local 0 / 0;
+# grouped terrace 5115 uses 438996.62 / 4479819.56 rather than its local point.
+# Interior terrace 19580 remains unlocated even though a local point is present.
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX mn:      <https://madridnoise.linkeddata.es/ontology#>
+PREFIX terrace: <https://madridnoise.linkeddata.es/resource/terrace/>
+
+SELECT ?terrace ?problem
+WHERE {
+  {
+    {
+      SELECT ?terrace ?expectedLat ?expectedLon WHERE {
+        VALUES (?terrace ?expectedLat ?expectedLon) {
+          (terrace:637 "40.455315149"^^xsd:decimal "-3.673477581"^^xsd:decimal)
+          (terrace:5115 "40.466812499"^^xsd:decimal "-3.719583525"^^xsd:decimal)
+        }
+      }
+    }
+    OPTIONAL { ?terrace mn:latitude ?lat }
+    OPTIONAL { ?terrace mn:longitude ?lon }
+    FILTER (!BOUND(?lat) || !BOUND(?lon) ||
+            ABS(?lat - ?expectedLat) > 0.000000001 ||
+            ABS(?lon - ?expectedLon) > 0.000000001)
+    BIND ("missing or incorrect grouped-location coordinates" AS ?problem)
+  } UNION {
+    BIND (terrace:19580 AS ?terrace)
+    ?terrace mn:latitude|mn:longitude ?coordinate .
+    BIND ("interior terrace must remain unlocated" AS ?problem)
+  }
+}
+ORDER BY ?terrace ?problem
