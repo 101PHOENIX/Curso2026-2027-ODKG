@@ -13,7 +13,6 @@
 # OpenRefine cleaning (hands-on 3) both files use the official codes and names, and together with the
 # street trees (D3) they contain the same 73 neighbourhoods and 10 districts, so every
 # hr:isLocatedInNeighbourhood link of the three datasets points to a neighbourhood described here.
-# The links to Wikidata (owl:sameAs) are added separately.
 
 <#Neighbourhood> a rr:TriplesMap ;
   rml:logicalSource [
