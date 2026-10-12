@@ -12,8 +12,8 @@
 # Paths are relative to the HandsOn/Group08 directory, where Morph-KGC is run.
 #
 # The logical source is a SQL view over the CSV file (rml:query, executed by Morph-KGC with DuckDB):
-#   - label: the name of the fountain; the 349 fountains without a name in the source get
-#     "Font <code>", so that every individual has a label;
+#   - label: the name of the fountain; the 353 fountains without a name in the source (349 empty cells, 4 cells
+#     with the placeholder "-") get "Font <code>", so that every individual has a label;
 #   - street_address: street, plus the street number when the source has it
 #     (69 fountains have no number and keep the street only; 3 have no street and get no address);
 #   - empty cells, which DuckDB reads as NULL, are turned into empty strings, so that Morph-KGC
@@ -24,7 +24,7 @@
     rml:query """
       SELECT coalesce(COLUMNS(*), '') FROM (
       SELECT *,
-        coalesce(NOM, 'Font ' || CODI) AS label,
+        coalesce(NULLIF(NOM, '-'), 'Font ' || CODI) AS label,
         CASE
           WHEN NUMERO_CARRER IS NULL THEN CARRER
           ELSE CARRER || ', ' || NUMERO_CARRER
