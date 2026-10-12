@@ -1,39 +1,67 @@
-# SPARQL queries to verify the generated RDF data
-# Update the namespace prefix if your dataset uses a different one.
+PREFIX aq:     <https://w3id.org/valencia-airquality/ontology/airquality#>
+PREFIX data:   <https://w3id.org/valencia-airquality/dataset/property/>
+PREFIX obs:    <https://w3id.org/valencia-airquality/resource/Observation/>
+PREFIX prop:   <https://w3id.org/valencia-airquality/resource/ObservableProperty/>
+PREFIX record: <https://w3id.org/valencia-airquality/dataset/record/>
+PREFIX station:<https://w3id.org/valencia-airquality/resource/MonitoringStation/>
+PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
 
-PREFIX ex: <http://example.org/>
+#Total number of triples in the graph.
 
-# 1. Count all triples in the dataset
 SELECT (COUNT(*) AS ?totalTriples)
 WHERE {
-  ?subject ?predicate ?object .
+  ?s ?p ?o .
 }
 
-# 2. Show the first 20 triples to verify data structure
-SELECT ?subject ?predicate ?object
-WHERE {
-  ?subject ?predicate ?object .
-}
-LIMIT 20
 
-# 3. Count resources by type
-SELECT ?type (COUNT(DISTINCT ?subject) AS ?count)
+#Number of resources per RDF type.
+
+SELECT ?type (COUNT(DISTINCT ?resource) AS ?resourceCount)
 WHERE {
-  ?subject a ?type .
+  ?resource rdf:type ?type .
 }
 GROUP BY ?type
-ORDER BY DESC(?count)
 
-# 4. Find all values for a specific property
-SELECT ?subject ?value
-WHERE {
-  ?subject ex:hasName ?value .
-}
-ORDER BY ?subject
 
-# 5. Check whether a specific resource exists
-SELECT ?subject ?predicate ?object
+#Check how many monitoring stations are declared and their names.
+
+SELECT ?station ?name
 WHERE {
-  ?subject ?predicate ?object .
-  FILTER(?subject = ex:ExampleResource)
+  ?station rdf:type aq:MonitoringStation ;
+            aq:stationName ?name .
 }
+ORDER BY ?name
+
+
+#Number of observations per station(Related with second querry)
+
+SELECT ?stationName (COUNT(?observation) AS ?totalObservation)
+WHERE {
+  ?observation rdf:type aq:Observation ;
+               aq:hasStation ?station .
+  ?station aq:stationName ?stationName .
+}
+GROUP BY ?stationName
+
+#First and last date of the dataset
+
+SELECT (MIN(?date) AS ?firstDate) (MAX(?date) AS ?lastDate)
+WHERE {
+  ?record rdf:type data:Record ;
+          data:date ?date .
+}
+
+
+#Sample of observations with all properties, stations, and measured values.
+
+SELECT ?observation ?stationName ?property ?value
+WHERE {
+  ?observation rdf:type aq:Observation ;
+               aq:observedProperty ?property ;
+               aq:hasStation ?station ;
+               aq:resultValue ?value .
+  ?station aq:stationName ?stationName .
+}
+LIMIT 1000
