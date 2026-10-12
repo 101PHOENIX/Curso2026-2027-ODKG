@@ -1,4 +1,3 @@
-@prefix agent: <https://madridnoise.linkeddata.es/resource/agent/> .
 @prefix dataset: <https://madridnoise.linkeddata.es/dataset/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -12,46 +11,15 @@
 @prefix terrace: <https://madridnoise.linkeddata.es/resource/terrace/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-# Instance assertions copied from rdf/madridnoise.ttl on 2026-10-12.
-# All example triples occur in the delivery graph; ontology declarations are in ontology.ttl.
-# The examples use the delivered 2025-2026 observation window and current metadata.
-
-# --- Dataset metadata ---
 dataset:daily-noise a dcat:Dataset;
-  dcterms:creator agent:group03;
-  dcterms:description "RDF adaptation of 78,230 daily-noise rows from 2025-01-01 to 2026-10-04. Source station identifiers and reporting dates are normalized; reported measurement values are retained and complete percentile sequences receive an order-quality flag. Contains data from the Ayuntamiento de Madrid (datos.madrid.es), CC BY 4.0; converted to RDF by ODKG 2026-2027 Group03."@en;
-  dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
-  dcterms:modified "2026-10-12"^^xsd:date;
-  dcterms:publisher agent:group03;
-  dcterms:source <https://datos.madrid.es/dataset/215885-0-contaminacion-ruido>;
-  dcterms:title "Madrid daily noise measurements (Linked Data)"@en;
   rdfs:label "Madrid daily noise measurements (Linked Data)"@en .
 
 dataset:stations a dcat:Dataset;
-  dcterms:creator agent:group03;
-  dcterms:description "RDF adaptation of the selected 31-station catalog extract. The source snapshot date is not supplied. Station identifiers and geographic coordinate strings are normalized. Contains data from the Ayuntamiento de Madrid (datos.madrid.es), CC BY 4.0; converted to RDF by ODKG 2026-2027 Group03."@en;
-  dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
-  dcterms:modified "2026-10-12"^^xsd:date;
-  dcterms:publisher agent:group03;
-  dcterms:source <https://datos.madrid.es/dataset/211346-0-estaciones-acusticas>;
-  dcterms:title "Madrid acoustic station catalog (Linked Data)"@en;
   rdfs:label "Madrid acoustic station catalog (Linked Data)"@en .
 
 dataset:terraces a dcat:Dataset;
-  dcterms:creator agent:group03;
-  dcterms:description "RDF adaptation of the selected 6,594-row terraces census snapshot with source load date 2026-10-04. Eligible premises or grouping entrance coordinates are transformed from EPSG:25830 to EPSG:4326 as location proxies; unavailable locations are omitted. This snapshot does not establish a terrace's existence on every historical noise date. Contains data from the Ayuntamiento de Madrid (datos.madrid.es), CC BY 4.0; converted to RDF by ODKG 2026-2027 Group03."@en;
-  dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
-  dcterms:modified "2026-10-12"^^xsd:date;
-  dcterms:publisher agent:group03;
-  dcterms:source <https://datos.madrid.es/dataset/200085-0-censo-locales>;
-  dcterms:title "Madrid hospitality terraces (Linked Data)"@en;
   rdfs:label "Madrid hospitality terraces (Linked Data)"@en .
 
-# --- Generated-data creator and publisher ---
-agent:group03 a dcterms:Agent;
-  rdfs:label "ODKG 2026-2027 Group03"@en .
-
-# --- Station instance: source coordinate strings normalized to WGS84 ---
 station:RF-02 a mn:NoiseMonitoringStation;
   dcterms:isPartOf dataset:stations;
   rdfs:label "Carlos V"@es;
@@ -60,7 +28,6 @@ station:RF-02 a mn:NoiseMonitoringStation;
   mn:stationCode "RF-02";
   mn:stationName "Carlos V" .
 
-# --- Controlled period instances ---
 period:D a mn:DayPeriod;
   rdfs:label "Day (07:00-19:00)"@en;
   mn:periodCode "D" .
@@ -77,7 +44,6 @@ period:T a mn:DayPeriod;
   rdfs:label "Total (24h)"@en;
   mn:periodCode "T" .
 
-# --- Day observation: RF-02, 2025-01-01; source values retained ---
 observation:RF-02-2025-01-01-D a mn:DailyNoiseObservation;
   dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-02 2025-01-01 D"@en;
@@ -92,7 +58,6 @@ observation:RF-02-2025-01-01-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-02 .
 
-# --- Night observation: RF-02, 2025-01-01; source values retained ---
 observation:RF-02-2025-01-01-N a mn:DailyNoiseObservation;
   dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-02 2025-01-01 N"@en;
@@ -107,7 +72,6 @@ observation:RF-02-2025-01-01-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-02 .
 
-# --- Terrace instance: source snapshot 2026-10-04; transformed entrance coordinates ---
 terrace:37 a mn:Terrace;
   dcterms:isPartOf dataset:terraces;
   rdfs:label "Terrace 37"@en;
@@ -117,7 +81,6 @@ terrace:37 a mn:Terrace;
   mn:longitude -3.621907141;
   mn:terraceId 37 .
 
-# --- Administrative area instances ---
 district:18 a mn:District;
   rdfs:label "VILLA DE VALLECAS"@es .
 

@@ -1,4 +1,3 @@
-@prefix agent: <https://madridnoise.linkeddata.es/resource/agent/> .
 @prefix dataset: <https://madridnoise.linkeddata.es/dataset/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -14,37 +13,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 dataset:daily-noise a dcat:Dataset;
-  dcterms:creator agent:group03;
-  dcterms:description "RDF adaptation of 78,230 daily-noise rows from 2025-01-01 to 2026-10-04. Source station identifiers and reporting dates are normalized; reported measurement values are retained and complete percentile sequences receive an order-quality flag. Contains data from the Ayuntamiento de Madrid (datos.madrid.es), CC BY 4.0; converted to RDF by ODKG 2026-2027 Group03."@en;
-  dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
-  dcterms:modified "2026-10-12"^^xsd:date;
-  dcterms:publisher agent:group03;
-  dcterms:source <https://datos.madrid.es/dataset/215885-0-contaminacion-ruido>;
-  dcterms:title "Madrid daily noise measurements (Linked Data)"@en;
   rdfs:label "Madrid daily noise measurements (Linked Data)"@en .
 
 dataset:stations a dcat:Dataset;
-  dcterms:creator agent:group03;
-  dcterms:description "RDF adaptation of the selected 31-station catalog extract. The source snapshot date is not supplied. Station identifiers and geographic coordinate strings are normalized. Contains data from the Ayuntamiento de Madrid (datos.madrid.es), CC BY 4.0; converted to RDF by ODKG 2026-2027 Group03."@en;
-  dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
-  dcterms:modified "2026-10-12"^^xsd:date;
-  dcterms:publisher agent:group03;
-  dcterms:source <https://datos.madrid.es/dataset/211346-0-estaciones-acusticas>;
-  dcterms:title "Madrid acoustic station catalog (Linked Data)"@en;
   rdfs:label "Madrid acoustic station catalog (Linked Data)"@en .
 
 dataset:terraces a dcat:Dataset;
-  dcterms:creator agent:group03;
-  dcterms:description "RDF adaptation of the selected 6,594-row terraces census snapshot with source load date 2026-10-04. Eligible premises or grouping entrance coordinates are transformed from EPSG:25830 to EPSG:4326 as location proxies; unavailable locations are omitted. This snapshot does not establish a terrace's existence on every historical noise date. Contains data from the Ayuntamiento de Madrid (datos.madrid.es), CC BY 4.0; converted to RDF by ODKG 2026-2027 Group03."@en;
-  dcterms:license <https://creativecommons.org/licenses/by/4.0/>;
-  dcterms:modified "2026-10-12"^^xsd:date;
-  dcterms:publisher agent:group03;
-  dcterms:source <https://datos.madrid.es/dataset/200085-0-censo-locales>;
-  dcterms:title "Madrid hospitality terraces (Linked Data)"@en;
   rdfs:label "Madrid hospitality terraces (Linked Data)"@en .
-
-agent:group03 a dcterms:Agent;
-  rdfs:label "ODKG 2026-2027 Group03"@en .
 
 district:1 a mn:District;
   rdfs:label "CENTRO"@es .
@@ -9860,8 +9835,8 @@ observation:RF-01-2025-06-24-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-01 .
 
-observation:RF-01-2025-06-25-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-01-2025-06-25-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-01 2025-06-25 D"@en;
   mn:forPeriod period:D;
   mn:laeq 66.2;
@@ -13066,8 +13041,8 @@ observation:RF-01-2025-08-21-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-01 .
 
-observation:RF-01-2025-08-21-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-01-2025-08-21-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-01 2025-08-21 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.5;
@@ -23860,8 +23835,8 @@ observation:RF-01-2026-03-08-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-01 .
 
-observation:RF-01-2026-03-08-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-01-2026-03-08-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-01 2026-03-08 N"@en;
   mn:forPeriod period:N;
   mn:laeq 65.4;
@@ -27066,8 +27041,8 @@ observation:RF-01-2026-05-04-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-01 .
 
-observation:RF-01-2026-05-04-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-01-2026-05-04-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-01 2026-05-04 T"@en;
   mn:forPeriod period:T;
   mn:laeq 63.1;
@@ -37860,8 +37835,8 @@ observation:RF-02-2025-02-15-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-02 .
 
-observation:RF-02-2025-02-15-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-02-2025-02-15-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-02 2025-02-15 N"@en;
   mn:forPeriod period:N;
   mn:laeq 66.3;
@@ -41066,8 +41041,8 @@ observation:RF-02-2025-04-13-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-02 .
 
-observation:RF-02-2025-04-13-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-02-2025-04-13-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-02 2025-04-13 T"@en;
   mn:forPeriod period:T;
   mn:laeq 66.2;
@@ -51860,8 +51835,8 @@ observation:RF-02-2025-10-23-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-02 .
 
-observation:RF-02-2025-10-23-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-02-2025-10-23-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-02 2025-10-23 T"@en;
   mn:forPeriod period:T;
   mn:laeq 67.9;
@@ -55066,8 +55041,8 @@ observation:RF-02-2025-12-19-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-02 .
 
-observation:RF-02-2025-12-20-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-02-2025-12-20-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-02 2025-12-20 D"@en;
   mn:forPeriod period:D;
   mn:laeq 69.8;
@@ -65860,8 +65835,8 @@ observation:RF-02-2026-07-07-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-02 .
 
-observation:RF-02-2026-07-08-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-02-2026-07-08-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-02 2026-07-08 D"@en;
   mn:forPeriod period:D;
   mn:laeq 69.5;
@@ -69066,8 +69041,8 @@ observation:RF-02-2026-09-03-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-02 .
 
-observation:RF-02-2026-09-03-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-02-2026-09-03-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-02 2026-09-03 E"@en;
   mn:forPeriod period:E;
   mn:laeq 68.4;
@@ -72322,8 +72297,8 @@ observation:RF-03-2025-01-30-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-03 .
 
-observation:RF-03-2025-01-30-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-03-2025-01-30-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-03 2025-01-30 N"@en;
   mn:forPeriod period:N;
   mn:laeq 57.3;
@@ -75528,8 +75503,8 @@ observation:RF-03-2025-03-28-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-03 .
 
-observation:RF-03-2025-03-28-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-03-2025-03-28-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-03 2025-03-28 T"@en;
   mn:forPeriod period:T;
   mn:laeq 62.7;
@@ -86322,8 +86297,8 @@ observation:RF-03-2025-10-07-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-03 .
 
-observation:RF-03-2025-10-07-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-03-2025-10-07-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-03 2025-10-07 T"@en;
   mn:forPeriod period:T;
   mn:laeq 61.4;
@@ -89528,8 +89503,8 @@ observation:RF-03-2025-12-03-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-03 .
 
-observation:RF-03-2025-12-04-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-03-2025-12-04-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-03 2025-12-04 D"@en;
   mn:forPeriod period:D;
   mn:laeq 61.2;
@@ -100322,8 +100297,8 @@ observation:RF-03-2026-06-22-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-03 .
 
-observation:RF-03-2026-06-22-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-03-2026-06-22-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-03 2026-06-22 N"@en;
   mn:forPeriod period:N;
   mn:laeq 61.2;
@@ -103528,8 +103503,8 @@ observation:RF-03-2026-08-18-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-03 .
 
-observation:RF-03-2026-08-18-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-03-2026-08-18-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-03 2026-08-18 T"@en;
   mn:forPeriod period:T;
   mn:laeq 60.3;
@@ -114322,8 +114297,8 @@ observation:RF-04-2025-05-29-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-04 .
 
-observation:RF-04-2025-05-29-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-04-2025-05-29-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-04 2025-05-29 T"@en;
   mn:forPeriod period:T;
   mn:laeq 62.9;
@@ -117528,8 +117503,8 @@ observation:RF-04-2025-07-25-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-04 .
 
-observation:RF-04-2025-07-26-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-04-2025-07-26-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-04 2025-07-26 D"@en;
   mn:forPeriod period:D;
   mn:laeq 58.9;
@@ -128322,8 +128297,8 @@ observation:RF-04-2026-02-11-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-04 .
 
-observation:RF-04-2026-02-11-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-04-2026-02-11-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-04 2026-02-11 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.4;
@@ -131528,8 +131503,8 @@ observation:RF-04-2026-04-09-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-04 .
 
-observation:RF-04-2026-04-09-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-04-2026-04-09-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-04 2026-04-09 N"@en;
   mn:forPeriod period:N;
   mn:laeq 59.1;
@@ -142322,8 +142297,8 @@ observation:RF-05-2025-01-15-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-05 .
 
-observation:RF-05-2025-01-15-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-05-2025-01-15-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-05 2025-01-15 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.3;
@@ -145528,8 +145503,8 @@ observation:RF-05-2025-03-18-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-05 .
 
-observation:RF-05-2025-03-18-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-05-2025-03-18-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-05 2025-03-18 T"@en;
   mn:forPeriod period:T;
   mn:laeq 62.7;
@@ -156322,8 +156297,8 @@ observation:RF-05-2025-09-27-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-05 .
 
-observation:RF-05-2025-09-27-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-05-2025-09-27-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-05 2025-09-27 N"@en;
   mn:forPeriod period:N;
   mn:laeq 53.6;
@@ -159528,8 +159503,8 @@ observation:RF-05-2025-11-23-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-05 .
 
-observation:RF-05-2025-11-23-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-05-2025-11-23-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-05 2025-11-23 T"@en;
   mn:forPeriod period:T;
   mn:laeq 59.6;
@@ -170322,8 +170297,8 @@ observation:RF-05-2026-06-10-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-05 .
 
-observation:RF-05-2026-06-11-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-05-2026-06-11-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-05 2026-06-11 D"@en;
   mn:forPeriod period:D;
   mn:laeq 63.4;
@@ -173528,8 +173503,8 @@ observation:RF-05-2026-08-07-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-05 .
 
-observation:RF-05-2026-08-07-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-05-2026-08-07-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-05 2026-08-07 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.1;
@@ -184322,8 +184297,8 @@ observation:RF-06-2025-05-22-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-06 .
 
-observation:RF-06-2025-05-22-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-06-2025-05-22-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-06 2025-05-22 N"@en;
   mn:forPeriod period:N;
   mn:laeq 63.3;
@@ -187528,8 +187503,8 @@ observation:RF-06-2025-07-18-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-06 .
 
-observation:RF-06-2025-07-18-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-06-2025-07-18-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-06 2025-07-18 T"@en;
   mn:forPeriod period:T;
   mn:laeq 67.9;
@@ -198322,8 +198297,8 @@ observation:RF-06-2026-02-03-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-06 .
 
-observation:RF-06-2026-02-03-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-06-2026-02-03-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-06 2026-02-03 E"@en;
   mn:forPeriod period:E;
   mn:laeq 68.8;
@@ -201528,8 +201503,8 @@ observation:RF-06-2026-04-01-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-06 .
 
-observation:RF-06-2026-04-01-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-06-2026-04-01-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-06 2026-04-01 N"@en;
   mn:forPeriod period:N;
   mn:laeq 63.9;
@@ -212322,8 +212297,8 @@ observation:RF-08-2025-01-07-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-08 .
 
-observation:RF-08-2025-01-07-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-08-2025-01-07-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-08 2025-01-07 E"@en;
   mn:forPeriod period:E;
   mn:laeq 66.4;
@@ -215528,8 +215503,8 @@ observation:RF-08-2025-03-07-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-08 .
 
-observation:RF-08-2025-03-07-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-08-2025-03-07-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-08 2025-03-07 T"@en;
   mn:forPeriod period:T;
   mn:laeq 68.4;
@@ -226322,8 +226297,8 @@ observation:RF-08-2025-09-16-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-08 .
 
-observation:RF-08-2025-09-16-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-08-2025-09-16-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-08 2025-09-16 N"@en;
   mn:forPeriod period:N;
   mn:laeq 61.2;
@@ -229528,8 +229503,8 @@ observation:RF-08-2025-11-13-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-08 .
 
-observation:RF-08-2025-11-13-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-08-2025-11-13-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-08 2025-11-13 E"@en;
   mn:forPeriod period:E;
   mn:laeq 68.6;
@@ -240322,8 +240297,8 @@ observation:RF-08-2026-05-29-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-08 .
 
-observation:RF-08-2026-05-30-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-08-2026-05-30-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-08 2026-05-30 D"@en;
   mn:forPeriod period:D;
   mn:laeq 65.3;
@@ -243528,8 +243503,8 @@ observation:RF-08-2026-07-26-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-08 .
 
-observation:RF-08-2026-07-26-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-08-2026-07-26-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-08 2026-07-26 E"@en;
   mn:forPeriod period:E;
   mn:laeq 64.0;
@@ -254322,8 +254297,8 @@ observation:RF-10-2025-05-03-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-10 .
 
-observation:RF-10-2025-05-03-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-10-2025-05-03-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-10 2025-05-03 N"@en;
   mn:forPeriod period:N;
   mn:laeq 59.3;
@@ -257528,8 +257503,8 @@ observation:RF-10-2025-07-04-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-10 .
 
-observation:RF-10-2025-07-04-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-10-2025-07-04-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-10 2025-07-04 E"@en;
   mn:forPeriod period:E;
   mn:laeq 61.1;
@@ -268322,8 +268297,8 @@ observation:RF-10-2026-01-12-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-10 .
 
-observation:RF-10-2026-01-13-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-10-2026-01-13-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-10 2026-01-13 D"@en;
   mn:forPeriod period:D;
   mn:laeq 64.2;
@@ -271528,8 +271503,8 @@ observation:RF-10-2026-03-11-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-10 .
 
-observation:RF-10-2026-03-11-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-10-2026-03-11-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-10 2026-03-11 E"@en;
   mn:forPeriod period:E;
   mn:laeq 61.9;
@@ -282322,8 +282297,8 @@ observation:RF-10-2026-09-27-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-10 .
 
-observation:RF-10-2026-09-27-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-10-2026-09-27-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-10 2026-09-27 N"@en;
   mn:forPeriod period:N;
   mn:laeq 58.1;
@@ -285528,8 +285503,8 @@ observation:RF-11-2025-02-21-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-11 .
 
-observation:RF-11-2025-02-22-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-11-2025-02-22-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-11 2025-02-22 D"@en;
   mn:forPeriod period:D;
   mn:laeq 68.1;
@@ -296322,8 +296297,8 @@ observation:RF-11-2025-09-02-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-11 .
 
-observation:RF-11-2025-09-03-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-11-2025-09-03-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-11 2025-09-03 D"@en;
   mn:forPeriod period:D;
   mn:laeq 70.2;
@@ -299528,8 +299503,8 @@ observation:RF-11-2025-10-30-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-11 .
 
-observation:RF-11-2025-10-30-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-11-2025-10-30-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-11 2025-10-30 E"@en;
   mn:forPeriod period:E;
   mn:laeq 69.6;
@@ -310322,8 +310297,8 @@ observation:RF-11-2026-05-15-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-11 .
 
-observation:RF-11-2026-05-15-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-11-2026-05-15-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-11 2026-05-15 T"@en;
   mn:forPeriod period:T;
   mn:laeq 67.1;
@@ -313528,8 +313503,8 @@ observation:RF-11-2026-07-11-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-11 .
 
-observation:RF-11-2026-07-12-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-11-2026-07-12-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-11 2026-07-12 D"@en;
   mn:forPeriod period:D;
   mn:laeq 65.3;
@@ -324322,8 +324297,8 @@ observation:RF-12-2025-04-20-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-12 .
 
-observation:RF-12-2025-04-21-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-12-2025-04-21-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-12 2025-04-21 D"@en;
   mn:forPeriod period:D;
   mn:laeq 63.8;
@@ -327528,8 +327503,8 @@ observation:RF-12-2025-06-17-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-12 .
 
-observation:RF-12-2025-06-17-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-12-2025-06-17-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-12 2025-06-17 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.9;
@@ -338322,8 +338297,8 @@ observation:RF-12-2025-12-26-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-12 .
 
-observation:RF-12-2025-12-27-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-12-2025-12-27-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-12 2025-12-27 D"@en;
   mn:forPeriod period:D;
   mn:laeq 61.7;
@@ -341528,8 +341503,8 @@ observation:RF-12-2026-02-26-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-12 .
 
-observation:RF-12-2026-02-27-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-12-2026-02-27-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-12 2026-02-27 D"@en;
   mn:forPeriod period:D;
   mn:laeq 68.9;
@@ -352322,8 +352297,8 @@ observation:RF-12-2026-09-07-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-12 .
 
-observation:RF-12-2026-09-07-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-12-2026-09-07-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-12 2026-09-07 T"@en;
   mn:forPeriod period:T;
   mn:laeq 62.8;
@@ -355528,8 +355503,8 @@ observation:RF-13-2025-01-30-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-13 .
 
-observation:RF-13-2025-01-31-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-13-2025-01-31-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-13 2025-01-31 D"@en;
   mn:forPeriod period:D;
   mn:laeq 63.3;
@@ -366322,8 +366297,8 @@ observation:RF-13-2025-08-20-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-13 .
 
-observation:RF-13-2025-08-21-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-13-2025-08-21-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-13 2025-08-21 D"@en;
   mn:forPeriod period:D;
   mn:laeq 55.6;
@@ -369528,8 +369503,8 @@ observation:RF-13-2025-10-17-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-13 .
 
-observation:RF-13-2025-10-17-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-13-2025-10-17-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-13 2025-10-17 E"@en;
   mn:forPeriod period:E;
   mn:laeq 55.9;
@@ -380322,8 +380297,8 @@ observation:RF-13-2026-05-01-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-13 .
 
-observation:RF-13-2026-05-01-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-13-2026-05-01-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-13 2026-05-01 E"@en;
   mn:forPeriod period:E;
   mn:laeq 55.1;
@@ -383528,8 +383503,8 @@ observation:RF-13-2026-06-27-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-13 .
 
-observation:RF-13-2026-06-27-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-13-2026-06-27-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-13 2026-06-27 N"@en;
   mn:forPeriod period:N;
   mn:laeq 53.2;
@@ -394322,8 +394297,8 @@ observation:RF-14-2025-04-10-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-14 .
 
-observation:RF-14-2025-04-10-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-14-2025-04-10-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-14 2025-04-10 T"@en;
   mn:forPeriod period:T;
   mn:laeq 64.0;
@@ -397528,8 +397503,8 @@ observation:RF-14-2025-06-06-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-14 .
 
-observation:RF-14-2025-06-07-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-14-2025-06-07-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-14 2025-06-07 D"@en;
   mn:forPeriod period:D;
   mn:laeq 63.2;
@@ -414784,8 +414759,8 @@ observation:RF-14-2026-04-19-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-14 .
 
-observation:RF-14-2026-04-19-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-14-2026-04-19-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-14 2026-04-19 N"@en;
   mn:forPeriod period:N;
   mn:laeq 60.5;
@@ -417990,8 +417965,8 @@ observation:RF-14-2026-06-15-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-14 .
 
-observation:RF-14-2026-06-15-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-14-2026-06-15-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-14 2026-06-15 T"@en;
   mn:forPeriod period:T;
   mn:laeq 62.2;
@@ -428784,8 +428759,8 @@ observation:RF-16-2025-03-23-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-16 .
 
-observation:RF-16-2025-03-23-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-16-2025-03-23-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-16 2025-03-23 N"@en;
   mn:forPeriod period:N;
   mn:laeq 57.9;
@@ -431990,8 +431965,8 @@ observation:RF-16-2025-05-24-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-16 .
 
-observation:RF-16-2025-05-25-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-16-2025-05-25-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-16 2025-05-25 D"@en;
   mn:forPeriod period:D;
   mn:laeq 56.0;
@@ -442784,8 +442759,8 @@ observation:RF-16-2025-12-03-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-16 .
 
-observation:RF-16-2025-12-03-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-16-2025-12-03-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-16 2025-12-03 T"@en;
   mn:forPeriod period:T;
   mn:laeq 61.1;
@@ -445990,8 +445965,8 @@ observation:RF-16-2026-01-29-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-16 .
 
-observation:RF-16-2026-01-30-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-16-2026-01-30-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-16 2026-01-30 D"@en;
   mn:forPeriod period:D;
   mn:laeq 64.4;
@@ -456784,8 +456759,8 @@ observation:RF-16-2026-08-10-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-16 .
 
-observation:RF-16-2026-08-10-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-16-2026-08-10-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-16 2026-08-10 T"@en;
   mn:forPeriod period:T;
   mn:laeq 58.8;
@@ -459990,8 +459965,8 @@ observation:RF-17-2025-01-02-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-17 .
 
-observation:RF-17-2025-01-03-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-17-2025-01-03-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-17 2025-01-03 D"@en;
   mn:forPeriod period:D;
   mn:laeq 56.7;
@@ -470784,8 +470759,8 @@ observation:RF-17-2025-07-21-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-17 .
 
-observation:RF-17-2025-07-21-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-17-2025-07-21-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-17 2025-07-21 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.4;
@@ -473990,8 +473965,8 @@ observation:RF-17-2025-09-16-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-17 .
 
-observation:RF-17-2025-09-16-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-17-2025-09-16-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-17 2025-09-16 N"@en;
   mn:forPeriod period:N;
   mn:laeq 49.1;
@@ -484784,8 +484759,8 @@ observation:RF-17-2026-04-06-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-17 .
 
-observation:RF-17-2026-04-06-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-17-2026-04-06-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-17 2026-04-06 E"@en;
   mn:forPeriod period:E;
   mn:laeq 58.3;
@@ -487990,8 +487965,8 @@ observation:RF-17-2026-06-02-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-17 .
 
-observation:RF-17-2026-06-02-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-17-2026-06-02-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-17 2026-06-02 N"@en;
   mn:forPeriod period:N;
   mn:laeq 51.5;
@@ -498784,8 +498759,8 @@ observation:RF-18-2025-03-18-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-18 .
 
-observation:RF-18-2025-03-18-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-18-2025-03-18-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-18 2025-03-18 E"@en;
   mn:forPeriod period:E;
   mn:laeq 54.7;
@@ -501990,8 +501965,8 @@ observation:RF-18-2025-05-14-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-18 .
 
-observation:RF-18-2025-05-14-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-18-2025-05-14-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-18 2025-05-14 N"@en;
   mn:forPeriod period:N;
   mn:laeq 50.4;
@@ -512784,8 +512759,8 @@ observation:RF-18-2025-11-23-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-18 .
 
-observation:RF-18-2025-11-23-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-18-2025-11-23-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-18 2025-11-23 E"@en;
   mn:forPeriod period:E;
   mn:laeq 53.9;
@@ -515990,8 +515965,8 @@ observation:RF-18-2026-01-19-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-18 .
 
-observation:RF-18-2026-01-19-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-18-2026-01-19-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-18 2026-01-19 N"@en;
   mn:forPeriod period:N;
   mn:laeq 48.3;
@@ -522452,8 +522427,8 @@ observation:RF-18-2026-05-22-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-18 .
 
-observation:RF-18-2026-05-23-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-18-2026-05-23-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-18 2026-05-23 D"@en;
   mn:forPeriod period:D;
   mn:laeq 56.8;
@@ -533246,8 +533221,8 @@ observation:RF-19-2025-03-01-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-19 .
 
-observation:RF-19-2025-03-02-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-19-2025-03-02-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-19 2025-03-02 D"@en;
   mn:forPeriod period:D;
   mn:laeq 61.2;
@@ -536452,8 +536427,8 @@ observation:RF-19-2025-04-28-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-19 .
 
-observation:RF-19-2025-04-28-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-19-2025-04-28-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-19 2025-04-28 N"@en;
   mn:forPeriod period:N;
   mn:laeq 55.5;
@@ -547246,8 +547221,8 @@ observation:RF-19-2025-11-07-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-19 .
 
-observation:RF-19-2025-11-08-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-19-2025-11-08-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-19 2025-11-08 D"@en;
   mn:forPeriod period:D;
   mn:laeq 58.8;
@@ -550452,8 +550427,8 @@ observation:RF-19-2026-01-04-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-19 .
 
-observation:RF-19-2026-01-04-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-19-2026-01-04-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-19 2026-01-04 E"@en;
   mn:forPeriod period:E;
   mn:laeq 57.5;
@@ -561246,8 +561221,8 @@ observation:RF-19-2026-07-19-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-19 .
 
-observation:RF-19-2026-07-19-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-19-2026-07-19-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-19 2026-07-19 N"@en;
   mn:forPeriod period:N;
   mn:laeq 54.7;
@@ -564452,8 +564427,8 @@ observation:RF-19-2026-09-14-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-19 .
 
-observation:RF-19-2026-09-14-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-19-2026-09-14-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-19 2026-09-14 T"@en;
   mn:forPeriod period:T;
   mn:laeq 65.5;
@@ -570914,8 +570889,8 @@ observation:RF-20-2025-04-06-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-20 .
 
-observation:RF-20-2025-04-06-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-20-2025-04-06-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-20 2025-04-06 E"@en;
   mn:forPeriod period:E;
   mn:laeq 59.6;
@@ -581708,8 +581683,8 @@ observation:RF-20-2025-10-21-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-20 .
 
-observation:RF-20-2025-10-21-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-20-2025-10-21-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-20 2025-10-21 E"@en;
   mn:forPeriod period:E;
   mn:laeq 61.2;
@@ -584914,8 +584889,8 @@ observation:RF-20-2025-12-17-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-20 .
 
-observation:RF-20-2025-12-17-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-20-2025-12-17-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-20 2025-12-17 N"@en;
   mn:forPeriod period:N;
   mn:laeq 55.8;
@@ -595708,8 +595683,8 @@ observation:RF-20-2026-07-03-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-20 .
 
-observation:RF-20-2026-07-03-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-20-2026-07-03-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-20 2026-07-03 T"@en;
   mn:forPeriod period:T;
   mn:laeq 59.9;
@@ -598914,8 +598889,8 @@ observation:RF-20-2026-08-29-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-20 .
 
-observation:RF-20-2026-08-30-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-20-2026-08-30-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-20 2026-08-30 D"@en;
   mn:forPeriod period:D;
   mn:laeq 56.8;
@@ -609708,8 +609683,8 @@ observation:RF-24-2025-06-12-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-24 .
 
-observation:RF-24-2025-06-12-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-24-2025-06-12-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-24 2025-06-12 E"@en;
   mn:forPeriod period:E;
   mn:laeq 45.4;
@@ -612914,8 +612889,8 @@ observation:RF-24-2025-08-08-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-24 .
 
-observation:RF-24-2025-08-08-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-24-2025-08-08-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-24 2025-08-08 N"@en;
   mn:forPeriod period:N;
   mn:laeq 44.1;
@@ -623708,8 +623683,8 @@ observation:RF-24-2026-02-17-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-24 .
 
-observation:RF-24-2026-02-17-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-24-2026-02-17-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-24 2026-02-17 T"@en;
   mn:forPeriod period:T;
   mn:laeq 48.1;
@@ -626914,8 +626889,8 @@ observation:RF-24-2026-04-22-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-24 .
 
-observation:RF-24-2026-04-22-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-24-2026-04-22-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-24 2026-04-22 N"@en;
   mn:forPeriod period:N;
   mn:laeq 43.9;
@@ -637708,8 +637683,8 @@ observation:RF-25-2025-02-04-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-25 .
 
-observation:RF-25-2025-02-05-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-25-2025-02-05-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-25 2025-02-05 D"@en;
   mn:forPeriod period:D;
   mn:laeq 70.2;
@@ -640914,8 +640889,8 @@ observation:RF-25-2025-04-10-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-25 .
 
-observation:RF-25-2025-04-10-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-25-2025-04-10-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-25 2025-04-10 T"@en;
   mn:forPeriod period:T;
   mn:laeq 69.0;
@@ -651708,8 +651683,8 @@ observation:RF-25-2025-10-20-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-25 .
 
-observation:RF-25-2025-10-20-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-25-2025-10-20-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-25 2025-10-20 T"@en;
   mn:forPeriod period:T;
   mn:laeq 68.2;
@@ -654914,8 +654889,8 @@ observation:RF-25-2025-12-16-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-25 .
 
-observation:RF-25-2025-12-17-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-25-2025-12-17-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-25 2025-12-17 D"@en;
   mn:forPeriod period:D;
   mn:laeq 72.3;
@@ -665708,8 +665683,8 @@ observation:RF-25-2026-06-30-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-25 .
 
-observation:RF-25-2026-06-30-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-25-2026-06-30-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-25 2026-06-30 N"@en;
   mn:forPeriod period:N;
   mn:laeq 65.7;
@@ -668914,8 +668889,8 @@ observation:RF-25-2026-08-26-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-25 .
 
-observation:RF-25-2026-08-26-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-25-2026-08-26-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-25 2026-08-26 T"@en;
   mn:forPeriod period:T;
   mn:laeq 68.6;
@@ -679708,8 +679683,8 @@ observation:RF-26-2025-06-05-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-26 .
 
-observation:RF-26-2025-06-05-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-26-2025-06-05-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-26 2025-06-05 T"@en;
   mn:forPeriod period:T;
   mn:laeq 61.2;
@@ -682914,8 +682889,8 @@ observation:RF-26-2025-08-01-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-26 .
 
-observation:RF-26-2025-08-02-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-26-2025-08-02-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-26 2025-08-02 D"@en;
   mn:forPeriod period:D;
   mn:laeq 60.9;
@@ -693708,8 +693683,8 @@ observation:RF-26-2026-02-10-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-26 .
 
-observation:RF-26-2026-02-10-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-26-2026-02-10-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-26 2026-02-10 T"@en;
   mn:forPeriod period:T;
   mn:laeq 65.6;
@@ -696914,8 +696889,8 @@ observation:RF-26-2026-04-11-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-26 .
 
-observation:RF-26-2026-04-12-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-26-2026-04-12-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-26 2026-04-12 D"@en;
   mn:forPeriod period:D;
   mn:laeq 62.7;
@@ -707708,8 +707683,8 @@ observation:RF-27-2025-01-17-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-27 .
 
-observation:RF-27-2025-01-17-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-27-2025-01-17-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-27 2025-01-17 T"@en;
   mn:forPeriod period:T;
   mn:laeq 61.4;
@@ -710914,8 +710889,8 @@ observation:RF-27-2025-03-15-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-27 .
 
-observation:RF-27-2025-03-16-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-27-2025-03-16-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-27 2025-03-16 D"@en;
   mn:forPeriod period:D;
   mn:laeq 60.9;
@@ -721708,8 +721683,8 @@ observation:RF-27-2025-09-26-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-27 .
 
-observation:RF-27-2025-09-26-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-27-2025-09-26-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-27 2025-09-26 T"@en;
   mn:forPeriod period:T;
   mn:laeq 59.8;
@@ -724914,8 +724889,8 @@ observation:RF-27-2025-11-22-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-27 .
 
-observation:RF-27-2025-11-23-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-27-2025-11-23-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-27 2025-11-23 D"@en;
   mn:forPeriod period:D;
   mn:laeq 56.6;
@@ -735708,8 +735683,8 @@ observation:RF-27-2026-06-06-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-27 .
 
-observation:RF-27-2026-06-06-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-27-2026-06-06-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-27 2026-06-06 T"@en;
   mn:forPeriod period:T;
   mn:laeq 56.2;
@@ -738914,8 +738889,8 @@ observation:RF-27-2026-08-02-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-27 .
 
-observation:RF-27-2026-08-03-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-27-2026-08-03-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-27 2026-08-03 D"@en;
   mn:forPeriod period:D;
   mn:laeq 56.7;
@@ -749708,8 +749683,8 @@ observation:RF-28-2025-05-13-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-28 .
 
-observation:RF-28-2025-05-13-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-28-2025-05-13-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-28 2025-05-13 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.4;
@@ -752914,8 +752889,8 @@ observation:RF-28-2025-07-09-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-28 .
 
-observation:RF-28-2025-07-09-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-28-2025-07-09-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-28 2025-07-09 N"@en;
   mn:forPeriod period:N;
   mn:laeq 57.2;
@@ -763708,8 +763683,8 @@ observation:RF-28-2026-01-18-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-28 .
 
-observation:RF-28-2026-01-18-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-28-2026-01-18-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-28 2026-01-18 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.8;
@@ -766914,8 +766889,8 @@ observation:RF-28-2026-03-19-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-28 .
 
-observation:RF-28-2026-03-19-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-28-2026-03-19-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-28 2026-03-19 T"@en;
   mn:forPeriod period:T;
   mn:laeq 63.5;
@@ -777708,8 +777683,8 @@ observation:RF-28-2026-09-28-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-28 .
 
-observation:RF-28-2026-09-28-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-28-2026-09-28-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-28 2026-09-28 N"@en;
   mn:forPeriod period:N;
   mn:laeq 56.3;
@@ -780914,8 +780889,8 @@ observation:RF-29-2025-02-20-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-29 .
 
-observation:RF-29-2025-02-20-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-29-2025-02-20-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-29 2025-02-20 T"@en;
   mn:forPeriod period:T;
   mn:laeq 55.9;
@@ -791708,8 +791683,8 @@ observation:RF-29-2025-09-06-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-29 .
 
-observation:RF-29-2025-09-07-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-29-2025-09-07-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-29 2025-09-07 D"@en;
   mn:forPeriod period:D;
   mn:laeq 58.1;
@@ -794914,8 +794889,8 @@ observation:RF-29-2025-11-03-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-29 .
 
-observation:RF-29-2025-11-03-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-29-2025-11-03-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-29 2025-11-03 E"@en;
   mn:forPeriod period:E;
   mn:laeq 55.2;
@@ -805708,8 +805683,8 @@ observation:RF-29-2026-05-21-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-29 .
 
-observation:RF-29-2026-05-21-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-29-2026-05-21-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-29 2026-05-21 T"@en;
   mn:forPeriod period:T;
   mn:laeq 56.0;
@@ -808914,8 +808889,8 @@ observation:RF-29-2026-07-17-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-29 .
 
-observation:RF-29-2026-07-18-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-29-2026-07-18-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-29 2026-07-18 D"@en;
   mn:forPeriod period:D;
   mn:laeq 54.5;
@@ -819708,8 +819683,8 @@ observation:RF-30-2025-04-29-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-30 .
 
-observation:RF-30-2025-04-29-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-30-2025-04-29-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-30 2025-04-29 E"@en;
   mn:forPeriod period:E;
   mn:laeq 59.0;
@@ -822914,8 +822889,8 @@ observation:RF-30-2025-06-25-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-30 .
 
-observation:RF-30-2025-06-25-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-30-2025-06-25-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-30 2025-06-25 N"@en;
   mn:forPeriod period:N;
   mn:laeq 52.6;
@@ -833708,8 +833683,8 @@ observation:RF-30-2026-01-04-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-30 .
 
-observation:RF-30-2026-01-04-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-30-2026-01-04-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-30 2026-01-04 E"@en;
   mn:forPeriod period:E;
   mn:laeq 56.9;
@@ -836914,8 +836889,8 @@ observation:RF-30-2026-03-02-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-30 .
 
-observation:RF-30-2026-03-02-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-30-2026-03-02-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-30 2026-03-02 N"@en;
   mn:forPeriod period:N;
   mn:laeq 52.2;
@@ -842300,8 +842275,8 @@ observation:RF-30-2026-06-11-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-30 .
 
-observation:RF-30-2026-06-11-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-30-2026-06-11-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-30 2026-06-11 N"@en;
   mn:forPeriod period:N;
   mn:laeq 53.4;
@@ -853094,8 +853069,8 @@ observation:RF-31-2025-03-19-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-31 .
 
-observation:RF-31-2025-03-19-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-31-2025-03-19-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-31 2025-03-19 E"@en;
   mn:forPeriod period:E;
   mn:laeq 63.6;
@@ -856300,8 +856275,8 @@ observation:RF-31-2025-05-19-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-31 .
 
-observation:RF-31-2025-05-20-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-31-2025-05-20-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-31 2025-05-20 D"@en;
   mn:forPeriod period:D;
   mn:laeq 64.9;
@@ -867094,8 +867069,8 @@ observation:RF-31-2025-11-28-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-31 .
 
-observation:RF-31-2025-11-28-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-31-2025-11-28-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-31 2025-11-28 T"@en;
   mn:forPeriod period:T;
   mn:laeq 63.8;
@@ -870300,8 +870275,8 @@ observation:RF-31-2026-01-24-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-31 .
 
-observation:RF-31-2026-01-25-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-31-2026-01-25-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-31 2026-01-25 D"@en;
   mn:forPeriod period:D;
   mn:laeq 64.7;
@@ -876762,8 +876737,8 @@ observation:RF-31-2026-05-28-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-31 .
 
-observation:RF-31-2026-05-28-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-31-2026-05-28-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-31 2026-05-28 E"@en;
   mn:forPeriod period:E;
   mn:laeq 62.8;
@@ -887556,8 +887531,8 @@ observation:RF-47-2025-03-08-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-47 .
 
-observation:RF-47-2025-03-08-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-47-2025-03-08-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-47 2025-03-08 N"@en;
   mn:forPeriod period:N;
   mn:laeq 51.7;
@@ -890762,8 +890737,8 @@ observation:RF-47-2025-05-05-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-47 .
 
-observation:RF-47-2025-05-05-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-47-2025-05-05-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-47 2025-05-05 E"@en;
   mn:forPeriod period:E;
   mn:laeq 55.4;
@@ -901556,8 +901531,8 @@ observation:RF-47-2025-11-13-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-47 .
 
-observation:RF-47-2025-11-14-D a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-47-2025-11-14-D dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-47 2025-11-14 D"@en;
   mn:forPeriod period:D;
   mn:laeq 57.1;
@@ -904762,8 +904737,8 @@ observation:RF-47-2026-01-10-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-47 .
 
-observation:RF-47-2026-01-10-E dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-47-2026-01-10-E a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-47 2026-01-10 E"@en;
   mn:forPeriod period:E;
   mn:laeq 52.8;
@@ -908018,8 +907993,8 @@ observation:RF-47-2026-03-16-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-47 .
 
-observation:RF-47-2026-03-16-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-47-2026-03-16-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-47 2026-03-16 N"@en;
   mn:forPeriod period:N;
   mn:laeq 47.5;
@@ -911224,8 +911199,8 @@ observation:RF-47-2026-05-12-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-47 .
 
-observation:RF-47-2026-05-12-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-47-2026-05-12-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-47 2026-05-12 T"@en;
   mn:forPeriod period:T;
   mn:laeq 56.7;
@@ -920942,8 +920917,8 @@ observation:RF-48-2025-02-05-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-48 .
 
-observation:RF-48-2025-02-05-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-48-2025-02-05-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-48 2025-02-05 N"@en;
   mn:forPeriod period:N;
   mn:laeq 53.9;
@@ -924148,8 +924123,8 @@ observation:RF-48-2025-04-03-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation true;
   mn:recordedAt station:RF-48 .
 
-observation:RF-48-2025-04-03-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-48-2025-04-03-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-48 2025-04-03 T"@en;
   mn:forPeriod period:T;
   mn:laeq 62.1;
@@ -934942,8 +934917,8 @@ observation:RF-48-2025-10-13-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-48 .
 
-observation:RF-48-2025-10-13-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-48-2025-10-13-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-48 2025-10-13 N"@en;
   mn:forPeriod period:N;
   mn:laeq 53.6;
@@ -938148,8 +938123,8 @@ observation:RF-48-2025-12-09-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-48 .
 
-observation:RF-48-2025-12-09-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-48-2025-12-09-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-48 2025-12-09 T"@en;
   mn:forPeriod period:T;
   mn:laeq 61.3;
@@ -948942,8 +948917,8 @@ observation:RF-48-2026-07-01-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-48 .
 
-observation:RF-48-2026-07-01-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-48-2026-07-01-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-48 2026-07-01 E"@en;
   mn:forPeriod period:E;
   mn:laeq 58.8;
@@ -952148,8 +952123,8 @@ observation:RF-48-2026-08-27-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-48 .
 
-observation:RF-48-2026-08-27-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-48-2026-08-27-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-48 2026-08-27 N"@en;
   mn:forPeriod period:N;
   mn:laeq 55.0;
@@ -962942,8 +962917,8 @@ observation:RF-50-2025-06-08-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-50 .
 
-observation:RF-50-2025-06-08-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-50-2025-06-08-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-50 2025-06-08 T"@en;
   mn:forPeriod period:T;
   mn:laeq 63.8;
@@ -966148,8 +966123,8 @@ observation:RF-50-2025-08-04-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-50 .
 
-observation:RF-50-2025-08-05-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-50-2025-08-05-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-50 2025-08-05 D"@en;
   mn:forPeriod period:D;
   mn:laeq 65.8;
@@ -976942,8 +976917,8 @@ observation:RF-50-2026-02-13-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-50 .
 
-observation:RF-50-2026-02-13-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-50-2026-02-13-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-50 2026-02-13 T"@en;
   mn:forPeriod period:T;
   mn:laeq 68.1;
@@ -980148,8 +980123,8 @@ observation:RF-50-2026-04-11-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-50 .
 
-observation:RF-50-2026-04-12-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-50-2026-04-12-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-50 2026-04-12 D"@en;
   mn:forPeriod period:D;
   mn:laeq 64.1;
@@ -990942,8 +990917,8 @@ observation:RF-54-2025-01-25-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-54 .
 
-observation:RF-54-2025-01-25-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-54-2025-01-25-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-54 2025-01-25 E"@en;
   mn:forPeriod period:E;
   mn:laeq 60.8;
@@ -994148,8 +994123,8 @@ observation:RF-54-2025-04-03-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation true;
   mn:recordedAt station:RF-54 .
 
-observation:RF-54-2025-04-03-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-54-2025-04-03-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-54 2025-04-03 N"@en;
   mn:forPeriod period:N;
   mn:laeq 56.1;
@@ -1004942,8 +1004917,8 @@ observation:RF-54-2025-10-13-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-54 .
 
-observation:RF-54-2025-10-13-N a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-54-2025-10-13-N dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-54 2025-10-13 N"@en;
   mn:forPeriod period:N;
   mn:laeq 52.7;
@@ -1008148,8 +1008123,8 @@ observation:RF-54-2025-12-09-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-54 .
 
-observation:RF-54-2025-12-09-T dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-54-2025-12-09-T a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-54 2025-12-09 T"@en;
   mn:forPeriod period:T;
   mn:laeq 60.9;
@@ -1018942,8 +1018917,8 @@ observation:RF-54-2026-06-23-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-54 .
 
-observation:RF-54-2026-06-23-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-54-2026-06-23-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-54 2026-06-23 T"@en;
   mn:forPeriod period:T;
   mn:laeq 58.5;
@@ -1022148,8 +1022123,8 @@ observation:RF-54-2026-08-19-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-54 .
 
-observation:RF-54-2026-08-20-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-54-2026-08-20-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-54 2026-08-20 D"@en;
   mn:forPeriod period:D;
   mn:laeq 58.2;
@@ -1032942,8 +1032917,8 @@ observation:RF-55-2025-05-29-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-55 .
 
-observation:RF-55-2025-05-29-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-55-2025-05-29-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-55 2025-05-29 T"@en;
   mn:forPeriod period:T;
   mn:laeq 57.7;
@@ -1036148,8 +1036123,8 @@ observation:RF-55-2025-07-25-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-55 .
 
-observation:RF-55-2025-07-26-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-55-2025-07-26-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-55 2025-07-26 D"@en;
   mn:forPeriod period:D;
   mn:laeq 53.2;
@@ -1046942,8 +1046917,8 @@ observation:RF-55-2026-02-03-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-55 .
 
-observation:RF-55-2026-02-03-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-55-2026-02-03-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-55 2026-02-03 T"@en;
   mn:forPeriod period:T;
   mn:laeq 68.7;
@@ -1050148,8 +1050123,8 @@ observation:RF-55-2026-04-04-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-55 .
 
-observation:RF-55-2026-04-05-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-55-2026-04-05-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-55 2026-04-05 D"@en;
   mn:forPeriod period:D;
   mn:laeq 51.8;
@@ -1060942,8 +1060917,8 @@ observation:RF-86-2025-01-10-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-86 .
 
-observation:RF-86-2025-01-10-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-86-2025-01-10-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-86 2025-01-10 T"@en;
   mn:forPeriod period:T;
   mn:laeq 55.0;
@@ -1064148,8 +1064123,8 @@ observation:RF-86-2025-03-13-T a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-86 .
 
-observation:RF-86-2025-03-14-D dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-86-2025-03-14-D a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-86 2025-03-14 D"@en;
   mn:forPeriod period:D;
   mn:laeq 56.8;
@@ -1074942,8 +1074917,8 @@ observation:RF-86-2025-09-23-N a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-86 .
 
-observation:RF-86-2025-09-23-T a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-86-2025-09-23-T dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-86 2025-09-23 T"@en;
   mn:forPeriod period:T;
   mn:laeq 53.6;
@@ -1081404,8 +1081379,8 @@ observation:RF-86-2026-01-17-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-86 .
 
-observation:RF-86-2026-01-17-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-86-2026-01-17-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-86 2026-01-17 E"@en;
   mn:forPeriod period:E;
   mn:laeq 55.4;
@@ -1084610,8 +1084585,8 @@ observation:RF-86-2026-03-22-E a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-86 .
 
-observation:RF-86-2026-03-22-N dcterms:isPartOf dataset:daily-noise;
-  a mn:DailyNoiseObservation;
+observation:RF-86-2026-03-22-N a mn:DailyNoiseObservation;
+  dcterms:isPartOf dataset:daily-noise;
   rdfs:label "Noise observation RF-86 2026-03-22 N"@en;
   mn:forPeriod period:N;
   mn:laeq 47.3;
@@ -1095404,8 +1095379,8 @@ observation:RF-86-2026-10-01-D a mn:DailyNoiseObservation;
   mn:percentileOrderViolation false;
   mn:recordedAt station:RF-86 .
 
-observation:RF-86-2026-10-01-E a mn:DailyNoiseObservation;
-  dcterms:isPartOf dataset:daily-noise;
+observation:RF-86-2026-10-01-E dcterms:isPartOf dataset:daily-noise;
+  a mn:DailyNoiseObservation;
   rdfs:label "Noise observation RF-86 2026-10-01 E"@en;
   mn:forPeriod period:E;
   mn:laeq 53.1;
@@ -1099902,8 +1099877,8 @@ terrace:1646 a mn:Terrace;
   mn:longitude -3.697614546;
   mn:terraceId 1646 .
 
-terrace:1648 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:1648 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 1648"@en;
   mn:hasDistrict district:1;
   mn:hasNeighbourhood neighbourhood:101;
@@ -1101027,8 +1101002,8 @@ terrace:17567 a mn:Terrace;
   mn:longitude -3.677429091;
   mn:terraceId 17567 .
 
-terrace:17568 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:17568 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 17568"@en;
   mn:hasDistrict district:5;
   mn:hasNeighbourhood neighbourhood:505;
@@ -1103278,8 +1103253,8 @@ terrace:18179 a mn:Terrace;
   mn:longitude -3.681238921;
   mn:terraceId 18179 .
 
-terrace:1818 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:1818 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 1818"@en;
   mn:hasDistrict district:13;
   mn:hasNeighbourhood neighbourhood:1301;
@@ -1105529,8 +1105504,8 @@ terrace:18935 a mn:Terrace;
   mn:longitude -3.728599001;
   mn:terraceId 18935 .
 
-terrace:18938 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:18938 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 18938"@en;
   mn:hasDistrict district:1;
   mn:hasNeighbourhood neighbourhood:102;
@@ -1129160,8 +1129135,8 @@ terrace:3665 a mn:Terrace;
   mn:longitude -3.702767627;
   mn:terraceId 3665 .
 
-terrace:3666 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:3666 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 3666"@en;
   mn:hasDistrict district:12;
   mn:hasNeighbourhood neighbourhood:1201;
@@ -1130285,8 +1130260,8 @@ terrace:3836 a mn:Terrace;
   mn:longitude -3.649502099;
   mn:terraceId 3836 .
 
-terrace:3837 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:3837 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 3837"@en;
   mn:hasDistrict district:3;
   mn:hasNeighbourhood neighbourhood:305;
@@ -1131410,8 +1131385,8 @@ terrace:4011 a mn:Terrace;
   mn:longitude -3.709623224;
   mn:terraceId 4011 .
 
-terrace:4014 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:4014 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 4014"@en;
   mn:hasDistrict district:1;
   mn:hasNeighbourhood neighbourhood:106;
@@ -1132535,8 +1132510,8 @@ terrace:4147 a mn:Terrace;
   mn:longitude -3.71054731;
   mn:terraceId 4147 .
 
-terrace:4148 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:4148 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 4148"@en;
   mn:hasDistrict district:7;
   mn:hasNeighbourhood neighbourhood:706;
@@ -1135911,8 +1135886,8 @@ terrace:4684 a mn:Terrace;
   mn:longitude -3.739541087;
   mn:terraceId 4684 .
 
-terrace:4686 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:4686 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 4686"@en;
   mn:hasDistrict district:10;
   mn:hasNeighbourhood neighbourhood:1004;
@@ -1137036,8 +1137011,8 @@ terrace:4849 a mn:Terrace;
   mn:longitude -3.603622569;
   mn:terraceId 4849 .
 
-terrace:485 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:485 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 485"@en;
   mn:hasDistrict district:21;
   mn:hasNeighbourhood neighbourhood:2105;
@@ -1138161,8 +1138136,8 @@ terrace:4996 a mn:Terrace;
   mn:longitude -3.695413327;
   mn:terraceId 4996 .
 
-terrace:4999 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:4999 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 4999"@en;
   mn:hasDistrict district:6;
   mn:hasNeighbourhood neighbourhood:604;
@@ -1139286,8 +1139261,8 @@ terrace:5147 a mn:Terrace;
   mn:longitude -3.722804292;
   mn:terraceId 5147 .
 
-terrace:5148 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:5148 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 5148"@en;
   mn:hasDistrict district:9;
   mn:hasNeighbourhood neighbourhood:902;
@@ -1141537,8 +1141512,8 @@ terrace:5474 a mn:Terrace;
   mn:longitude -3.64360044;
   mn:terraceId 5474 .
 
-terrace:5475 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:5475 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 5475"@en;
   mn:hasDistrict district:16;
   mn:hasNeighbourhood neighbourhood:1604;
@@ -1142664,8 +1142639,8 @@ terrace:5643 a mn:Terrace;
   mn:longitude -3.662841104;
   mn:terraceId 5643 .
 
-terrace:5644 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:5644 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 5644"@en;
   mn:hasDistrict district:16;
   mn:hasNeighbourhood neighbourhood:1606;
@@ -1143789,8 +1143764,8 @@ terrace:5828 a mn:Terrace;
   mn:longitude -3.699247423;
   mn:terraceId 5828 .
 
-terrace:5830 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:5830 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 5830"@en;
   mn:hasDistrict district:1;
   mn:hasNeighbourhood neighbourhood:102;
@@ -1144914,8 +1144889,8 @@ terrace:6022 a mn:Terrace;
   mn:longitude -3.677626758;
   mn:terraceId 6022 .
 
-terrace:6023 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:6023 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 6023"@en;
   mn:hasDistrict district:5;
   mn:hasNeighbourhood neighbourhood:501;
@@ -1148290,8 +1148265,8 @@ terrace:6576 a mn:Terrace;
   mn:longitude -3.700397223;
   mn:terraceId 6576 .
 
-terrace:6577 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:6577 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 6577"@en;
   mn:hasDistrict district:14;
   mn:hasNeighbourhood neighbourhood:1403;
@@ -1153916,8 +1153891,8 @@ terrace:840 a mn:Terrace;
   mn:longitude -3.68833238;
   mn:terraceId 840 .
 
-terrace:841 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:841 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 841"@en;
   mn:hasDistrict district:9;
   mn:hasNeighbourhood neighbourhood:902;
@@ -1155041,8 +1155016,8 @@ terrace:989 a mn:Terrace;
   mn:longitude -3.6221639;
   mn:terraceId 989 .
 
-terrace:990 a mn:Terrace;
-  dcterms:isPartOf dataset:terraces;
+terrace:990 dcterms:isPartOf dataset:terraces;
+  a mn:Terrace;
   rdfs:label "Terrace 990"@en;
   mn:hasDistrict district:13;
   mn:hasNeighbourhood neighbourhood:1306;

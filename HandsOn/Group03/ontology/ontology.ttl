@@ -147,7 +147,7 @@ mn:percentileOrderViolation a owl:DatatypeProperty , owl:FunctionalProperty ;
     rdfs:domain mn:DailyNoiseObservation ;
     rdfs:range xsd:boolean ;
     rdfs:label "Percentile order violation"@en ;
-    rdfs:comment "True when all five source percentiles are available and violate L1 >= L10 >= L50 >= L90 >= L99; false when all five are available and satisfy that order. Omitted when any percentile is unavailable. This quality flag preserves the reported measurement values rather than correcting or deleting them."@en .
+    rdfs:comment "True if all five percentiles are available and violate L1 >= L10 >= L50 >= L90 >= L99; false if ordered; omitted if incomplete."@en .
 
 # --- Datatype Properties: Terrace ---
 

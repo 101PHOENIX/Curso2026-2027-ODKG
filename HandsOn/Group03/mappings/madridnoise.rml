@@ -13,21 +13,9 @@
 @prefix district:      <https://madridnoise.linkeddata.es/resource/district/> .
 @prefix neighbourhood: <https://madridnoise.linkeddata.es/resource/neighbourhood/> .
 @prefix dataset:       <https://madridnoise.linkeddata.es/dataset/> .
-@prefix agent:         <https://madridnoise.linkeddata.es/resource/agent/> .
 @base <https://madridnoise.linkeddata.es/mapping#> .
 
-# RML mappings for Group03 (Madrid urban noise).
-# Sources are the *-updated.csv files cleaned in OpenRefine (Hands-on 3) from the
-# original portal files in csv/; the operations are in openrefine/*.json.
-# csv/periods.csv is a 4-row reference table with the period labels.
-# csv/datasets.csv records the scope and source of each generated dataset.
-# Run from the Group03 directory:
-#   java -jar rmlmapper.jar -m mappings/madridnoise.rml -s turtle -o rdf/madridnoise.ttl
-#
-# Resource naming strategy (analysis.html):
-#   ontology       https://madridnoise.linkeddata.es/ontology#<Term>
-#   individuals    https://madridnoise.linkeddata.es/resource/<type>/<id>
-#   datasets       https://madridnoise.linkeddata.es/dataset/<name>
+# Run from Group03: java -jar rmlmapper.jar -m mappings/madridnoise.rml -s turtle -o rdf/madridnoise.ttl
 
 # ---------------------------------------------------------------- Stations
 
@@ -104,8 +92,6 @@
       rr:language "en"
     ]
   ] ;
-  # link to the station: the cleaned station_code equals the catalog code,
-  # so the station IRI is built with the same template as in StationMap
   rr:predicateObjectMap [
     rr:predicate mn:recordedAt ;
     rr:objectMap [
@@ -128,7 +114,6 @@
     rr:predicate mn:laeq ;
     rr:objectMap [ rml:reference "laeq" ; rr:datatype xsd:decimal ]
   ] ;
-  # empty cells (source N/D) produce no triple
   rr:predicateObjectMap [
     rr:predicate mn:las01 ;
     rr:objectMap [ rml:reference "l1" ; rr:datatype xsd:decimal ]
@@ -198,8 +183,7 @@
     rr:object dataset:terraces
   ] .
 
-# Districts and neighbourhoods come from the same terraces source, so the
-# parentTriplesMap references above need no join condition (same row).
+# Districts and neighbourhoods
 
 <#DistrictMap> a rr:TriplesMap ;
   rml:logicalSource [
@@ -229,61 +213,37 @@
     rr:objectMap [ rml:reference "neighbourhood_label" ; rr:language "es" ]
   ] .
 
-# ---------------------------------------------------------- Dataset metadata
+# Datasets
 
-<#DatasetMap> a rr:TriplesMap ;
+<#NoiseDatasetMap> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/datasets.csv" ;
+    rml:source "csv/periods.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
-  rr:subjectMap [
-    rr:template "https://madridnoise.linkeddata.es/dataset/{dataset_id}" ;
-    rr:class dcat:Dataset
-  ] ;
+  rr:subjectMap [ rr:constant dataset:daily-noise ; rr:class dcat:Dataset ] ;
   rr:predicateObjectMap [
     rr:predicate rdfs:label ;
-    rr:objectMap [ rml:reference "label" ; rr:language "en" ]
-  ] ;
-  rr:predicateObjectMap [
-    rr:predicate dcterms:title ;
-    rr:objectMap [ rml:reference "title" ; rr:language "en" ]
-  ] ;
-  rr:predicateObjectMap [
-    rr:predicate dcterms:description ;
-    rr:objectMap [ rml:reference "description" ; rr:language "en" ]
-  ] ;
-  rr:predicateObjectMap [
-    rr:predicate dcterms:license ;
-    rr:object <https://creativecommons.org/licenses/by/4.0/>
-  ] ;
-  rr:predicateObjectMap [
-    rr:predicate dcterms:creator ;
-    rr:object agent:group03
-  ] ;
-  rr:predicateObjectMap [
-    rr:predicate dcterms:publisher ;
-    rr:object agent:group03
-  ] ;
-  rr:predicateObjectMap [
-    rr:predicate dcterms:modified ;
-    rr:objectMap [ rml:reference "modified" ; rr:datatype xsd:date ]
-  ] ;
-  rr:predicateObjectMap [
-    rr:predicate dcterms:source ;
-    rr:objectMap [ rml:reference "source" ; rr:termType rr:IRI ]
+    rr:objectMap [ rr:constant "Madrid daily noise measurements (Linked Data)" ; rr:language "en" ]
   ] .
 
-# Repeated metadata rows describe the same RDF adaptation creator/publisher.
-<#GroupMap> a rr:TriplesMap ;
+<#StationsDatasetMap> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/datasets.csv" ;
+    rml:source "csv/periods.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
-  rr:subjectMap [
-    rr:template "https://madridnoise.linkeddata.es/resource/agent/{agent_id}" ;
-    rr:class dcterms:Agent
-  ] ;
+  rr:subjectMap [ rr:constant dataset:stations ; rr:class dcat:Dataset ] ;
   rr:predicateObjectMap [
     rr:predicate rdfs:label ;
-    rr:objectMap [ rr:constant "ODKG 2026-2027 Group03" ; rr:language "en" ]
+    rr:objectMap [ rr:constant "Madrid acoustic station catalog (Linked Data)" ; rr:language "en" ]
+  ] .
+
+<#TerracesDatasetMap> a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "csv/periods.csv" ;
+    rml:referenceFormulation ql:CSV
+  ] ;
+  rr:subjectMap [ rr:constant dataset:terraces ; rr:class dcat:Dataset ] ;
+  rr:predicateObjectMap [
+    rr:predicate rdfs:label ;
+    rr:objectMap [ rr:constant "Madrid hospitality terraces (Linked Data)" ; rr:language "en" ]
   ] .
