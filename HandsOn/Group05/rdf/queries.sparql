@@ -1,0 +1,39 @@
+# SPARQL queries to verify the generated RDF data
+# Update the namespace prefix if your dataset uses a different one.
+
+PREFIX ex: <http://example.org/>
+
+# 1. Count all triples in the dataset
+SELECT (COUNT(*) AS ?totalTriples)
+WHERE {
+  ?subject ?predicate ?object .
+}
+
+# 2. Show the first 20 triples to verify data structure
+SELECT ?subject ?predicate ?object
+WHERE {
+  ?subject ?predicate ?object .
+}
+LIMIT 20
+
+# 3. Count resources by type
+SELECT ?type (COUNT(DISTINCT ?subject) AS ?count)
+WHERE {
+  ?subject a ?type .
+}
+GROUP BY ?type
+ORDER BY DESC(?count)
+
+# 4. Find all values for a specific property
+SELECT ?subject ?value
+WHERE {
+  ?subject ex:hasName ?value .
+}
+ORDER BY ?subject
+
+# 5. Check whether a specific resource exists
+SELECT ?subject ?predicate ?object
+WHERE {
+  ?subject ?predicate ?object .
+  FILTER(?subject = ex:ExampleResource)
+}
