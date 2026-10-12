@@ -23,36 +23,18 @@
 
 ## Comments on the self-assessment
 
-**Deliverables**
+The histories in `openrefine/` produce the matching `csv/*-updated.csv` files:
 
-| Source file (`csv/`) | OpenRefine operations (`openrefine/`) | Updated file (`csv/`) | Rows |
-|---|---|---|---|
-| `contaminacion_acustica.csv` | `contaminacion_acustica.json` (23 operations) | `contaminacion_acustica-updated.csv` | 78,230 |
-| `estaciones_acusticas.csv` | `estaciones_acusticas.json` (9 operations) | `estaciones_acusticas-updated.csv` | 31 |
-| `terrazas_hosteleria.csv` | `terrazas_hosteleria.json` (15 operations) | `terrazas_hosteleria-updated.csv` | 6,594 |
+| Dataset | Operations | Output rows |
+|---|---:|---:|
+| Noise | 24 | 78,230 |
+| Stations | 9 | 31 |
+| Terraces | 15 | 6,594 |
 
-The JSON files are the operation histories extracted from OpenRefine 3.10.1. Each project was imported with `;` as separator, no cell type guessing, and encoding ISO-8859-1 (noise and stations) or UTF-8 (terraces). To reproduce, import the source file with those options and apply the JSON with *Undo / Redo → Apply*. The cleaning follows the rules in `analysis.html`.
+Reproduce with OpenRefine **3.10.0**: import the original CSVs with semicolon separator, one header row, disabled type guessing and blank cells as nulls. Use ISO-8859-1 for noise/stations and UTF-8 for terraces. Apply the matching JSON history and export comma-separated UTF-8 CSV. Complete replays reproduce the delivered files.
 
-**Daily noise (`contaminacion_acustica`)**
-- Rows before 2025 are removed. The committed 2020–2026 extract would give ~3.3 M triples (~160 MB of Turtle), above GitHub's 100 MB limit, and 2025 onwards matches the 2026 terrace-census snapshot.
-- `Estación` 2 → `RF-02` (padded to two digits) so it joins the station catalog. All 31 codes match.
-- `Año`/`Mes`/`Día` → one ISO date (`2025-01-01`), validated with `toDate`.
-- `Periodo` trimmed and upper-cased (D/E/N/T).
-- `LAeq`, `L1`…`L99`: decimal comma → dot. `N/D` → empty cell (17 rows), never 0.
-- New `observation_id` column (`RF-02-2025-01-01-N`) as the unique, readable key. Columns renamed to ASCII names.
+The chosen noise window is **2025-01-01–2026-10-04**. Cleaning normalizes identifiers, dates, whitespace and decimal notation; `N/D` becomes blank. Source measurements, including zeros, remain unchanged. The derived `percentile_order_violation` flags **213** inconsistent sequences, with 78,000 false and 17 unavailable values.
 
-**Stations (`estaciones_acusticas`)**
-- Code and name trimmed, with internal spaces collapsed.
-- `LATITUD`/`LONGITUD` repaired: `40.409.121` → `40.409121`, `-3.691.509` → `-3.691509`. The values were checked against each station's ETRS89 X/Y.
+Terraces use local coordinates for street-access premises outside Baja, grouping coordinates for grouped premises, and no coordinates for other invalid or missing pairs. Conversion from EPSG:25830 to WGS84 yields **6,534 located terraces and 60 without coordinates**.
 
-**Terraces (`terrazas_hosteleria`)**
-- Only the 7 source columns the ontology uses are kept, out of 117.
-- `id_terraza`, `id_distrito_local` and `id_barrio_local` are written as plain integers.
-- District and neighbourhood names trimmed: the padded `"VILLA DE VALLECAS   "` becomes `VILLA DE VALLECAS`.
-- Premises coordinates converted from ETRS89 / UTM 30N (EPSG:25830) to WGS84 latitude/longitude with a Jython expression (inverse transverse Mercator). 112 terraces with zero or unusable coordinates are left empty.
-- New `terrace_label` column (`Terrace 37`).
-
-**Checklist notes**
-- Identifiers are source codes, not counters we generated: the RF station code, the station/date/period key for observations, and the census `id_terraza`, `id_distrito_local` and `id_barrio_local`.
-- `mn:DayPeriod` is covered by the noise `period` column. Its labels come from the small reference table `csv/periods.csv`.
-- Every remaining column maps to an ontology property or to `rdfs:label` (see `mappings/madridnoise.rml`).
+Source identifiers and composite observation keys cover the six application classes and eighteen properties. Period labels are supplied by `csv/periods.csv`.

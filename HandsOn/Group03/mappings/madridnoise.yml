@@ -1,9 +1,8 @@
-# YARRRML version of mappings/madridnoise.rml (same triples).
-# Sources are the *-updated.csv files cleaned in OpenRefine (openrefine/*.json).
 prefixes:
   rdfs: http://www.w3.org/2000/01/rdf-schema#
   xsd: http://www.w3.org/2001/XMLSchema#
   dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
   mn: https://madridnoise.linkeddata.es/ontology#
   station: https://madridnoise.linkeddata.es/resource/station/
   observation: https://madridnoise.linkeddata.es/resource/observation/
@@ -52,6 +51,7 @@ mappings:
       - [mn:las50, $(l50), xsd:decimal]
       - [mn:las90, $(l90), xsd:decimal]
       - [mn:las99, $(l99), xsd:decimal]
+      - [mn:percentileOrderViolation, $(percentile_order_violation), xsd:boolean]
       - [dcterms:isPartOf, dataset:daily-noise~iri]
 
   terrace:
@@ -87,3 +87,27 @@ mappings:
     po:
       - [a, mn:Neighbourhood]
       - [rdfs:label, $(neighbourhood_label), es~lang]
+
+  noise_dataset:
+    sources:
+      - [csv/periods.csv~csv]
+    s: dataset:daily-noise
+    po:
+      - [a, dcat:Dataset]
+      - [rdfs:label, Madrid daily noise measurements (Linked Data), en~lang]
+
+  stations_dataset:
+    sources:
+      - [csv/periods.csv~csv]
+    s: dataset:stations
+    po:
+      - [a, dcat:Dataset]
+      - [rdfs:label, Madrid acoustic station catalog (Linked Data), en~lang]
+
+  terraces_dataset:
+    sources:
+      - [csv/periods.csv~csv]
+    s: dataset:terraces
+    po:
+      - [a, dcat:Dataset]
+      - [rdfs:label, Madrid hospitality terraces (Linked Data), en~lang]
