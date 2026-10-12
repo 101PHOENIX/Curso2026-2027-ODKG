@@ -3,23 +3,20 @@
 @prefix ql: <http://semweb.mmlab.be/ns/ql#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mp: <http://parking.linkeddata.upm.es/ontology/> .
+@prefix prop: <http://parking.linkeddata.upm.es/property/> .
 
-@prefix mp: <http://www.semanticweb.org/group7/madridparking/ontology/> .
-@prefix prop: <http://www.semanticweb.org/group7/madridparking/property/> .
-@prefix res: <http://www.semanticweb.org/group7/madridparking/unit/> .
-
+@base <http://parking.linkeddata.upm.es/mapping/> .
 
 <#ParkingFacilityMap> a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "csv/csv-morph.csv" ;
+        rml:source "CSV/csv-mod.csv" ;
         rml:referenceFormulation ql:CSV
     ] ;
-
     rr:subjectMap [
-        rr:template "http://www.semanticweb.org/group7/madridparking/unit/parking/{CODIGO_PAR}" ;
+        rr:template "http://parking.linkeddata.upm.es/resource/parking/{CODIGO_PAR}" ;
         rr:class mp:ParkingFacility
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:parkingName ;
         rr:objectMap [
@@ -27,51 +24,37 @@
             rr:datatype xsd:string
         ]
     ] ;
-
-    rr:predicateObjectMap [
-        rr:predicate prop:numberOfSpaces ;
-        rr:objectMap [
-            rml:reference "NUM_PLAZAS" ;
-            rr:datatype xsd:integer
-        ]
-    ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:locatedIn ;
         rr:objectMap [
-            rr:template "http://www.semanticweb.org/group7/madridparking/unit/district/{CODIGO_DISTRITO}" ;
+            rr:template "http://parking.linkeddata.upm.es/resource/district/{CODIGO_DISTRITO}" ;
             rr:termType rr:IRI
         ]
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:hasParkingType ;
         rr:objectMap [
-            rr:template "http://www.semanticweb.org/group7/madridparking/unit/parkingType/{TIPO}" ;
+            rr:template "http://parking.linkeddata.upm.es/resource/parking-type/{TIPO}" ;
             rr:termType rr:IRI
         ]
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:hasObservation ;
         rr:objectMap [
-            rr:template "http://www.semanticweb.org/group7/madridparking/unit/observation/{CODIGO_PAR}-{ANIO}-{MES}" ;
+            rr:template "http://parking.linkeddata.upm.es/resource/observation/{CODIGO_PAR}/{ANIO}/{MES}" ;
             rr:termType rr:IRI
         ]
     ] .
 
-
 <#DistrictMap> a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "csv/csv-morph.csv" ;
+        rml:source "CSV/csv-mod.csv" ;
         rml:referenceFormulation ql:CSV
     ] ;
-
     rr:subjectMap [
-        rr:template "http://www.semanticweb.org/group7/madridparking/unit/district/{CODIGO_DISTRITO}" ;
+        rr:template "http://parking.linkeddata.upm.es/resource/district/{CODIGO_DISTRITO}" ;
         rr:class mp:District
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:districtName ;
         rr:objectMap [
@@ -80,18 +63,15 @@
         ]
     ] .
 
-
 <#ParkingTypeMap> a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "csv/csv-morph.csv" ;
+        rml:source "CSV/csv-mod.csv" ;
         rml:referenceFormulation ql:CSV
     ] ;
-
     rr:subjectMap [
-        rr:template "http://www.semanticweb.org/group7/madridparking/unit/parkingType/{TIPO}" ;
+        rr:template "http://parking.linkeddata.upm.es/resource/parking-type/{TIPO}" ;
         rr:class mp:ParkingType
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate rdfs:label ;
         rr:objectMap [
@@ -100,26 +80,22 @@
         ]
     ] .
 
-
 <#OccupancyObservationMap> a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "csv/csv-morph.csv" ;
+        rml:source "CSV/csv-mod.csv" ;
         rml:referenceFormulation ql:CSV
     ] ;
-
     rr:subjectMap [
-        rr:template "http://www.semanticweb.org/group7/madridparking/unit/observation/{CODIGO_PAR}-{ANIO}-{MES}" ;
+        rr:template "http://parking.linkeddata.upm.es/resource/observation/{CODIGO_PAR}/{ANIO}/{MES}" ;
         rr:class mp:OccupancyObservation
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:observationOf ;
         rr:objectMap [
-            rr:template "http://www.semanticweb.org/group7/madridparking/unit/parking/{CODIGO_PAR}" ;
+            rr:template "http://parking.linkeddata.upm.es/resource/parking/{CODIGO_PAR}" ;
             rr:termType rr:IRI
         ]
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:year ;
         rr:objectMap [
@@ -127,7 +103,6 @@
             rr:datatype xsd:gYear
         ]
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:month ;
         rr:objectMap [
@@ -135,7 +110,13 @@
             rr:datatype xsd:integer
         ]
     ] ;
-
+    rr:predicateObjectMap [
+        rr:predicate prop:numberOfSpaces ;
+        rr:objectMap [
+            rml:reference "NUM_PLAZAS" ;
+            rr:datatype xsd:integer
+        ]
+    ] ;
     rr:predicateObjectMap [
         rr:predicate prop:calculationDays ;
         rr:objectMap [
@@ -143,7 +124,6 @@
             rr:datatype xsd:integer
         ]
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:averageVehiclesPerDay ;
         rr:objectMap [
@@ -151,7 +131,6 @@
             rr:datatype xsd:decimal
         ]
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:occupancyPercentage ;
         rr:objectMap [
@@ -159,7 +138,6 @@
             rr:datatype xsd:decimal
         ]
     ] ;
-
     rr:predicateObjectMap [
         rr:predicate prop:daytimeOccupancyPercentage ;
         rr:objectMap [

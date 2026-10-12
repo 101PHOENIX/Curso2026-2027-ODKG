@@ -1,27 +1,30 @@
 #Count Parking
-PREFIX mp: <http://www.semanticweb.org/group13/madridparking/ontology/>
+PREFIX mp: <http://parking.linkeddata.upm.es/ontology/>
 
 SELECT (COUNT(?parking) AS ?totalParkings)
 WHERE {
   ?parking a mp:ParkingFacility .
 }
-#Count districs
-PREFIX mp: <http://www.semanticweb.org/group13/madridparking/ontology/>
+
+#Count districts
+PREFIX mp: <http://parking.linkeddata.upm.es/ontology/>
 
 SELECT (COUNT(?district) AS ?totalDistricts)
 WHERE {
   ?district a mp:District .
 }
-#Count Ocuppancy
-PREFIX mp: <http://www.semanticweb.org/group13/madridparking/ontology/>
+
+#Count Occupancy
+PREFIX mp: <http://parking.linkeddata.upm.es/ontology/>
 
 SELECT (COUNT(?obs) AS ?totalObservations)
 WHERE {
   ?obs a mp:OccupancyObservation .
-}a
-#Nombres
-PREFIX mp: <http://www.semanticweb.org/group13/madridparking/ontology/>
-PREFIX prop: <http://www.semanticweb.org/group13/madridparking/property/>
+}
+
+#Names
+PREFIX mp: <http://parking.linkeddata.upm.es/ontology/>
+PREFIX prop: <http://parking.linkeddata.upm.es/property/>
 
 SELECT ?parking ?name
 WHERE {
