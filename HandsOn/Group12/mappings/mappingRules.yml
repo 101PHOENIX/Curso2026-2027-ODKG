@@ -67,7 +67,6 @@ mappings:
     po:
       - [a, am:SportsClass]
       - [schema:name, "$(Actividad) - $(Día de la semana) de $(Hora inicial) a $(Hora final)", xsd:string]
-      - [am:date, $(Fecha), xsd:date]
       - [am:offeredPlaces, $(Plazas), xsd:nonNegativeInteger]
       - [am:occupiedPlaces, $(Ocupadas), xsd:nonNegativeInteger]
       - [am:availablePlaces, $(Libres), xsd:nonNegativeInteger]

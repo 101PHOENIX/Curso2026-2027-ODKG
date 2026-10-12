@@ -25,7 +25,7 @@ map:jc_001 rr:child "Centro deportivo" ;
 map:map_triplesmapClosedClasses_000 rml:logicalSource map:source_007 ;
 	rdf:type rr:TriplesMap ;
 	rdfs:label "triplesmapClosedClasses" ;
-	rr:predicateObjectMap map:pom_029, map:pom_030, map:pom_031, map:pom_032, map:pom_033, map:pom_034, map:pom_035 ;
+	rr:predicateObjectMap map:pom_028, map:pom_029, map:pom_030, map:pom_031, map:pom_032, map:pom_033, map:pom_034 ;
 	rr:subjectMap map:s_007 .
 
 map:map_triplesmapDistrict_000 rml:logicalSource map:source_002 ;
@@ -37,7 +37,7 @@ map:map_triplesmapDistrict_000 rml:logicalSource map:source_002 ;
 map:map_triplesmapOpenClasses_000 rml:logicalSource map:source_006 ;
 	rdf:type rr:TriplesMap ;
 	rdfs:label "triplesmapOpenClasses" ;
-	rr:predicateObjectMap map:pom_020, map:pom_021, map:pom_022, map:pom_023, map:pom_024, map:pom_025, map:pom_026, map:pom_027, map:pom_028 ;
+	rr:predicateObjectMap map:pom_020, map:pom_021, map:pom_022, map:pom_023, map:pom_024, map:pom_025, map:pom_026, map:pom_027 ;
 	rr:subjectMap map:s_006 .
 
 map:map_triplesmapPostalAddress_000 rml:logicalSource map:source_001 ;
@@ -171,67 +171,62 @@ map:om_021 rdf:type rr:ObjectMap ;
 	rr:template "{Actividad} - {Día de la semana} de {Hora inicial} a {Hora final}" ;
 	rr:termType rr:Literal .
 
-map:om_022 rml:reference "Fecha" ;
-	rdf:type rr:ObjectMap ;
-	rr:datatype xsd:date ;
-	rr:termType rr:Literal .
-
-map:om_023 rml:reference "Plazas" ;
+map:om_022 rml:reference "Plazas" ;
 	rdf:type rr:ObjectMap ;
 	rr:datatype xsd:nonNegativeInteger ;
 	rr:termType rr:Literal .
 
-map:om_024 rml:reference "Ocupadas" ;
+map:om_023 rml:reference "Ocupadas" ;
 	rdf:type rr:ObjectMap ;
 	rr:datatype xsd:nonNegativeInteger ;
 	rr:termType rr:Literal .
 
-map:om_025 rml:reference "Libres" ;
+map:om_024 rml:reference "Libres" ;
 	rdf:type rr:ObjectMap ;
 	rr:datatype xsd:nonNegativeInteger ;
 	rr:termType rr:Literal .
 
-map:om_026 rdf:type rr:ObjectMap ;
+map:om_025 rdf:type rr:ObjectMap ;
 	rr:template "https://w3id.org/active-madrid/resource/SportActivity/{Actividad}" ;
 	rr:termType rr:IRI .
 
-map:om_027 rdf:type rr:ObjectMap ;
+map:om_026 rdf:type rr:ObjectMap ;
 	rr:template "https://w3id.org/active-madrid/resource/TimeInterval/{Hora inicial}-{Hora final}" ;
 	rr:termType rr:IRI .
 
-map:om_028 rdf:type rr:ObjectMap ;
+map:om_027 rdf:type rr:ObjectMap ;
 	rr:constant am:SportsClass ;
 	rr:termType rr:IRI .
 
-map:om_029 rml:reference "Clase" ;
+map:om_028 rml:reference "Clase" ;
 	rdf:type rr:ObjectMap ;
 	rr:datatype xsd:string ;
 	rr:termType rr:Literal .
 
-map:om_030 rml:reference "Nº Plazas Ofertadas" ;
+map:om_029 rml:reference "Nº Plazas Ofertadas" ;
 	rdf:type rr:ObjectMap ;
 	rr:datatype xsd:nonNegativeInteger ;
 	rr:termType rr:Literal .
 
-map:om_031 rml:reference "Nº Plazas Ocupadas" ;
+map:om_030 rml:reference "Nº Plazas Ocupadas" ;
 	rdf:type rr:ObjectMap ;
 	rr:datatype xsd:nonNegativeInteger ;
 	rr:termType rr:Literal .
 
-map:om_032 rml:reference "Nº Plazas Libres" ;
+map:om_031 rml:reference "Nº Plazas Libres" ;
 	rdf:type rr:ObjectMap ;
 	rr:datatype xsd:nonNegativeInteger ;
 	rr:termType rr:Literal .
 
-map:om_033 rdf:type rr:ObjectMap ;
+map:om_032 rdf:type rr:ObjectMap ;
 	rr:template "https://w3id.org/active-madrid/resource/SportActivity/{Actividad}" ;
 	rr:termType rr:IRI .
 
-map:om_034 rdf:type rr:ObjectMap ;
+map:om_033 rdf:type rr:ObjectMap ;
 	rr:joinCondition map:jc_000 ;
 	rr:parentTriplesMap map:map_triplesmapSportsFacility_000 .
 
-map:om_035 rdf:type rr:ObjectMap ;
+map:om_034 rdf:type rr:ObjectMap ;
 	rr:joinCondition map:jc_001 ;
 	rr:parentTriplesMap map:map_triplesmapSportsFacility_000 .
 
@@ -302,45 +297,42 @@ map:pm_021 rdf:type rr:PredicateMap ;
 	rr:constant schema:name .
 
 map:pm_022 rdf:type rr:PredicateMap ;
-	rr:constant am:date .
+	rr:constant am:offeredPlaces .
 
 map:pm_023 rdf:type rr:PredicateMap ;
-	rr:constant am:offeredPlaces .
+	rr:constant am:occupiedPlaces .
 
 map:pm_024 rdf:type rr:PredicateMap ;
-	rr:constant am:occupiedPlaces .
+	rr:constant am:availablePlaces .
 
 map:pm_025 rdf:type rr:PredicateMap ;
-	rr:constant am:availablePlaces .
+	rr:constant am:hasActivity .
 
 map:pm_026 rdf:type rr:PredicateMap ;
-	rr:constant am:hasActivity .
-
-map:pm_027 rdf:type rr:PredicateMap ;
 	rr:constant time:hasTime .
 
-map:pm_028 rdf:type rr:PredicateMap ;
+map:pm_027 rdf:type rr:PredicateMap ;
 	rr:constant am:takesPlaceAt .
 
-map:pm_029 rdf:type rr:PredicateMap ;
+map:pm_028 rdf:type rr:PredicateMap ;
 	rr:constant rdf:type .
 
-map:pm_030 rdf:type rr:PredicateMap ;
+map:pm_029 rdf:type rr:PredicateMap ;
 	rr:constant schema:name .
 
-map:pm_031 rdf:type rr:PredicateMap ;
+map:pm_030 rdf:type rr:PredicateMap ;
 	rr:constant am:offeredPlaces .
 
-map:pm_032 rdf:type rr:PredicateMap ;
+map:pm_031 rdf:type rr:PredicateMap ;
 	rr:constant am:occupiedPlaces .
 
-map:pm_033 rdf:type rr:PredicateMap ;
+map:pm_032 rdf:type rr:PredicateMap ;
 	rr:constant am:availablePlaces .
 
-map:pm_034 rdf:type rr:PredicateMap ;
+map:pm_033 rdf:type rr:PredicateMap ;
 	rr:constant am:hasActivity .
 
-map:pm_035 rdf:type rr:PredicateMap ;
+map:pm_034 rdf:type rr:PredicateMap ;
 	rr:constant am:takesPlaceAt .
 
 map:pom_000 rdf:type rr:PredicateObjectMap ;
@@ -452,11 +444,11 @@ map:pom_026 rdf:type rr:PredicateObjectMap ;
 	rr:predicateMap map:pm_026 .
 
 map:pom_027 rdf:type rr:PredicateObjectMap ;
-	rr:objectMap map:om_027 ;
+	rr:objectMap map:om_033 ;
 	rr:predicateMap map:pm_027 .
 
 map:pom_028 rdf:type rr:PredicateObjectMap ;
-	rr:objectMap map:om_034 ;
+	rr:objectMap map:om_027 ;
 	rr:predicateMap map:pm_028 .
 
 map:pom_029 rdf:type rr:PredicateObjectMap ;
@@ -480,12 +472,8 @@ map:pom_033 rdf:type rr:PredicateObjectMap ;
 	rr:predicateMap map:pm_033 .
 
 map:pom_034 rdf:type rr:PredicateObjectMap ;
-	rr:objectMap map:om_033 ;
+	rr:objectMap map:om_034 ;
 	rr:predicateMap map:pm_034 .
-
-map:pom_035 rdf:type rr:PredicateObjectMap ;
-	rr:objectMap map:om_035 ;
-	rr:predicateMap map:pm_035 .
 
 map:rules_000 <http://rdfs.org/ns/void#exampleResource> map:map_triplesmapClosedClasses_000, map:map_triplesmapDistrict_000, map:map_triplesmapOpenClasses_000, map:map_triplesmapPostalAddress_000, map:map_triplesmapSportActivity_000, map:map_triplesmapSportActivity_001, map:map_triplesmapSportsFacility_000, map:map_triplesmapTimeIntervals_000 ;
 	rdf:type <http://rdfs.org/ns/void#Dataset> .
@@ -545,4 +533,3 @@ map:source_006 rml:referenceFormulation ql:CSV ;
 map:source_007 rml:referenceFormulation ql:CSV ;
 	rml:source "closed_classes_updated.csv" ;
 	rdf:type rml:LogicalSource .
-
