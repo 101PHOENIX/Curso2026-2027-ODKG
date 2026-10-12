@@ -55,5 +55,10 @@ python scripts/check_rdf.py ontology/HeatRelief.ttl "rdf/*.ttl"
 python scripts/run_queries.py rdf/queries.sparql "rdf/*.ttl"
 ```
 
-- Morph-KGC writes only N-Triples, so `scripts/nt2ttl.py` converts them to Turtle. The `.nt` files are not kept in the repository.
-- `mappings/config.ini` applies the four mappings (shelters, fountains, areas and trees) and writes the whole graph to `rdf/graph.nt`. `python scripts/check_rdf.py ontology/HeatRelief.ttl "rdf/*.ttl" --compare rdf/graph.nt` checks that the Turtle files in `rdf/` contain exactly those triples.
+- Morph-KGC does not write Turtle, so `scripts/nt2ttl.py` converts its N-Triples output to Turtle. Morph-KGC appends to its output file, so delete the `.nt` file before running it again. The `.nt` files are not kept in the repository.
+- `mappings/config.ini` applies the four mappings (shelters, fountains, areas and trees) and writes the whole graph to `rdf/graph.nt`. To check that the Turtle files in `rdf/` contain exactly those triples, run:
+
+```
+python -m morph_kgc mappings/config.ini
+python scripts/check_rdf.py ontology/HeatRelief.ttl "rdf/*.ttl" --compare rdf/graph.nt
+```

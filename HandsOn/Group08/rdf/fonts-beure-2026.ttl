@@ -14807,7 +14807,7 @@ fountain:10-336 a hr:DrinkingFountain ;
     hr:etrs89X 435468.195320315 ;
     hr:etrs89Y 4584825.298642865 ;
     hr:isLocatedInNeighbourhood neighbourhood:70 ;
-    hr:streetAddress "FÒRUM, 0" .
+    hr:streetAddress "FÒRUM" .
 
 fountain:10-337 a hr:DrinkingFountain ;
     rdfs:label "Pl del Fòrum"@ca ;
@@ -14816,7 +14816,7 @@ fountain:10-337 a hr:DrinkingFountain ;
     hr:etrs89X 435390.885770508 ;
     hr:etrs89Y 4584900.029341136 ;
     hr:isLocatedInNeighbourhood neighbourhood:70 ;
-    hr:streetAddress "FÒRUM, 0" .
+    hr:streetAddress "FÒRUM" .
 
 fountain:10-338 a hr:DrinkingFountain ;
     rdfs:label "Pl del Fòrum"@ca ;

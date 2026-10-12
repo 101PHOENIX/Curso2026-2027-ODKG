@@ -1,6 +1,8 @@
 # Queries to verify the RDF data of Group 08 (rdf/*.ttl).
-# They can be run on the union of the Turtle files with scripts/run_queries.py or in any SPARQL engine.
-# Each query is self-contained. The expected result, computed from the CSV files in csv/, is given in the comments.
+# The file holds 14 independent queries. All of them can be run on the union of the Turtle files with:
+#   python scripts/run_queries.py rdf/queries.sparql "rdf/*.ttl"
+# With another SPARQL tool, load the Turtle files into one graph and run one query at a time.
+# The expected result of each query, computed from the CSV files in csv/, is given in the comments.
 
 # Q1. Number of individuals per class.
 # Expected: ClimateShelter 550, District 10, DrinkingFountain 1760, Neighbourhood 73, ShelterCategory 11, StreetTree 145034, TreeSpecies 288.

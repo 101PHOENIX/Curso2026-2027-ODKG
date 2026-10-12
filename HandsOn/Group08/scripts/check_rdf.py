@@ -9,6 +9,7 @@ Morph-KGC from mappings/config.ini.
 import glob
 import re
 import sys
+import unicodedata
 from collections import Counter
 
 from pyoxigraph import BlankNode, Literal, NamedNode, Store, parse
@@ -21,6 +22,11 @@ LINKING = {OWL + "sameAs", "http://www.w3.org/2004/02/skos/core#broadMatch"}
 NUMBER = re.compile(r"^[+-]?[0-9]+([.,][0-9]+)?$")
 DATE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}")
 BOOLEAN = re.compile(r"^(true|false)$", re.IGNORECASE)
+
+
+def has_hidden_character(text):
+    """True if the text has a control or format character (such as U+FEFF), apart from tab and line breaks."""
+    return any(unicodedata.category(c) in ("Cc", "Cf") and c not in "\t\n\r" for c in text)
 
 
 def triples(path):
@@ -74,7 +80,7 @@ def main(ontology, files):
     individuals = {s for s, t in types.items() if t & classes}
 
     unknown_class, unknown_property = Counter(), Counter()
-    bad_iri, untrimmed, placeholder = set(), Counter(), Counter()
+    bad_iri, untrimmed, placeholder, hidden = set(), Counter(), Counter(), Counter()
     bad_domain, bad_range, looks_typed = Counter(), Counter(), Counter()
     total = 0
     for f in files:
@@ -95,6 +101,8 @@ def main(ontology, files):
             if isinstance(o, Literal):
                 if o.value != o.value.strip() or o.value == "":
                     untrimmed[p] += 1
+                if has_hidden_character(o.value):
+                    hidden[p] += 1
                 if p == RDFS + "label" and re.match(r"^[-\s]*$", o.value):
                     placeholder[p] += 1
                 if p in range_ and o.datatype.value != range_[p]:
@@ -116,6 +124,7 @@ def main(ontology, files):
     print(f"classes not in ontology: {short(unknown_class)}; properties not in ontology: {short(unknown_property)}")
     print(f"IRIs with double slash or whitespace: {len(bad_iri)}")
     print(f"literals not trimmed or empty: {short(untrimmed)}; placeholder labels: {short(placeholder)}")
+    print(f"literals with hidden or control characters: {short(hidden)}")
     print(f"subjects outside the property domain: {short(bad_domain)}")
     print(f"values outside the property range (datatype or class): {short(bad_range)}")
     print(f"plain strings that look like numbers, dates or booleans: {short(looks_typed)}")

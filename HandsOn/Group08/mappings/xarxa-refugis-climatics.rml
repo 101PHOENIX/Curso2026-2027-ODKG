@@ -13,8 +13,11 @@
 #
 # The logical sources are SQL views over the CSV file (rml:query, executed by Morph-KGC with DuckDB),
 # so that values that need more than one column can be built without leaving holes:
-#   - street_address: street, plus the street number or number range when the source has it
-#     (2 shelters have no number and keep the street only);
+#   - street_address: street, plus the street number or number range when the source has it.
+#     The placeholder numbers 0 and 9999 are treated as missing, so the shelters that have only
+#     a blank or a placeholder number (4 in total) keep the street only;
+#   - timetable: the hidden character U+FEFF is removed and the control character U+0092 is replaced
+#     by the apostrophe it stands for (U+2019);
 #   - empty cells, which DuckDB reads as NULL, are turned into empty strings, so that Morph-KGC
 #     generates no triple for them;
 #   - category_label: readable label of the category, e.g. SwimmingPool -> "Swimming pool".
@@ -27,10 +30,12 @@
   rml:logicalSource [
     rml:query """
       SELECT coalesce(COLUMNS(*), '') FROM (
-      SELECT *,
+      SELECT * REPLACE (replace(replace(timetable, chr(65279), ''), chr(146), chr(8217)) AS timetable),
         CASE
-          WHEN addresses_start_street_number IS NULL THEN addresses_road_name
+          WHEN addresses_start_street_number IS NULL
+            OR addresses_start_street_number IN ('0', '9999') THEN addresses_road_name
           WHEN addresses_end_street_number IS NULL
+            OR addresses_end_street_number IN ('0', '9999')
             OR addresses_end_street_number = addresses_start_street_number
             THEN addresses_road_name || ', ' || addresses_start_street_number
           ELSE addresses_road_name || ', ' || addresses_start_street_number || '-' || addresses_end_street_number

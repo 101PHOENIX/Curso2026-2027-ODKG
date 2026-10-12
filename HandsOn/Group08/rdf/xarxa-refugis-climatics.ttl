@@ -532,7 +532,7 @@ shelter:75990492186 a hr:ClimateShelter ;
     hr:etrs89Y 4584293.156 ;
     hr:hasShelterCategory shelterCat:SportsCentre ;
     hr:isLocatedInNeighbourhood neighbourhood:06 ;
-    hr:openingHours "De l'1 setembre al 30 juny De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 08.30 h a 20.30 h | Diumenge i festius de 09.00 h a 15.30 h | De l'1 juliol al 31 juliol De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 08.30 h a 15.00 h i ﻿de 17.00 h a 20.30 h | Diumenge i festius de 09.00 h a 15.30 h | De l'1 agost al 31 agost De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 09.00 h a 15.00 h" ;
+    hr:openingHours "De l'1 setembre al 30 juny De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 08.30 h a 20.30 h | Diumenge i festius de 09.00 h a 15.30 h | De l'1 juliol al 31 juliol De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 08.30 h a 15.00 h i de 17.00 h a 20.30 h | Diumenge i festius de 09.00 h a 15.30 h | De l'1 agost al 31 agost De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 09.00 h a 15.00 h" ;
     hr:streetAddress "Carrer de Cartagena, 231-239" .
 
 shelter:75990552606 a hr:ClimateShelter ;
@@ -579,7 +579,7 @@ shelter:75990704278 a hr:ClimateShelter ;
     hr:etrs89Y 4582113.026 ;
     hr:hasShelterCategory shelterCat:Museum ;
     hr:isLocatedInNeighbourhood neighbourhood:04 ;
-    hr:openingHours "De setembre a juliol De dimecres a dissabte Festius tancats d'11.00 h a 14.30 h i de 16.00 h a 20.00 h Entrada general: 5 € Reduïda: 3 € • Estudiants fins a 28 anys • Majors de 65 anys • Carnet de docent • Carnet Jove • Associacions de fotògrafs • Plataforma Assembleària d’Artistes Catalans (PAAC) • Subscriptors de La Vanguardia (també 2x1) • Targeta client llibreria Laie Gratuït: • Amics i Socis de Foto Colectania • Carnet de Premsa • Aturats • Carnet de Discapacitat (i acompanyant quan el barem de mobilitat ho estipuli) • Membres de l’ICOM • Menors de 14 anys • Alumnes de les escoles amigues: EASD Serra i Abella, ESCAC, FotoDesign Barcelona, Fundació Collserola (3 escoles), Grisart, IDEP, IEFC, Instituto 8, LABASAD, LCI Barcelona. • Primer diumenge de mes, 11-15h (no cal reserva prèvia) • 12 de febrer (Santa Eulàlia) ﻿Compartida amb KBr Fundació MAPFRE 8€ | Diumenge Festius tancat d'11:00 h a 15:00 h | La Nit dels Museus 2026: 16 de maig de 19.00 h a 01.00 h Entrada Gratuïta | Agost De dimarts a dissabte d'11.00 h a 14.30 h i de 16.00 h a 20.00 h Entrada general: 5 € Reduïda: 3 € • Estudiants fins a 28 anys • Majors de 65 anys • Carnet de docent • Carnet Jove • Associacions de fotògrafs • Plataforma Assembleària d’Artistes Catalans (PAAC) • Subscriptors de La Vanguardia (també 2x1) • Targeta client llibreria Laie Gratuït: • Amics i Socis de Foto Colectania • Carnet de Premsa • Aturats • Carnet de Discapacitat (i acompanyant quan el barem de mobilitat ho estipuli) • Membres de l’ICOM • Menors de 14 anys • Alumnes de les escoles amigues: EASD Serra i Abella, ESCAC, FotoDesign Barcelona, Fundació Collserola (3 escoles), Grisart, IDEP, IEFC, Instituto 8, LABASAD, LCI Barcelona. • Primer diumenge de mes, 11-15h (no cal reserva prèvia) • 12 de febrer (Santa Eulàlia) ﻿Compartida amb KBr Fundació MAPFRE 8€" ;
+    hr:openingHours "De setembre a juliol De dimecres a dissabte Festius tancats d'11.00 h a 14.30 h i de 16.00 h a 20.00 h Entrada general: 5 € Reduïda: 3 € • Estudiants fins a 28 anys • Majors de 65 anys • Carnet de docent • Carnet Jove • Associacions de fotògrafs • Plataforma Assembleària d’Artistes Catalans (PAAC) • Subscriptors de La Vanguardia (també 2x1) • Targeta client llibreria Laie Gratuït: • Amics i Socis de Foto Colectania • Carnet de Premsa • Aturats • Carnet de Discapacitat (i acompanyant quan el barem de mobilitat ho estipuli) • Membres de l’ICOM • Menors de 14 anys • Alumnes de les escoles amigues: EASD Serra i Abella, ESCAC, FotoDesign Barcelona, Fundació Collserola (3 escoles), Grisart, IDEP, IEFC, Instituto 8, LABASAD, LCI Barcelona. • Primer diumenge de mes, 11-15h (no cal reserva prèvia) • 12 de febrer (Santa Eulàlia) Compartida amb KBr Fundació MAPFRE 8€ | Diumenge Festius tancat d'11:00 h a 15:00 h | La Nit dels Museus 2026: 16 de maig de 19.00 h a 01.00 h Entrada Gratuïta | Agost De dimarts a dissabte d'11.00 h a 14.30 h i de 16.00 h a 20.00 h Entrada general: 5 € Reduïda: 3 € • Estudiants fins a 28 anys • Majors de 65 anys • Carnet de docent • Carnet Jove • Associacions de fotògrafs • Plataforma Assembleària d’Artistes Catalans (PAAC) • Subscriptors de La Vanguardia (també 2x1) • Targeta client llibreria Laie Gratuït: • Amics i Socis de Foto Colectania • Carnet de Premsa • Aturats • Carnet de Discapacitat (i acompanyant quan el barem de mobilitat ho estipuli) • Membres de l’ICOM • Menors de 14 anys • Alumnes de les escoles amigues: EASD Serra i Abella, ESCAC, FotoDesign Barcelona, Fundació Collserola (3 escoles), Grisart, IDEP, IEFC, Instituto 8, LABASAD, LCI Barcelona. • Primer diumenge de mes, 11-15h (no cal reserva prèvia) • 12 de febrer (Santa Eulàlia) Compartida amb KBr Fundació MAPFRE 8€" ;
     hr:streetAddress "Passeig de Picasso, 14" .
 
 shelter:90120343 a hr:ClimateShelter ;
@@ -603,7 +603,7 @@ shelter:92086000174 a hr:ClimateShelter ;
     hr:etrs89Y 4580074.878257027 ;
     hr:hasShelterCategory shelterCat:Park ;
     hr:isLocatedInNeighbourhood neighbourhood:11 ;
-    hr:openingHours "De l'1 octubre al 30 abril De dimarts a dissabte de 10:00 h a 19:00 h Entrada general: 5.2 € Reduïda (caldrà acreditar la condició): 3.70 € - Persones de 16 a 29 anys - Persones de 65 anys o més - Titulars targeta rosa reduïda - Persones a l'atur - Titulars del carnet de familia nombrosa o monoparental - Titulars del carnet de Biblioteques de Barcelona - Famílies màxim 2 adults, sempre que un sigui tutor legal Gratuïta (caldrà acreditar la condició): - El 1r diumenge de cada mes de 10 a 20 h - Tots els diumenges de 15 a 20 h - Menors de 16 anys - Registrats al programa Gaudir+BCN - Titulars targeta rosa gratuïta - Titulars passi metropolità d'acompanyant d'un discapacitat - Carnet de l'ICOM - Membres acreditats Ass. Museòlegs Catalunya - Professors ensenyament reglat acreditats - Professors ensenyament reglat quan aconpanyin grups d'estudiants - Els guies turístics en lexercici de la seva feina - Els periodistes acreditats - Titulars targeta BCN Card - 12 de febrer (Santa Eulàlia) - 18 de maig(Dia Internacional dels Museus) - 24 de setembre (Mare de Déu de la Mercè) L'espai habilitat com a refugi climàtic és d'accés gratuït | Diumenge i festius Tancat 25 desembre, 26 desembre, 1 gener i 6 gener de 10:00 h a 20:00 h | De l'1 maig al 30 setembre De dimarts a diumenge i festius Tancat 1 de maig i 24 de juny | La Nit dels Museus 2026: 16 de maig de 19.00 h a 01.00 h Entrada Gratuïta" ;
+    hr:openingHours "De l'1 octubre al 30 abril De dimarts a dissabte de 10:00 h a 19:00 h Entrada general: 5.2 € Reduïda (caldrà acreditar la condició): 3.70 € - Persones de 16 a 29 anys - Persones de 65 anys o més - Titulars targeta rosa reduïda - Persones a l'atur - Titulars del carnet de familia nombrosa o monoparental - Titulars del carnet de Biblioteques de Barcelona - Famílies màxim 2 adults, sempre que un sigui tutor legal Gratuïta (caldrà acreditar la condició): - El 1r diumenge de cada mes de 10 a 20 h - Tots els diumenges de 15 a 20 h - Menors de 16 anys - Registrats al programa Gaudir+BCN - Titulars targeta rosa gratuïta - Titulars passi metropolità d'acompanyant d'un discapacitat - Carnet de l'ICOM - Membres acreditats Ass. Museòlegs Catalunya - Professors ensenyament reglat acreditats - Professors ensenyament reglat quan aconpanyin grups d'estudiants - Els guies turístics en l’exercici de la seva feina - Els periodistes acreditats - Titulars targeta BCN Card - 12 de febrer (Santa Eulàlia) - 18 de maig(Dia Internacional dels Museus) - 24 de setembre (Mare de Déu de la Mercè) L'espai habilitat com a refugi climàtic és d'accés gratuït | Diumenge i festius Tancat 25 desembre, 26 desembre, 1 gener i 6 gener de 10:00 h a 20:00 h | De l'1 maig al 30 setembre De dimarts a diumenge i festius Tancat 1 de maig i 24 de juny | La Nit dels Museus 2026: 16 de maig de 19.00 h a 01.00 h Entrada Gratuïta" ;
     hr:streetAddress "Passeig de Santa Madrona, 16" .
 
 shelter:92086000228 a hr:ClimateShelter ;
@@ -866,7 +866,7 @@ shelter:92086004419 a hr:ClimateShelter ;
     hr:etrs89Y 4584115.699037433 ;
     hr:hasShelterCategory shelterCat:CivicCentre ;
     hr:isLocatedInNeighbourhood neighbourhood:32 ;
-    hr:openingHours "De l'1 octubre al 30 juny De dilluns a divendres de 09.00 h a 22.00 h | Dissabte de 10.00 h a 14.00 h i ﻿de 16.00 h a 21.00 h | Estiu 2026 De l'1 juliol al 31 juliol De dilluns a divendres de 09.00 h a 22.00 h | Dissabte de 10.00 h a 14.00 h | De l'1 agost al 31 agost Tots els dies Tancat | De l'1 setembre al 30 setembre De dilluns a divendres de 09.00 h a 22.00 h | Dissabte de 10.00 h a 14.00 h" ;
+    hr:openingHours "De l'1 octubre al 30 juny De dilluns a divendres de 09.00 h a 22.00 h | Dissabte de 10.00 h a 14.00 h i de 16.00 h a 21.00 h | Estiu 2026 De l'1 juliol al 31 juliol De dilluns a divendres de 09.00 h a 22.00 h | Dissabte de 10.00 h a 14.00 h | De l'1 agost al 31 agost Tots els dies Tancat | De l'1 setembre al 30 setembre De dilluns a divendres de 09.00 h a 22.00 h | Dissabte de 10.00 h a 14.00 h" ;
     hr:streetAddress "Carrer de Sicília, 321" .
 
 shelter:92086004700 a hr:ClimateShelter ;
@@ -2552,7 +2552,7 @@ shelter:95020142037 a hr:ClimateShelter ;
     hr:etrs89Y 4586031.698959307 ;
     hr:hasShelterCategory shelterCat:CivicCentre ;
     hr:isLocatedInNeighbourhood neighbourhood:38 ;
-    hr:openingHours "De l'1 setembre al 31 juliol Dilluns, dimecres, dijous i divendres de 09.00 h a 21.00 h | Dimarts de 09.00 h a 14.00 h i de 16.00 h a 21.00 h | Dissabte Tancat 18 i 25 juliol ﻿ 5 i 12 setembre de 10.00 h a 14.00 h i de 17.00 h a 20.00 h | Estiu 2026 De l'1 d'agost al 31 d'agost Tots els dies Tancat" ;
+    hr:openingHours "De l'1 setembre al 31 juliol Dilluns, dimecres, dijous i divendres de 09.00 h a 21.00 h | Dimarts de 09.00 h a 14.00 h i de 16.00 h a 21.00 h | Dissabte Tancat 18 i 25 juliol  5 i 12 setembre de 10.00 h a 14.00 h i de 17.00 h a 20.00 h | Estiu 2026 De l'1 d'agost al 31 d'agost Tots els dies Tancat" ;
     hr:streetAddress "Carrer d'Arenys, 75" .
 
 shelter:95025093613 a hr:ClimateShelter ;
@@ -2961,7 +2961,7 @@ shelter:98301132224 a hr:ClimateShelter ;
     hr:etrs89Y 4584293.156 ;
     hr:hasShelterCategory shelterCat:SwimmingPool ;
     hr:isLocatedInNeighbourhood neighbourhood:06 ;
-    hr:openingHours "De setembre a juny De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 08.30 h a 20.30 h | Diumenge i festius de 09.00 h a 15.30 h | Juliol De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 08.30 h a 15.00 h i ﻿de 17.00 h a 20.30 h | Diumenge i festius de 09.00 h a 15.30 h | Agost De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 09.00 h a 15.00 h" ;
+    hr:openingHours "De setembre a juny De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 08.30 h a 20.30 h | Diumenge i festius de 09.00 h a 15.30 h | Juliol De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 08.30 h a 15.00 h i de 17.00 h a 20.30 h | Diumenge i festius de 09.00 h a 15.30 h | Agost De dilluns a divendres de 07.00 h a 23.00 h | Dissabte de 09.00 h a 15.00 h" ;
     hr:streetAddress "Carrer de Cartagena, 231-239" .
 
 shelter:98314113344 a hr:ClimateShelter ;
@@ -3269,7 +3269,7 @@ shelter:99400036180 a hr:ClimateShelter ;
     hr:hasShelterCategory shelterCat:Park ;
     hr:isLocatedInNeighbourhood neighbourhood:11 ;
     hr:openingHours "Horari d'hivern de l'1 de novembre al 31 de març Cada dia de 08.00 h a 19.00 h Hora de tancament aproximada, en funció de l'horari solar (tanquen quan es fa fosc, al capvespre) | Horari d'estiu de l'1 d'abril al 31 d'octubre de 08.00 h a 21.00 h" ;
-    hr:streetAddress "Plaça de Dante, 9999" ;
+    hr:streetAddress "Plaça de Dante" ;
     hr:website "https://link.bcn.cat/cEjdJB"^^xsd:anyURI .
 
 shelter:99400036999 a hr:ClimateShelter ;
@@ -4112,7 +4112,7 @@ shelter:99400243881 a hr:ClimateShelter ;
     hr:etrs89Y 4581101.855579399 ;
     hr:hasShelterCategory shelterCat:Library ;
     hr:isLocatedInNeighbourhood neighbourhood:02 ;
-    hr:openingHours "Horari habitual al llarg de l'any Dilluns i dijous de 15.30 h a 20.00 h | Dimarts, Dimecres i Divendres excepte dimarts 23 de juny de 09.30 h a 13.30 h i de 15.30 h a 20.00 h | Dimarts 23 de juny de 09.30 h a 13.30 h | Dissabte de 10.00 h a 14.00 h | Estiu 2026 Del 24 juny al 31 juliol Dilluns i dijous de 15.30 h a 20.00 h | Dimarts, Dimecres i Divendres ﻿ de 09.30 h a 13.30 h i de 15.30 h a 20.00 h | De l'1 agost al 31 agost Tots els dies Tancada | De l'1 setembre al 24 setembre Dilluns i dijous de 15.30 h a 20.00 h | Dimarts, Dimecres i Divendres ﻿ de 09.30 h a 13.30 h i de 15.30 h a 20.00 h" ;
+    hr:openingHours "Horari habitual al llarg de l'any Dilluns i dijous de 15.30 h a 20.00 h | Dimarts, Dimecres i Divendres excepte dimarts 23 de juny de 09.30 h a 13.30 h i de 15.30 h a 20.00 h | Dimarts 23 de juny de 09.30 h a 13.30 h | Dissabte de 10.00 h a 14.00 h | Estiu 2026 Del 24 juny al 31 juliol Dilluns i dijous de 15.30 h a 20.00 h | Dimarts, Dimecres i Divendres  de 09.30 h a 13.30 h i de 15.30 h a 20.00 h | De l'1 agost al 31 agost Tots els dies Tancada | De l'1 setembre al 24 setembre Dilluns i dijous de 15.30 h a 20.00 h | Dimarts, Dimecres i Divendres  de 09.30 h a 13.30 h i de 15.30 h a 20.00 h" ;
     hr:streetAddress "la Rambla, 30" .
 
 shelter:99400245996 a hr:ClimateShelter ;
@@ -4338,7 +4338,7 @@ shelter:99400299968 a hr:ClimateShelter ;
     hr:etrs89Y 4585238.780338199 ;
     hr:hasShelterCategory shelterCat:Library ;
     hr:isLocatedInNeighbourhood neighbourhood:64 ;
-    hr:openingHours "Horari habitual al llarg de l'any Dilluns i dimecres de 15.30 h a 20.00 h | Dimarts, dijous i divendres excepte dimarts 23 de juny de 09.30 h a 13.30 h i de 15.30 h a 20.00 h | Dissabte de 10.00 h a 14.00 h | Estiu 2026 ﻿Del 24 juny al 31 juliol Dilluns i dimecres de 15.30 h a 20.00 h | Dimarts, dijous i divendres de 09.30 h a 13.30 h i de 15.30 h a 20.00 h | De l'1 agost al 31 agost Tots el dies Tancada | De l'1 setembre al 24 setembre Dilluns i dimecres de 15.30 h a 20.00 h | Dimarts, dijous i divendres de 09.30 h a 13.30 h i de 15.30 h a 20.00 h" ;
+    hr:openingHours "Horari habitual al llarg de l'any Dilluns i dimecres de 15.30 h a 20.00 h | Dimarts, dijous i divendres excepte dimarts 23 de juny de 09.30 h a 13.30 h i de 15.30 h a 20.00 h | Dissabte de 10.00 h a 14.00 h | Estiu 2026 Del 24 juny al 31 juliol Dilluns i dimecres de 15.30 h a 20.00 h | Dimarts, dijous i divendres de 09.30 h a 13.30 h i de 15.30 h a 20.00 h | De l'1 agost al 31 agost Tots el dies Tancada | De l'1 setembre al 24 setembre Dilluns i dimecres de 15.30 h a 20.00 h | Dimarts, dijous i divendres de 09.30 h a 13.30 h i de 15.30 h a 20.00 h" ;
     hr:streetAddress "Carrer de la Indústria, 295" .
 
 shelter:99400301905 a hr:ClimateShelter ;
@@ -4506,7 +4506,7 @@ shelter:99400367586 a hr:ClimateShelter ;
     hr:etrs89Y 4581827.984576506 ;
     hr:hasShelterCategory shelterCat:Museum ;
     hr:isLocatedInNeighbourhood neighbourhood:04 ;
-    hr:openingHours "De l'1 octubre al 30 abril De dimarts a dissabte de 10:00 h a 19:00 h Entrada general: 5.2 € Reduïda (caldrà acreditar la condició): 3.70 € - Persones de 16 a 29 anys - Persones de 65 anys o més - Titulars targeta rosa reduïda - Persones a l'atur - Titulars del carnet de familia nombrosa o monoparental - Titulars del carnet de Biblioteques de Barcelona - Famílies màxim 2 adults, sempre que un sigui tutor legal Gratuïta (caldrà acreditar la condició): - El 1r diumenge de cada mes de 10 a 20 h - Tots els diumenges de 15 a 20 h - Menors de 16 anys - Registrats al programa Gaudir+BCN - Titulars targeta rosa gratuïta - Titulars passi metropolità d'acompanyant d'un discapacitat - Carnet de l'ICOM - Membres acreditats Ass. Museòlegs Catalunya - Professors ensenyament reglat acreditats - Professors ensenyament reglat quan aconpanyin grups d'estudiants - Els guies turístics en lexercici de la seva feina - Els periodistes acreditats - Titulars targeta BCN Card - 12 de febrer (Santa Eulàlia) - 18 de maig(Dia Internacional dels Museus) - 24 de setembre (Mare de Déu de la Mercè) Exposició temporal Seu Montcada: 3,00 € (general), 2,10 € (reduïda) L'espai habilitat com a refugi climàtic és d'accés gratuït | Diumenge i festius Tancat 25 desembre, 26 desembre, 1 gener i 6 gener de 10:00 h a 20:00 h | De l'1 maig al 30 setembre De dimarts a diumenge i festius Tancat 1 de maig i 24 de juny | La Nit dels Museus 2026: 16 de maig de 19.00 h a 01.00 h Entrada Gratuïta" ;
+    hr:openingHours "De l'1 octubre al 30 abril De dimarts a dissabte de 10:00 h a 19:00 h Entrada general: 5.2 € Reduïda (caldrà acreditar la condició): 3.70 € - Persones de 16 a 29 anys - Persones de 65 anys o més - Titulars targeta rosa reduïda - Persones a l'atur - Titulars del carnet de familia nombrosa o monoparental - Titulars del carnet de Biblioteques de Barcelona - Famílies màxim 2 adults, sempre que un sigui tutor legal Gratuïta (caldrà acreditar la condició): - El 1r diumenge de cada mes de 10 a 20 h - Tots els diumenges de 15 a 20 h - Menors de 16 anys - Registrats al programa Gaudir+BCN - Titulars targeta rosa gratuïta - Titulars passi metropolità d'acompanyant d'un discapacitat - Carnet de l'ICOM - Membres acreditats Ass. Museòlegs Catalunya - Professors ensenyament reglat acreditats - Professors ensenyament reglat quan aconpanyin grups d'estudiants - Els guies turístics en l’exercici de la seva feina - Els periodistes acreditats - Titulars targeta BCN Card - 12 de febrer (Santa Eulàlia) - 18 de maig(Dia Internacional dels Museus) - 24 de setembre (Mare de Déu de la Mercè) Exposició temporal Seu Montcada: 3,00 € (general), 2,10 € (reduïda) L'espai habilitat com a refugi climàtic és d'accés gratuït | Diumenge i festius Tancat 25 desembre, 26 desembre, 1 gener i 6 gener de 10:00 h a 20:00 h | De l'1 maig al 30 setembre De dimarts a diumenge i festius Tancat 1 de maig i 24 de juny | La Nit dels Museus 2026: 16 de maig de 19.00 h a 01.00 h Entrada Gratuïta" ;
     hr:streetAddress "Carrer de Montcada, 12" .
 
 shelter:99400369552 a hr:ClimateShelter ;
@@ -5290,7 +5290,7 @@ shelter:99400737894 a hr:ClimateShelter ;
     hr:hasShelterCategory shelterCat:Other ;
     hr:isLocatedInNeighbourhood neighbourhood:31 ;
     hr:openingHours "De l'1 juny al 27 juliol De dilluns a divendres de 17.00 h a 21.00 h | Del 29 juliol al 31 agost Tots els dies tancat Tancat | De l'1 setembre al 30 setembre De dilluns a divendres de 17.00 h a 21.00 h" ;
-    hr:streetAddress "Plaça d'Anna Frank, 0" .
+    hr:streetAddress "Plaça d'Anna Frank" .
 
 shelter:99400737907 a hr:ClimateShelter ;
     rdfs:label "Refugi Climàtic Pati d'Escola Bressol"@ca ;

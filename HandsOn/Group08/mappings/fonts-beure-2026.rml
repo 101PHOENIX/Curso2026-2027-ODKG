@@ -15,7 +15,8 @@
 #   - label: the name of the fountain; the 353 fountains without a name in the source (349 empty cells, 4 cells
 #     with the placeholder "-") get "Font <code>", so that every individual has a label;
 #   - street_address: street, plus the street number when the source has it
-#     (69 fountains have no number and keep the street only; 3 have no street and get no address);
+#     (66 fountains have a street but no number and 2 have the placeholder number 0: all of them keep
+#     the street only; 3 have neither street nor number and get no address);
 #   - empty cells, which DuckDB reads as NULL, are turned into empty strings, so that Morph-KGC
 #     generates no triple for them.
 
@@ -26,7 +27,7 @@
       SELECT *,
         coalesce(NULLIF(NOM, '-'), 'Font ' || CODI) AS label,
         CASE
-          WHEN NUMERO_CARRER IS NULL THEN CARRER
+          WHEN NUMERO_CARRER IS NULL OR NUMERO_CARRER = '0' THEN CARRER
           ELSE CARRER || ', ' || NUMERO_CARRER
         END AS street_address
       FROM read_csv('csv/fonts-beure-2026-updated.csv', header = true, all_varchar = true)
