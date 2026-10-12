@@ -23,14 +23,20 @@
 - Extracted `email`, `website` and `telephone` columns; non-URL notes removed from `website`.
 
 **D2 - Drinking fountains (`fonts-beure-2026`, 1760 rows)**
-- Fixed wrong district codes (18->03, 19->04, 29->06, 37->07).
-- Canonical district names.
-- Filled the missing neighbourhood of 10 fountains using the official codes.
-- `CARRER` normalised to ALL CAPS with undotted prefixes (C, AV, PL, PG, ...); typos fixed; `NOM` case variants unified; `SN` street numbers blanked.
+- Whitespace trimmed in every column; `LATITUD` and `LONGITUD` converted to numbers.
+- Filled the missing neighbourhood (code and name) of 10 fountains with rules on the fountain code (see the JSON).
+- Corrected the district code of 5 fountains so that it matches their neighbourhood code (neighbourhoods 18, 19, 29 and 37 belong to districts 03, 04, 06 and 07).
+- District names set from the district code (canonical form).
+- `CARRER` normalised to ALL CAPS with undotted prefixes (C, AV, PL, PG, ...); typos fixed; `NOM` case variants unified; `SN` placeholders in `NUMERO_CARRER` blanked.
 
 **D3 - Street trees (`arbrat_viari`, 145,034 rows)**
-- Cleaned by a teammate and validated by re-applying the JSON history.
+- Whitespace trimmed in every column; the placeholder `SENSE INFORMAR` in `tipus_reg` blanked.
+- Columns holding several values split into numbered columns: `tipus_aigua` (separator `/`), `cat_nom_castella` and `cat_nom_catala` (separator `;`).
+- `data_plantacio` values before 1950 blanked.
+- The two ids of Ulmus minor 'Umbraculifera' (589 and 2764) unified as 589; the hybrid sign in scientific names normalised to `×`.
 - District and neighbourhood names aligned with the official codes, so they match D1 and D2.
-- Appended ops: `-` placeholders blanked in the species-name columns, `espai_verd` spacing and case unified, missing neighbourhood filled for 7 trees from the nearest tree on the same street.
+- `-` placeholders blanked in the four common-name columns; repeated spaces collapsed and a few case and spelling variants unified in `espai_verd` and `cat_nom_catala 1`.
+- Missing neighbourhood (7 trees) and district (3 trees) filled from the nearest tree by coordinates (7 to 18 m away); one tree (`0345745AR`, no street) remains without area.
+- The JSON history was validated by re-applying it to the original CSV.
 
 **Reproducibility:** all manual single-cell edits were replaced by GREL transforms, so applying each `openrefine/*.json` to the original data reproduces the corresponding `csv/*-updated.csv`.
