@@ -4,7 +4,7 @@
 
 #################################################################
 # Example 1: Indian Boundary Park (Park No. 165)
-# One artwork, one artist (a person), one owner
+# One artwork, one artist, one owner
 #################################################################
 
 <http://smartcity.chicago.es/resource/ChicagoPark/165> a :ChicagoPark ;
@@ -15,19 +15,22 @@
 ### Artwork: River Suite (ARTWORK_ID 1) ###
 <http://smartcity.chicago.es/resource/Artwork/1> a :Artwork ;
     :artworkName "River Suite" ;
-    :objectId 1 ;
     :artworkGisObjectId 5856 ;
-    :owner "Chicago Park District" ;
+    :owner <http://smartcity.chicago.es/resource/Owner/Chicago_Park_District> ;
     :madeBy <http://smartcity.chicago.es/resource/Artist/Phil_Schuster> ;
     schema:geo <http://smartcity.chicago.es/resource/GeoCoordinates/Artwork_1> .
 
 <http://smartcity.chicago.es/resource/GeoCoordinates/Artwork_1> a schema:GeoCoordinates ;
-    schema:latitude "42.0101658765"^^xsd:float ;
-    schema:longitude "-87.6938203714"^^xsd:float .
+    schema:latitude "42.0101658765"^^xsd:double ;
+    schema:longitude "-87.6938203714"^^xsd:double .
 
-### Artist: Phil Schuster (ARTIST_ID = slug of the name) ###
-<http://smartcity.chicago.es/resource/Artist/Phil_Schuster> a :Artist, schema:Person ;
+### Artist: Phil Schuster (ARTIST_ID = slug of ARTIST_NAME) ###
+<http://smartcity.chicago.es/resource/Artist/Phil_Schuster> a :Artist ;
     :artistName "Phil Schuster" .
+
+### Owner: Chicago Park District (OWNER_ID = slug of OWNER_NAME) ###
+<http://smartcity.chicago.es/resource/Owner/Chicago_Park_District> a :Owner ;
+    :ownerName "Chicago Park District" .
 
 
 #################################################################
@@ -44,24 +47,23 @@
 <http://smartcity.chicago.es/resource/Artwork/85> a :Artwork ;
     :artworkName "City Hall Relic (Finial)" ;
     :officialName "City Hall Relic" ;
-    :objectId 85 ;
     :artworkGisObjectId 1316 ;
-    :owner "Chicago Park District" ;
+    :owner <http://smartcity.chicago.es/resource/Owner/Chicago_Park_District> ;
     :madeBy <http://smartcity.chicago.es/resource/Artist/Jenney_Loring> ;
     schema:geo <http://smartcity.chicago.es/resource/GeoCoordinates/Artwork_85> .
 
 <http://smartcity.chicago.es/resource/GeoCoordinates/Artwork_85> a schema:GeoCoordinates ;
-    schema:latitude "41.9188563043"^^xsd:float ;
-    schema:longitude "-87.6361069978"^^xsd:float .
+    schema:latitude "41.9188563043"^^xsd:double ;
+    schema:longitude "-87.6361069978"^^xsd:double .
 
 ### Artist: the architecture firm Jenney & Loring (kept as one creator) ###
-<http://smartcity.chicago.es/resource/Artist/Jenney_Loring> a :Artist, schema:Organization ;
+<http://smartcity.chicago.es/resource/Artist/Jenney_Loring> a :Artist ;
     :artistName "Jenney & Loring" .
 
 
 #################################################################
 # Example 3: Jane Addams Memorial Park (Park No. 1224)
-# An artwork with two owners (one :owner value each)
+# An artwork with two owners (one :owner triple each)
 #################################################################
 
 <http://smartcity.chicago.es/resource/ChicagoPark/1224> a :ChicagoPark ;
@@ -72,18 +74,21 @@
 ### Artwork: Jane Addams Mosaic (ARTWORK_ID 248) ###
 <http://smartcity.chicago.es/resource/Artwork/248> a :Artwork ;
     :artworkName "Jane Addams Mosaic" ;
-    :objectId 248 ;
     :artworkGisObjectId 6169 ;
-    :owner "City of Chicago", "Chicago Park District" ;
+    :owner <http://smartcity.chicago.es/resource/Owner/City_of_Chicago>,
+           <http://smartcity.chicago.es/resource/Owner/Chicago_Park_District> ;
     :madeBy <http://smartcity.chicago.es/resource/Artist/Mirtes_Zwierzynski> ;
     schema:geo <http://smartcity.chicago.es/resource/GeoCoordinates/Artwork_248> .
 
 <http://smartcity.chicago.es/resource/GeoCoordinates/Artwork_248> a schema:GeoCoordinates ;
-    schema:latitude "41.8927674856"^^xsd:float ;
-    schema:longitude "-87.6137508666"^^xsd:float .
+    schema:latitude "41.8927674856"^^xsd:double ;
+    schema:longitude "-87.6137508666"^^xsd:double .
 
-<http://smartcity.chicago.es/resource/Artist/Mirtes_Zwierzynski> a :Artist, schema:Person ;
+<http://smartcity.chicago.es/resource/Artist/Mirtes_Zwierzynski> a :Artist ;
     :artistName "Mirtes Zwierzynski" .
+
+<http://smartcity.chicago.es/resource/Owner/City_of_Chicago> a :Owner ;
+    :ownerName "City of Chicago" .
 
 
 #################################################################
@@ -104,5 +109,5 @@
     schema:geo <http://smartcity.chicago.es/resource/GeoCoordinates/Facility_1> .
 
 <http://smartcity.chicago.es/resource/GeoCoordinates/Facility_1> a schema:GeoCoordinates ;
-    schema:latitude "41.76299921"^^xsd:float ;
-    schema:longitude "-87.63769763"^^xsd:float .
+    schema:latitude "41.76299921"^^xsd:double ;
+    schema:longitude "-87.63769763"^^xsd:double .
