@@ -17528,3 +17528,4 @@
 <https://example.org/db-delays/resource/City/Berlin/Berlin> a ns1:City ;
     rdfs:label "Berlin" ;
     ns1:inState <https://example.org/db-delays/resource/State/Berlin> .
+

@@ -45,7 +45,8 @@ rr:subjectMap [
 rr:predicateObjectMap [
     rr:predicate rdfs:label;
     rr:objectMap [
-        rml:reference "city"
+        rml:reference "city";
+        rr:datatype xsd:string
     ]
 ];
 
@@ -234,7 +235,8 @@ rr:predicateObjectMap [
         rr:predicateMap [rr:constant rdfs:label;
             rr:termType rr:IRI];
         rr:objectMap [rml:reference "station";
-            rr:termType rr:Literal
+            rr:termType rr:Literal;
+            rr:datatype xsd:string
         ]
     ];
 
