@@ -1,0 +1,31 @@
+#Count Parking
+PREFIX mp: <http://www.semanticweb.org/group13/madridparking/ontology/>
+
+SELECT (COUNT(?parking) AS ?totalParkings)
+WHERE {
+  ?parking a mp:ParkingFacility .
+}
+#Count districs
+PREFIX mp: <http://www.semanticweb.org/group13/madridparking/ontology/>
+
+SELECT (COUNT(?district) AS ?totalDistricts)
+WHERE {
+  ?district a mp:District .
+}
+#Count Ocuppancy
+PREFIX mp: <http://www.semanticweb.org/group13/madridparking/ontology/>
+
+SELECT (COUNT(?obs) AS ?totalObservations)
+WHERE {
+  ?obs a mp:OccupancyObservation .
+}a
+#Nombres
+PREFIX mp: <http://www.semanticweb.org/group13/madridparking/ontology/>
+PREFIX prop: <http://www.semanticweb.org/group13/madridparking/property/>
+
+SELECT ?parking ?name
+WHERE {
+  ?parking a mp:ParkingFacility ;
+           prop:parkingName ?name .
+}
+LIMIT 10
