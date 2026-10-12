@@ -22,6 +22,7 @@ LINKING = {OWL + "sameAs", "http://www.w3.org/2004/02/skos/core#broadMatch"}
 NUMBER = re.compile(r"^[+-]?[0-9]+([.,][0-9]+)?$")
 DATE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}")
 BOOLEAN = re.compile(r"^(true|false)$", re.IGNORECASE)
+PLACEHOLDER_NUMBER = re.compile(r", (0|9999)$")
 
 
 def has_hidden_character(text):
@@ -81,6 +82,7 @@ def main(ontology, files):
 
     unknown_class, unknown_property = Counter(), Counter()
     bad_iri, untrimmed, placeholder, hidden = set(), Counter(), Counter(), Counter()
+    placeholder_number = 0
     bad_domain, bad_range, looks_typed = Counter(), Counter(), Counter()
     total = 0
     for f in files:
@@ -103,6 +105,8 @@ def main(ontology, files):
                     untrimmed[p] += 1
                 if has_hidden_character(o.value):
                     hidden[p] += 1
+                if p.endswith("#streetAddress") and PLACEHOLDER_NUMBER.search(o.value):
+                    placeholder_number += 1
                 if p == RDFS + "label" and re.match(r"^[-\s]*$", o.value):
                     placeholder[p] += 1
                 if p in range_ and o.datatype.value != range_[p]:
@@ -125,6 +129,7 @@ def main(ontology, files):
     print(f"IRIs with double slash or whitespace: {len(bad_iri)}")
     print(f"literals not trimmed or empty: {short(untrimmed)}; placeholder labels: {short(placeholder)}")
     print(f"literals with hidden or control characters: {short(hidden)}")
+    print(f"street addresses ending with the placeholder number 0 or 9999: {placeholder_number}")
     print(f"subjects outside the property domain: {short(bad_domain)}")
     print(f"values outside the property range (datatype or class): {short(bad_range)}")
     print(f"plain strings that look like numbers, dates or booleans: {short(looks_typed)}")

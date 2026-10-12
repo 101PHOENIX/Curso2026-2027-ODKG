@@ -11,7 +11,12 @@
 # Street trees (D3, csv/arbrat-viari-updated.csv) and their species.
 # Paths are relative to the HandsOn/Group08 directory, where Morph-KGC is run.
 #
-# Plain RML (rml:source), with no SQL views. Empty cells generate no triple.
+# The logical source of the trees is a SQL view over the CSV file (rml:query, executed by Morph-KGC with DuckDB):
+#   - the placeholder street numbers 0 and 9999 at the end of adreca (", 0" and ", 9999") are removed,
+#     so that those trees keep the street only;
+#   - empty cells, which DuckDB reads as NULL, are turned into empty strings, so that Morph-KGC
+#     generates no triple for them.
+# The logical source of the species is the CSV file itself (rml:source); there empty cells generate no triple.
 #   - label of a tree: scientific name of the species followed by the tree code;
 #   - hr:plantingDate: the source gives only the day, so "T00:00:00" is appended (xsd:dateTime, see the ontology);
 #   - the species are read from the same file: every species id has a single scientific name and a single
@@ -24,7 +29,12 @@
 
 <#StreetTree> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/arbrat-viari-updated.csv" ;
+    rml:query """
+      SELECT coalesce(COLUMNS(*), '') FROM (
+      SELECT * REPLACE (regexp_replace(adreca, ', (0|9999)$', '') AS adreca)
+      FROM read_csv('csv/arbrat-viari-updated.csv', header = true, all_varchar = true)
+      )
+    """ ;
     rml:referenceFormulation ql:CSV
   ] ;
 
