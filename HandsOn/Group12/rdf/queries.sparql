@@ -1,0 +1,96 @@
+PREFIX am: <https://w3id.org/active-madrid/ontology#>
+PREFIX schema: <http://schema.org/>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+# Query 1
+# Count the main types of resources generated in the knowledge graph.
+
+SELECT ?type (COUNT(DISTINCT ?resource) AS ?count)
+WHERE {
+    VALUES ?type {
+        am:SportsFacility
+        am:SportsClass
+        am:SportActivity
+        time:Interval
+    }
+
+    ?resource a ?type .
+}
+GROUP BY ?type
+ORDER BY ?type
+
+
+# Query 2
+# Show some open sports classes with their date, activity and time interval.
+
+SELECT ?class ?name ?date ?activity ?start ?end
+WHERE {
+    ?class a am:SportsClass ;
+           schema:name ?name ;
+           am:date ?date ;
+           am:hasActivity ?activity ;
+           time:hasTime ?interval .
+
+    ?interval time:hasBeginning ?start ;
+              time:hasEnd ?end .
+}
+LIMIT 20
+
+
+# Query 3
+# Show sports facilities together with their district and coordinates.
+
+SELECT ?facility ?name ?districtName ?latitude ?longitude
+WHERE {
+    ?facility a am:SportsFacility ;
+              schema:name ?name ;
+              am:locatedInDistrict ?district ;
+              geo:lat ?latitude ;
+              geo:long ?longitude .
+
+    ?district schema:name ?districtName .
+}
+LIMIT 20
+
+
+# Query 4
+# Verify that sports classes are linked to the facilities where they take place.
+
+SELECT ?class ?className ?facility ?facilityName
+WHERE {
+    ?class a am:SportsClass ;
+           schema:name ?className ;
+           am:takesPlaceAt ?facility .
+
+    ?facility a am:SportsFacility ;
+              schema:name ?facilityName .
+}
+LIMIT 20
+
+
+# Query 5
+# Show the sport activities generated from the datasets.
+
+SELECT DISTINCT ?activity ?activityName
+WHERE {
+    ?activity a am:SportActivity ;
+              schema:name ?activityName .
+}
+ORDER BY ?activityName
+LIMIT 20
+
+
+# Query 6
+# Count sports classes that could not be linked to a sports facility.
+
+SELECT (COUNT(DISTINCT ?class) AS ?classesWithoutFacility)
+WHERE {
+    ?class a am:SportsClass .
+
+    FILTER NOT EXISTS {
+        ?class am:takesPlaceAt ?facility .
+    }
+}
