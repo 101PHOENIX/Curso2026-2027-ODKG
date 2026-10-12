@@ -500,7 +500,7 @@ map:s_006 rdf:type rr:SubjectMap ;
 	rr:template "https://w3id.org/active-madrid/resource/SportsClass/OPEN_{Centro deportivo}_{Fecha}_{Hora inicial}_{Actividad}" .
 
 map:s_007 rdf:type rr:SubjectMap ;
-	rr:template "https://w3id.org/active-madrid/resource/SportsClass/CLOSED_{Centro deportivo}_{Clase}" .
+	rr:template "https://w3id.org/active-madrid/resource/SportsClass/CLOSED_{Centro deportivo}_{Clase}_{Año}_{Mes}" .
 
 map:source_000 rml:referenceFormulation ql:CSV ;
 	rml:source "sports_centers_info_updated.csv" ;
@@ -533,4 +533,3 @@ map:source_006 rml:referenceFormulation ql:CSV ;
 map:source_007 rml:referenceFormulation ql:CSV ;
 	rml:source "closed_classes_updated.csv" ;
 	rdf:type rml:LogicalSource .
-

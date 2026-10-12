@@ -85,7 +85,7 @@ mappings:
   triplesmapClosedClasses:
     sources:
       - [closed_classes_updated.csv~csv]
-    s: res:SportsClass/CLOSED_$(Centro deportivo)_$(Clase)
+    s: res:SportsClass/CLOSED_$(Centro deportivo)_$(Clase)_$(Año)_$(Mes)
     po:
       - [a, am:SportsClass]
       - [schema:name, $(Clase), xsd:string]
