@@ -1,5 +1,5 @@
 # YARRRML version of mappings/madridnoise.rml (same triples).
-# Sources are the mapping-ready CSVs produced by mappings/preprocess.py.
+# Sources are the *-updated.csv files cleaned in OpenRefine (openrefine/*.json).
 prefixes:
   rdfs: http://www.w3.org/2000/01/rdf-schema#
   xsd: http://www.w3.org/2001/XMLSchema#
@@ -16,7 +16,7 @@ prefixes:
 mappings:
   station:
     sources:
-      - [csv/clean/stations.csv~csv]
+      - [csv/estaciones_acusticas-updated.csv~csv]
     s: station:$(station_code)
     po:
       - [a, mn:NoiseMonitoringStation]
@@ -29,7 +29,7 @@ mappings:
 
   period:
     sources:
-      - [csv/clean/periods.csv~csv]
+      - [csv/periods.csv~csv]
     s: period:$(period)
     po:
       - [a, mn:DayPeriod]
@@ -38,7 +38,7 @@ mappings:
 
   observation:
     sources:
-      - [csv/clean/noise_observations.csv~csv]
+      - [csv/contaminacion_acustica-updated.csv~csv]
     s: observation:$(observation_id)
     po:
       - [a, mn:DailyNoiseObservation]
@@ -56,7 +56,7 @@ mappings:
 
   terrace:
     sources:
-      - [csv/clean/terraces.csv~csv]
+      - [csv/terrazas_hosteleria-updated.csv~csv]
     s: terrace:$(terrace_id)
     po:
       - [a, mn:Terrace]
@@ -74,7 +74,7 @@ mappings:
 
   district:
     sources:
-      - [csv/clean/terraces.csv~csv]
+      - [csv/terrazas_hosteleria-updated.csv~csv]
     s: district:$(district_id)
     po:
       - [a, mn:District]
@@ -82,7 +82,7 @@ mappings:
 
   neighbourhood:
     sources:
-      - [csv/clean/terraces.csv~csv]
+      - [csv/terrazas_hosteleria-updated.csv~csv]
     s: neighbourhood:$(neighbourhood_id)
     po:
       - [a, mn:Neighbourhood]

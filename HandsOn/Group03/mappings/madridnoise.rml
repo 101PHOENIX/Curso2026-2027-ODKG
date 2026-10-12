@@ -15,8 +15,9 @@
 @base <https://madridnoise.linkeddata.es/mapping#> .
 
 # RML mappings for Group03 (Madrid urban noise).
-# Sources are the mapping-ready CSVs produced by mappings/preprocess.py from the
-# original portal files in csv/ (see analysis.html for the cleaning rules).
+# Sources are the *-updated.csv files cleaned in OpenRefine (Hands-on 3) from the
+# original portal files in csv/; the operations are in openrefine/*.json.
+# csv/periods.csv is a 4-row reference table with the period labels.
 # Run from the Group03 directory:
 #   java -jar rmlmapper.jar -m mappings/madridnoise.rml -s turtle -o rdf/madridnoise.ttl
 #
@@ -29,7 +30,7 @@
 
 <#StationMap> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/clean/stations.csv" ;
+    rml:source "csv/estaciones_acusticas-updated.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -65,7 +66,7 @@
 
 <#PeriodMap> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/clean/periods.csv" ;
+    rml:source "csv/periods.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -85,7 +86,7 @@
 
 <#ObservationMap> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/clean/noise_observations.csv" ;
+    rml:source "csv/contaminacion_acustica-updated.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -154,7 +155,7 @@
 
 <#TerraceMap> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/clean/terraces.csv" ;
+    rml:source "csv/terrazas_hosteleria-updated.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -195,7 +196,7 @@
 
 <#DistrictMap> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/clean/terraces.csv" ;
+    rml:source "csv/terrazas_hosteleria-updated.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -209,7 +210,7 @@
 
 <#NeighbourhoodMap> a rr:TriplesMap ;
   rml:logicalSource [
-    rml:source "csv/clean/terraces.csv" ;
+    rml:source "csv/terrazas_hosteleria-updated.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [

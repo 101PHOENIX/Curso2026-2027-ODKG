@@ -35,22 +35,20 @@
 |---|---|
 | `mappings/madridnoise.rml` | RML mappings (6 triples maps: stations, periods, daily noise observations, terraces, districts, neighbourhoods) |
 | `mappings/madridnoise.yml` | Equivalent YARRRML rules (optional deliverable) |
-| `mappings/preprocess.py` | Cleaning step that turns the portal CSVs into mapping-ready CSVs in `csv/clean/` |
 | `rdf/madridnoise.ttl` | Generated RDF, Turtle (991,732 triples) |
 | `rdf/queries.sparql` | 12 verification and application queries |
 
 **How the RDF was generated**
 
 ```
-python3 mappings/preprocess.py            # writes csv/clean/*.csv
 java -jar rmlmapper.jar -m mappings/madridnoise.rml -s turtle -o rdf/madridnoise.ttl
 ```
 
 (run from the `Group03` directory; RMLMapper 7.3.3.)
 
-The source files need transformations that plain RML cannot express (ISO-8859-1 and BOM encodings, `;` separator, decimal commas, `N/D` values, joining numeric `Estación` 2 to catalog code `RF-02`, building a date from `Año/Mes/Día`, repairing `-3.691.509` coordinates, and converting terrace coordinates from ETRS89/UTM 30N to WGS84). These rules, documented in `analysis.html`, are applied in `preprocess.py`; the RML mappings then only map columns to the ontology. The generated `station:RF-02`, `terrace:37`, `district:18`, `neighbourhood:1801` and the observation values are identical to those in `ontology/ontology-example.ttl`.
+The source files need transformations that plain RML cannot express (ISO-8859-1 and BOM encodings, `;` separator, decimal commas, `N/D` values, joining numeric `Estación` 2 to catalog code `RF-02`, building a date from `Año/Mes/Día`, repairing `-3.691.509` coordinates, and converting terrace coordinates from ETRS89/UTM 30N to WGS84). These rules, documented in `analysis.html`, are applied in OpenRefine in Hands-on 3 (`openrefine/*.json`). The mappings read the resulting `csv/*-updated.csv` files and only map columns to the ontology. `csv/periods.csv` is a 4-row reference table with the period labels. The generated `station:RF-02`, `terrace:37`, `district:18`, `neighbourhood:1801` and the observation values are identical to those in `ontology/ontology-example.ttl`.
 
-**Scope of the noise observations.** The RDF contains the noise observations from 2025-01-01 to 2026-10-04 (78,230 of the 295,853 rows in `csv/contaminacion_acustica.csv`), plus all 31 stations and all 6,594 terraces. Mapping the whole 2020–2026 extract gives about 3.3 million triples (~160 MB of Turtle), above GitHub's 100 MB file limit. The 2025 onwards window also matches the 2026 terrace-census snapshot the noise is compared with. `python3 mappings/preprocess.py --since 2020-01-01` followed by the same RMLMapper command reproduces the full graph.
+**Scope of the noise observations.** The RDF contains the noise observations from 2025-01-01 to 2026-10-04 (78,230 of the 295,853 rows in `csv/contaminacion_acustica.csv`), plus all 31 stations and all 6,594 terraces. Mapping the whole 2020–2026 extract gives about 3.3 million triples (~160 MB of Turtle), above GitHub's 100 MB file limit. The 2025 onwards window also matches the 2026 terrace-census snapshot the noise is compared with. Removing the row-removal step from `openrefine/contaminacion_acustica.json` and rerunning the same RMLMapper command reproduces the full graph.
 
 **Checklist notes**
 
