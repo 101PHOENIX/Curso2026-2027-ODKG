@@ -35,7 +35,7 @@ WHERE {
 ORDER BY ?name
 
 
-#Number of observations per station(Related with second querry)
+#Number of observations per station(Related with second query)
 
 SELECT ?stationName (COUNT(?observation) AS ?totalObservation)
 WHERE {
@@ -44,6 +44,15 @@ WHERE {
   ?station aq:stationName ?stationName .
 }
 GROUP BY ?stationName
+
+#Number of observations per observable property.
+
+SELECT ?property (COUNT(?observation) AS ?observationCount)
+WHERE {
+  ?observation rdf:type aq:Observation ;
+               aq:observedProperty ?property .
+}
+GROUP BY ?property
 
 #First and last date of the dataset
 
