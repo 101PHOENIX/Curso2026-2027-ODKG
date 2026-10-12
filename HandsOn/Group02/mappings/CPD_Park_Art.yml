@@ -1,7 +1,9 @@
 # YARRRML mapping rules for csv/CPD_Park_Art_20261001-updated.csv
 # Run from the Group02 folder (source paths are relative to it).
-# The CSV has one row per (artwork, artist): an artwork with several artists
-# appears on several rows; repeated triples collapse into one in the graph.
+# The CSV has one row per artwork/artist/owner combination: an artwork with several
+# artists or owners appears on several rows; repeated triples collapse into one.
+# Rows with an empty ARTIST_ID / OWNER_ID (unknown creator or owner) produce no
+# :madeBy / :owner triple and no Artist / Owner resource.
 
 prefixes:
   rr: http://www.w3.org/ns/r2rml#
@@ -24,9 +26,9 @@ mappings:
       - [a, pe:Artwork]
       - [rdfs:label, $(ARTWORK_NAME), xsd:string]
       - [pe:artworkName, $(ARTWORK_NAME), xsd:string]
-      - [pe:objectId, $(ARTWORK_ID), xsd:integer]
-      - [pe:artworkGisObjectId, $(GIS_OBJECT_ID), xsd:string]
-      - [pe:owner, $(OWNER), xsd:string]
+      - [pe:officialName, $(OFFICIAL_NAME), xsd:string]
+      - [pe:artworkGisObjectId, $(GIS_OBJECT_ID), xsd:integer]
+      - [pe:owner, http://smartcity.chicago.es/resource/Owner/$(OWNER_ID)~iri]
       - [pe:madeBy, http://smartcity.chicago.es/resource/Artist/$(ARTIST_ID)~iri]
       - [schema:geo, http://smartcity.chicago.es/resource/GeoCoordinates/Artwork_$(ARTWORK_ID)~iri]
 
@@ -38,8 +40,8 @@ mappings:
     po:
       - [a, schema:GeoCoordinates]
       - [rdfs:label, Coordinates of artwork $(ARTWORK_ID), xsd:string]
-      - [schema:latitude, $(LATITUDE), xsd:float]
-      - [schema:longitude, $(LONGITUDE), xsd:float]
+      - [schema:latitude, $(LATITUDE), xsd:double]
+      - [schema:longitude, $(LONGITUDE), xsd:double]
 
   # ---------- Artist (rows without ARTIST_ID produce no artist) ----------
   artist:
@@ -50,6 +52,16 @@ mappings:
       - [a, pe:Artist]
       - [rdfs:label, $(ARTIST_NAME), xsd:string]
       - [pe:artistName, $(ARTIST_NAME), xsd:string]
+
+  # ---------- Owner (rows without OWNER_ID produce no owner) ----------
+  owner:
+    sources:
+      - [csv/CPD_Park_Art_20261001-updated.csv~csv]
+    s: http://smartcity.chicago.es/resource/Owner/$(OWNER_ID)
+    po:
+      - [a, pe:Owner]
+      - [rdfs:label, $(OWNER_NAME), xsd:string]
+      - [pe:ownerName, $(OWNER_NAME), xsd:string]
 
   # ---------- Park: links each park to its artworks ----------
   parkFromArt:

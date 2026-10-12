@@ -1,0 +1,158 @@
+# SPARQL queries to verify the RDF generated for Group02
+# Data: rdf/CPD_Facilities.ttl + rdf/CPD_Park_Art.ttl (load both into the same graph)
+# Each query states the expected result for the current data.
+
+PREFIX pe:     <http://smartcity.chicago.es/ontology/ParkExplorer#>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+
+# ---------------------------------------------------------------
+# Q1. Number of individuals per class
+# Expected: GeoCoordinates 4812, Facility 4466, ChicagoPark 555,
+#           Artwork 346, Artist 264, Owner 20
+# ---------------------------------------------------------------
+SELECT ?class (COUNT(DISTINCT ?s) AS ?individuals)
+WHERE { ?s rdf:type ?class . }
+GROUP BY ?class
+ORDER BY DESC(?individuals)
+
+# ---------------------------------------------------------------
+# Q2. Individuals without a label (checklist: every individual has a label)
+# Expected: 0
+# ---------------------------------------------------------------
+SELECT (COUNT(DISTINCT ?s) AS ?withoutLabel)
+WHERE {
+  ?s rdf:type ?class .
+  FILTER NOT EXISTS { ?s rdfs:label ?label }
+}
+
+# ---------------------------------------------------------------
+# Q3. Datatype used by each datatype property (checklist: every value has
+#     its datatype, and the correct one, as in the ontology ranges)
+# Expected: parkNumber, facilityGisObjectId, artworkGisObjectId -> xsd:integer;
+#           latitude, longitude -> xsd:double; every other property -> xsd:string
+# ---------------------------------------------------------------
+SELECT ?property ?datatype (COUNT(*) AS ?values)
+WHERE {
+  ?s ?property ?o .
+  FILTER isLiteral(?o)
+  BIND (datatype(?o) AS ?datatype)
+}
+GROUP BY ?property ?datatype
+ORDER BY ?property
+
+# ---------------------------------------------------------------
+# Q4. URIs written as strings (checklist: no URI is encoded as a string)
+# Expected: 0
+# ---------------------------------------------------------------
+SELECT (COUNT(*) AS ?urisAsStrings)
+WHERE {
+  ?s ?p ?o .
+  FILTER (isLiteral(?o) && STRSTARTS(STR(?o), "http"))
+}
+
+# ---------------------------------------------------------------
+# Q5. URIs containing a double slash after the scheme
+# Expected: 0
+# ---------------------------------------------------------------
+SELECT (COUNT(DISTINCT ?s) AS ?doubleSlash)
+WHERE {
+  ?s ?p ?o .
+  FILTER (CONTAINS(SUBSTR(STR(?s), 9), "//"))
+}
+
+# ---------------------------------------------------------------
+# Q6. Links pointing to resources that do not exist in the graph
+#     (hasFacility, hasArtwork, madeBy, owner, schema:geo)
+# Expected: no rows
+# ---------------------------------------------------------------
+SELECT ?p (COUNT(*) AS ?danglingLinks)
+WHERE {
+  VALUES ?p { pe:hasFacility pe:hasArtwork pe:madeBy pe:owner schema:geo }
+  ?s ?p ?o .
+  FILTER NOT EXISTS { ?o rdf:type ?anyClass }
+}
+GROUP BY ?p
+
+# ---------------------------------------------------------------
+# Q7. Parks with more than one name (both CSVs feed the same park URI)
+# Expected: no rows
+# ---------------------------------------------------------------
+SELECT ?park (COUNT(DISTINCT ?name) AS ?names)
+WHERE { ?park a pe:ChicagoPark ; pe:parkName ?name . }
+GROUP BY ?park
+HAVING (COUNT(DISTINCT ?name) > 1)
+
+# ---------------------------------------------------------------
+# Q8. Facilities or artworks without coordinates
+# Expected: 0
+# ---------------------------------------------------------------
+SELECT (COUNT(?x) AS ?withoutCoordinates)
+WHERE {
+  { ?x a pe:Facility } UNION { ?x a pe:Artwork }
+  FILTER NOT EXISTS { ?x schema:geo/schema:latitude ?lat }
+}
+
+# ---------------------------------------------------------------
+# Q9. Coordinates outside the Chicago area (sanity check on the values)
+# Expected: 0
+# ---------------------------------------------------------------
+SELECT (COUNT(?g) AS ?outOfRange)
+WHERE {
+  ?g schema:latitude ?lat ; schema:longitude ?long .
+  FILTER (?lat < 41.6 || ?lat > 42.1 || ?long < -87.95 || ?long > -87.5)
+}
+
+# ---------------------------------------------------------------
+# Q10. Facilities per type
+# Expected: OUTDOOR 4016, INDOOR 297, SPECIAL 153
+# ---------------------------------------------------------------
+SELECT ?type (COUNT(?f) AS ?facilities)
+WHERE { ?f a pe:Facility ; pe:facilityType ?type . }
+GROUP BY ?type
+ORDER BY DESC(?facilities)
+
+# ---------------------------------------------------------------
+# Q11. Artworks without a known artist / owner (left out on purpose)
+# Expected: 31 without artist, 54 without owner
+# ---------------------------------------------------------------
+SELECT
+  (SUM(IF(?hasArtist, 0, 1)) AS ?withoutArtist)
+  (SUM(IF(?hasOwner, 0, 1)) AS ?withoutOwner)
+WHERE {
+  ?a a pe:Artwork .
+  BIND (EXISTS { ?a pe:madeBy ?x } AS ?hasArtist)
+  BIND (EXISTS { ?a pe:owner ?y } AS ?hasOwner)
+}
+
+# ---------------------------------------------------------------
+# Q12. Both datasets linked through the park: parks that have
+#      a playground and public art, with the artwork and its artist
+# Expected: 334 rows (first: ANDERSON (LOUIS) | Mosaic | Jewell Pates)
+# ---------------------------------------------------------------
+SELECT DISTINCT ?parkName ?artworkName ?artistName
+WHERE {
+  ?park pe:parkName ?parkName ;
+        pe:hasFacility ?f ;
+        pe:hasArtwork ?a .
+  ?f pe:facilityName ?facilityName .
+  FILTER (STR(?facilityName) = "PLAYGROUND")
+  ?a pe:artworkName ?artworkName ;
+     pe:madeBy ?artist .
+  ?artist pe:artistName ?artistName .
+}
+ORDER BY ?parkName ?artworkName
+
+# ---------------------------------------------------------------
+# Q13. Artworks with more than one owner
+# Expected: 2 rows (Jane Addams Mosaic; Artists and Automobiles)
+# ---------------------------------------------------------------
+SELECT ?artworkName (GROUP_CONCAT(?ownerName; SEPARATOR=", ") AS ?owners)
+WHERE {
+  ?a pe:artworkName ?artworkName ; pe:owner ?o .
+  ?o pe:ownerName ?ownerName .
+}
+GROUP BY ?a ?artworkName
+HAVING (COUNT(?o) > 1)

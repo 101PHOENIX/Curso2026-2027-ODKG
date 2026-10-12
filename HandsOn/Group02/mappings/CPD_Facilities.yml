@@ -24,7 +24,7 @@ mappings:
       - [rdfs:label, $(FACILITY_NAME), xsd:string]
       - [pe:facilityName, $(FACILITY_NAME), xsd:string]
       - [pe:facilityType, $(FACILITY_TYPE), xsd:string]
-      - [pe:facilityGisObjectId, $(GIS_OBJECT_ID), xsd:string]
+      - [pe:facilityGisObjectId, $(GIS_OBJECT_ID), xsd:integer]
       - [schema:geo, http://smartcity.chicago.es/resource/GeoCoordinates/Facility_$(FACILITY_ID)~iri]
 
   # ---------- Coordinates of each facility ----------
@@ -35,8 +35,8 @@ mappings:
     po:
       - [a, schema:GeoCoordinates]
       - [rdfs:label, Coordinates of facility $(FACILITY_ID), xsd:string]
-      - [schema:latitude, $(LATITUDE), xsd:float]
-      - [schema:longitude, $(LONGITUDE), xsd:float]
+      - [schema:latitude, $(LATITUDE), xsd:double]
+      - [schema:longitude, $(LONGITUDE), xsd:double]
 
   # ---------- Park: one per PARK_NO (repeated rows collapse into one resource) ----------
   parkFromFacilities:
