@@ -7,6 +7,8 @@
 @prefix obs: <https://w3id.org/valencia-airquality/resource/Observation/> .
 @prefix data: <https://w3id.org/valencia-airquality/dataset/property/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix city: <https://w3id.org/valencia-airquality/resource/City/> .
 
 _:csvSource
   rml:source "csv/rvvcca-datos-horarios-valencia-2016-2021-curt-cas-updated.csv" ;
@@ -54,6 +56,26 @@ _:csvSource
   rr:predicateObjectMap [
     rr:predicate aq:stationName ;
     rr:objectMap [ rml:reference "Estación" ; rr:datatype xsd:string ]
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate rdfs:label ;
+    rr:objectMap [ rml:reference "Estación" ]
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate aq:locatedInCity ;
+    rr:objectMap [ rr:constant city:Valencia ]
+  ] .
+
+<#CityMap>
+  a rr:TriplesMap ;
+  rml:logicalSource _:csvSource ;
+  rr:subjectMap [
+    rr:constant city:Valencia ;
+    rr:class aq:City
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate rdfs:label ;
+    rr:objectMap [ rr:constant "Valencia" ]
   ] .
 
 <#PM1Map>
