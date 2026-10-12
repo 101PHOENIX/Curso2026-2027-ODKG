@@ -6,11 +6,11 @@
       "mode": "row-based"
     },
     "columnName": "PARK_NO",
-    "expression": "grel:value.replace(' ','')",
+    "expression": "grel:value.replace(' ', '')",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column PARK_NO using expression grel:value.replace(' ','')"
+    "description": "Text transform on cells in column PARK_NO using expression grel:value.replace(' ', '')"
   },
   {
     "op": "core/text-transform",
@@ -19,11 +19,11 @@
       "mode": "row-based"
     },
     "columnName": "PARK_NO",
-    "expression": "value.toNumber()",
+    "expression": "grel:value.toNumber()",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column PARK_NO using expression value.toNumber()"
+    "description": "Text transform on cells in column PARK_NO using expression grel:value.toNumber()"
   },
   {
     "op": "core/text-transform",
@@ -32,11 +32,11 @@
       "mode": "row-based"
     },
     "columnName": "X_COORD",
-    "expression": "grel:value.replace(',','.')",
+    "expression": "grel:value.replace(',', '.')",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column X_COORD using expression grel:value.replace(',','.')"
+    "description": "Text transform on cells in column X_COORD using expression grel:value.replace(',', '.')"
   },
   {
     "op": "core/text-transform",
@@ -45,11 +45,11 @@
       "mode": "row-based"
     },
     "columnName": "X_COORD",
-    "expression": "value.toNumber()",
+    "expression": "grel:value.toNumber()",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column X_COORD using expression value.toNumber()"
+    "description": "Text transform on cells in column X_COORD using expression grel:value.toNumber()"
   },
   {
     "op": "core/text-transform",
@@ -58,11 +58,11 @@
       "mode": "row-based"
     },
     "columnName": "Y_COORD",
-    "expression": "grel:value.replace(',','.')",
+    "expression": "grel:value.replace(',', '.')",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column Y_COORD using expression grel:value.replace(',','.')"
+    "description": "Text transform on cells in column Y_COORD using expression grel:value.replace(',', '.')"
   },
   {
     "op": "core/text-transform",
@@ -71,11 +71,11 @@
       "mode": "row-based"
     },
     "columnName": "Y_COORD",
-    "expression": "value.toNumber()",
+    "expression": "grel:value.toNumber()",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column Y_COORD using expression value.toNumber()"
+    "description": "Text transform on cells in column Y_COORD using expression grel:value.toNumber()"
   },
   {
     "op": "core/text-transform",
@@ -84,11 +84,11 @@
       "mode": "row-based"
     },
     "columnName": "GISOBJID",
-    "expression": "grel:value.replace(' ',' ')",
+    "expression": "grel:value.replace(' ', ' ')",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column GISOBJID using expression grel:value.replace(' ',' ')"
+    "description": "Text transform on cells in column GISOBJID using expression grel:value.replace(' ', ' ')"
   },
   {
     "op": "core/mass-edit",
@@ -97,7 +97,7 @@
       "mode": "row-based"
     },
     "columnName": "PARK",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -118,7 +118,7 @@
       "mode": "row-based"
     },
     "columnName": "PARK",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -139,7 +139,7 @@
         {
           "type": "list",
           "name": "PARK_NO",
-          "expression": "value",
+          "expression": "grel:value",
           "columnName": "PARK_NO",
           "invert": false,
           "omitBlank": false,
@@ -159,7 +159,7 @@
       "mode": "row-based"
     },
     "columnName": "PARK",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -180,7 +180,7 @@
       "mode": "row-based"
     },
     "columnName": "NAME",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -201,7 +201,7 @@
       "mode": "row-based"
     },
     "columnName": "NAME",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -221,12 +221,25 @@
       "facets": [],
       "mode": "row-based"
     },
+    "columnName": "NAME",
+    "expression": "grel:value.replace('  ', ' ').trim()",
+    "onError": "keep-original",
+    "repeat": true,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column NAME using expression grel:value.replace('  ', ' ').trim()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
     "columnName": "OBJECTID",
-    "expression": "value.toNumber()",
+    "expression": "grel:value.toNumber()",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column OBJECTID using expression value.toNumber()"
+    "description": "Text transform on cells in column OBJECTID using expression grel:value.toNumber()"
   },
   {
     "op": "core/text-transform",
@@ -235,11 +248,11 @@
       "mode": "row-based"
     },
     "columnName": "GISOBJID",
-    "expression": "grel:value.replace(' ','')",
+    "expression": "grel:value.replace(' ', '')",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column GISOBJID using expression grel:value.replace(' ','')"
+    "description": "Text transform on cells in column GISOBJID using expression grel:value.replace(' ', '')"
   },
   {
     "op": "core/text-transform",
@@ -248,11 +261,11 @@
       "mode": "row-based"
     },
     "columnName": "GISOBJID",
-    "expression": "value.toNumber()",
+    "expression": "grel:value.toNumber()",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column GISOBJID using expression value.toNumber()"
+    "description": "Text transform on cells in column GISOBJID using expression grel:value.toNumber()"
   },
   {
     "op": "core/text-transform",
@@ -334,7 +347,7 @@
         {
           "type": "list",
           "name": "PARK_NAME",
-          "expression": "value",
+          "expression": "grel:value",
           "columnName": "PARK_NAME",
           "invert": false,
           "omitBlank": false,
@@ -354,7 +367,7 @@
       "mode": "row-based"
     },
     "columnName": "PARK_NAME",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -374,11 +387,11 @@
       "mode": "row-based"
     },
     "columnName": "PARK_NO",
-    "expression": "grel:if(cells['PARK_NAME'].value == 'PRINZ (TOBEY) BEACH', 1261, if(cells['PARK_NAME'].value == 'KING (MARTIN LUTHER, JR.)', 334, value))",
+    "expression": "grel:if(cells.get(\"PARK_NAME\").value == 'PRINZ (TOBEY) BEACH', 1261, if(cells.get(\"PARK_NAME\").value == 'KING (MARTIN LUTHER, JR.)', 334, value))",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column PARK_NO using expression grel:if(cells['PARK_NAME'].value == 'PRINZ (TOBEY) BEACH', 1261, if(cells['PARK_NAME'].value == 'KING (MARTIN LUTHER, JR.)', 334, value))"
+    "description": "Text transform on cells in column PARK_NO using expression grel:if(cells.get(\"PARK_NAME\").value == 'PRINZ (TOBEY) BEACH', 1261, if(cells.get(\"PARK_NAME\").value == 'KING (MARTIN LUTHER, JR.)', 334, value))"
   },
   {
     "op": "core/mass-edit",
@@ -387,7 +400,7 @@
       "mode": "row-based"
     },
     "columnName": "PARK_NAME",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -406,13 +419,13 @@
         "to": "ROBICHAUX (JOSEPH)"
       }
     ],
-    "description": "Mass edit cells in column PARK_NAME (use the Facilities labels for parks 12 and 320)"
+    "description": "Mass edit cells in column PARK_NAME"
   },
   {
     "op": "core/column-move",
     "columnName": "OFFICIAL_NAME",
     "index": 4,
-    "description": "Move column OFFICIAL_NAME next to ARTWORK_NAME"
+    "description": "Move column OFFICIAL_NAME to position 4"
   },
   {
     "op": "core/text-transform",
@@ -421,11 +434,11 @@
       "mode": "row-based"
     },
     "columnName": "OFFICIAL_NAME",
-    "expression": "grel:if(value == cells['ARTWORK_NAME'].value, null, value)",
+    "expression": "grel:if(value == cells.get(\"ARTWORK_NAME\").value, null, value)",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column OFFICIAL_NAME: blank it when it merely repeats ARTWORK_NAME"
+    "description": "Text transform on cells in column OFFICIAL_NAME using expression grel:if(value == cells.get(\"ARTWORK_NAME\").value, null, value)"
   },
   {
     "op": "core/mass-edit",
@@ -434,7 +447,7 @@
       "mode": "row-based"
     },
     "columnName": "ARTIST",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -449,7 +462,7 @@
         "to": ""
       }
     ],
-    "description": "Mass edit cells in column ARTIST (placeholders such as Unknown / Various are not artists -> blank)"
+    "description": "Mass edit cells in column ARTIST"
   },
   {
     "op": "core/text-transform",
@@ -462,7 +475,7 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column ARTIST: use '; ' as the separator between several artists"
+    "description": "Text transform on cells in column ARTIST using expression grel:value.replace(' & ', '; ').replace(', ', '; ')"
   },
   {
     "op": "core/mass-edit",
@@ -471,7 +484,7 @@
       "mode": "row-based"
     },
     "columnName": "ARTIST",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -536,7 +549,7 @@
         ],
         "fromBlank": false,
         "fromError": false,
-        "to": "DeStefano"
+        "to": "DeStefano & Partners"
       },
       {
         "from": [
@@ -571,7 +584,7 @@
         "to": "Karl Johnson; Indira Johnson"
       }
     ],
-    "description": "Mass edit cells in column ARTIST (keep firms as one creator, spell out couples that share a surname)"
+    "description": "Mass edit cells in column ARTIST"
   },
   {
     "op": "core/text-transform",
@@ -584,7 +597,7 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column OWNER using expression grel:value.replace(' &',',')"
+    "description": "Text transform on cells in column OWNER using expression grel:value.replace(' &', ',')"
   },
   {
     "op": "core/mass-edit",
@@ -593,7 +606,7 @@
       "mode": "row-based"
     },
     "columnName": "OWNER",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -630,7 +643,27 @@
         "to": "Chicago Transit Authority"
       }
     ],
-    "description": "Mass edit cells in column OWNER (expand abbreviations, fix typo)"
+    "description": "Mass edit cells in column OWNER"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OWNER",
+    "expression": "grel:value",
+    "edits": [
+      {
+        "from": [
+          "Private"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column OWNER"
   },
   {
     "op": "core/text-transform",
@@ -652,7 +685,7 @@
     "mode": "separator",
     "separator": "; ",
     "regex": false,
-    "description": "Split multi-valued cells in column ARTIST (one row per artist)"
+    "description": "Split multi-valued cells in column ARTIST"
   },
   {
     "op": "core/fill-down",
@@ -661,7 +694,7 @@
       "mode": "record-based"
     },
     "columnName": "PARK_NAME",
-    "description": "Fill down cells in column PARK_NAME (within each record)"
+    "description": "Fill down cells in column PARK_NAME"
   },
   {
     "op": "core/fill-down",
@@ -670,7 +703,7 @@
       "mode": "record-based"
     },
     "columnName": "PARK_NO",
-    "description": "Fill down cells in column PARK_NO (within each record)"
+    "description": "Fill down cells in column PARK_NO"
   },
   {
     "op": "core/fill-down",
@@ -679,7 +712,7 @@
       "mode": "record-based"
     },
     "columnName": "ARTWORK_NAME",
-    "description": "Fill down cells in column ARTWORK_NAME (within each record)"
+    "description": "Fill down cells in column ARTWORK_NAME"
   },
   {
     "op": "core/fill-down",
@@ -688,7 +721,7 @@
       "mode": "record-based"
     },
     "columnName": "OFFICIAL_NAME",
-    "description": "Fill down cells in column OFFICIAL_NAME (within each record)"
+    "description": "Fill down cells in column OFFICIAL_NAME"
   },
   {
     "op": "core/fill-down",
@@ -697,7 +730,7 @@
       "mode": "record-based"
     },
     "columnName": "LONGITUDE",
-    "description": "Fill down cells in column LONGITUDE (within each record)"
+    "description": "Fill down cells in column LONGITUDE"
   },
   {
     "op": "core/fill-down",
@@ -706,7 +739,7 @@
       "mode": "record-based"
     },
     "columnName": "LATITUDE",
-    "description": "Fill down cells in column LATITUDE (within each record)"
+    "description": "Fill down cells in column LATITUDE"
   },
   {
     "op": "core/fill-down",
@@ -715,7 +748,7 @@
       "mode": "record-based"
     },
     "columnName": "OWNER",
-    "description": "Fill down cells in column OWNER (within each record)"
+    "description": "Fill down cells in column OWNER"
   },
   {
     "op": "core/fill-down",
@@ -724,7 +757,7 @@
       "mode": "record-based"
     },
     "columnName": "GIS_OBJECT_ID",
-    "description": "Fill down cells in column GIS_OBJECT_ID (within each record)"
+    "description": "Fill down cells in column GIS_OBJECT_ID"
   },
   {
     "op": "core/fill-down",
@@ -742,7 +775,7 @@
     "mode": "separator",
     "separator": ", ",
     "regex": false,
-    "description": "Split multi-valued cells in column OWNER (one row per owner)"
+    "description": "Split multi-valued cells in column OWNER"
   },
   {
     "op": "core/fill-down",
@@ -751,7 +784,7 @@
       "mode": "record-based"
     },
     "columnName": "PARK_NAME",
-    "description": "Fill down cells in column PARK_NAME (within each record)"
+    "description": "Fill down cells in column PARK_NAME"
   },
   {
     "op": "core/fill-down",
@@ -760,7 +793,7 @@
       "mode": "record-based"
     },
     "columnName": "PARK_NO",
-    "description": "Fill down cells in column PARK_NO (within each record)"
+    "description": "Fill down cells in column PARK_NO"
   },
   {
     "op": "core/fill-down",
@@ -769,7 +802,7 @@
       "mode": "record-based"
     },
     "columnName": "ARTWORK_NAME",
-    "description": "Fill down cells in column ARTWORK_NAME (within each record)"
+    "description": "Fill down cells in column ARTWORK_NAME"
   },
   {
     "op": "core/fill-down",
@@ -778,7 +811,7 @@
       "mode": "record-based"
     },
     "columnName": "OFFICIAL_NAME",
-    "description": "Fill down cells in column OFFICIAL_NAME (within each record)"
+    "description": "Fill down cells in column OFFICIAL_NAME"
   },
   {
     "op": "core/fill-down",
@@ -787,7 +820,7 @@
       "mode": "record-based"
     },
     "columnName": "LONGITUDE",
-    "description": "Fill down cells in column LONGITUDE (within each record)"
+    "description": "Fill down cells in column LONGITUDE"
   },
   {
     "op": "core/fill-down",
@@ -796,7 +829,7 @@
       "mode": "record-based"
     },
     "columnName": "LATITUDE",
-    "description": "Fill down cells in column LATITUDE (within each record)"
+    "description": "Fill down cells in column LATITUDE"
   },
   {
     "op": "core/fill-down",
@@ -805,7 +838,7 @@
       "mode": "record-based"
     },
     "columnName": "ARTIST",
-    "description": "Fill down cells in column ARTIST (within each record)"
+    "description": "Fill down cells in column ARTIST"
   },
   {
     "op": "core/fill-down",
@@ -814,7 +847,7 @@
       "mode": "record-based"
     },
     "columnName": "GIS_OBJECT_ID",
-    "description": "Fill down cells in column GIS_OBJECT_ID (within each record)"
+    "description": "Fill down cells in column GIS_OBJECT_ID"
   },
   {
     "op": "core/fill-down",
@@ -836,7 +869,7 @@
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column ARTIST using expression value.trim()"
+    "description": "Text transform on cells in column ARTIST using expression grel:value.trim()"
   },
   {
     "op": "core/mass-edit",
@@ -845,7 +878,7 @@
       "mode": "row-based"
     },
     "columnName": "ARTIST",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -966,9 +999,17 @@
         "fromBlank": false,
         "fromError": false,
         "to": "S.B. Braidwood"
+      },
+      {
+        "from": [
+          "CPAG"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Chicago Public Art Group"
       }
     ],
-    "description": "Mass edit cells in column ARTIST (typos and name variants of the same artist)"
+    "description": "Mass edit cells in column ARTIST"
   },
   {
     "op": "core/column-addition",
@@ -977,16 +1018,35 @@
       "mode": "row-based"
     },
     "baseColumnName": "ARTIST",
-    "expression": "grel:if(isBlank(value), null, value.replace('ø','o').replace('á','a').replace('ñ','n').replace(/[^A-Za-z0-9]+/,'_').replace(/^_+|_+$/,''))",
+    "expression": "grel:if(isBlank(value), null, value.replace('ø', 'o').replace('á', 'a').replace('ñ', 'n').replace(/[^A-Za-z0-9]+/, '_').replace(/^_+|_+$/, ''))",
     "onError": "set-to-blank",
     "newColumnName": "ARTIST_ID",
     "columnInsertIndex": 8,
-    "description": "Create column ARTIST_ID based on column ARTIST: URI-safe slug of the artist name (accented letters folded, any run of other characters replaced by one underscore)"
+    "description": "Create column ARTIST_ID at index 8 based on column ARTIST using expression grel:if(isBlank(value), null, value.replace('ø', 'o').replace('á', 'a').replace('ñ', 'n').replace(/[^A-Za-z0-9]+/, '_').replace(/^_+|_+$/, ''))"
   },
   {
     "op": "core/column-rename",
     "oldColumnName": "ARTIST",
     "newColumnName": "ARTIST_NAME",
     "description": "Rename column ARTIST to ARTIST_NAME"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "OWNER",
+    "expression": "grel:if(isBlank(value), null, value.replace('ø', 'o').replace('á', 'a').replace('ñ', 'n').replace(/[^A-Za-z0-9]+/, '_').replace(/^_+|_+$/, ''))",
+    "onError": "set-to-blank",
+    "newColumnName": "OWNER_ID",
+    "columnInsertIndex": 10,
+    "description": "Create column OWNER_ID at index 10 based on column OWNER using expression grel:if(isBlank(value), null, value.replace('ø', 'o').replace('á', 'a').replace('ñ', 'n').replace(/[^A-Za-z0-9]+/, '_').replace(/^_+|_+$/, ''))"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "OWNER",
+    "newColumnName": "OWNER_NAME",
+    "description": "Rename column OWNER to OWNER_NAME"
   }
 ]

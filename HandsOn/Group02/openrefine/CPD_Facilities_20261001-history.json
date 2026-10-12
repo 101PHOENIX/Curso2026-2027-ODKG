@@ -315,7 +315,7 @@
       ],
       "mode": "row-based"
     },
-    "description": "Remove rows (the single row with a blank FACILITY_NAME)"
+    "description": "Remove rows"
   },
   {
     "op": "core/mass-edit",
@@ -454,7 +454,7 @@
       "mode": "row-based"
     },
     "columnName": "FACILITY_NAME",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -474,7 +474,7 @@
       "mode": "row-based"
     },
     "columnName": "PARK_NAME",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -485,7 +485,7 @@
         "to": "LOGAN SQUARE SKATE"
       }
     ],
-    "description": "Mass edit cells in column PARK_NAME (use the same label as the Park Art dataset for park 549)"
+    "description": "Mass edit cells in column PARK_NAME"
   },
   {
     "op": "core/mass-edit",
@@ -494,7 +494,7 @@
       "mode": "row-based"
     },
     "columnName": "FACILITY_NAME",
-    "expression": "value",
+    "expression": "grel:value",
     "edits": [
       {
         "from": [
@@ -521,6 +521,6 @@
         "to": "FOOTBALL/SOCCER COMBO FIELD"
       }
     ],
-    "description": "Mass edit cells in column FACILITY_NAME (expand abbreviated labels)"
+    "description": "Mass edit cells in column FACILITY_NAME"
   }
 ]
