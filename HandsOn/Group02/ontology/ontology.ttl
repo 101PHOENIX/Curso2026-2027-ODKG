@@ -35,12 +35,12 @@ schema:geo a owl:ObjectProperty ;
 schema:latitude a owl:DatatypeProperty ;
     rdfs:label "latitude" ;
     rdfs:domain schema:GeoCoordinates ;
-    rdfs:range xsd:double .
+    rdfs:range xsd:decimal .
 
 schema:longitude a owl:DatatypeProperty ;
     rdfs:label "longitude" ;
     rdfs:domain schema:GeoCoordinates ;
-    rdfs:range xsd:double .
+    rdfs:range xsd:decimal .
 
 # The following schema.org properties are reused as parents of the object
 # properties defined below (rdfs:subPropertyOf). They are used as defined by
