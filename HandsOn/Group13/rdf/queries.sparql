@@ -14,7 +14,7 @@ WHERE {
   ?district a mp:District .
 }
 
-#Count Occupancy
+#number of observations
 PREFIX mp: <http://parking.linkeddata.upm.es/ontology/>
 
 SELECT (COUNT(?obs) AS ?totalObservations)
