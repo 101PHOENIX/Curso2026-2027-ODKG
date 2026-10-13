@@ -22,7 +22,7 @@ WHERE {
   ?obs a mp:OccupancyObservation .
 }
 
-#Names
+#Names of 10 parking facilities
 PREFIX mp: <http://parking.linkeddata.upm.es/ontology/>
 PREFIX prop: <http://parking.linkeddata.upm.es/property/>
 
