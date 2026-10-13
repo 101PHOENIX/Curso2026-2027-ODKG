@@ -15,11 +15,11 @@
 
 - [x] Is trimmed
 - [x] Is properly encoded (e.g., dates, booleans)
-- [ ] Is related to a property in the ontology
+- [x] Is related to a property in the ontology
 
 **Every property in the ontology:**
 
-- [ ] Is related to a column in the CSV file
+- [x] Is related to a column in the CSV file
 
 ## Comments on the self-assessment
 _(If required)_
