@@ -4,8 +4,8 @@
 
 **Every RDF file:**
 
-- [x] Uses the .ttl extension
-- [x] Is serialized in the Turtle format
+- [x] Uses the .nt extension
+- [x] Is serialized in the NTriples format
 - [x] Follows the resource naming strategy
 - [x] Uses class and property URIs that are the same as those used in the ontology
 
@@ -29,7 +29,7 @@
 
 ## Comments on the self-assessment
 
-**Deliverables (one per dataset):**
+**Deliverables (one per dataset):** the RDF of each dataset is delivered in two serializations with the same triples: N-Triples (`rdf/*.nt`, as required by the self-assessment template) and Turtle (`rdf/*.ttl`, as required by the assignment statement in Moodle). The mappings are also delivered in two equivalent forms: RML (`mappings/*.rml`) and YARRRML (`mappings/*.yml`, optional deliverable), with the same rules. The table lists the RML and Turtle files; the `.yml` and `.nt` files of each dataset have the same name.
 
 | Dataset | Mapping | RDF | Triples |
 |---|---|---|---|
@@ -37,7 +37,7 @@
 | D2 `212629-0-estaciones-control-aire-csv-updated.csv` | `mappings/estaciones-control-aire.rml` | `rdf/estaciones-control-aire.ttl` | 246 |
 | D3 `200215-0-instalaciones-deportivas-csv-csv-updated.csv` | `mappings/instalaciones-deportivas.rml` | `rdf/instalaciones-deportivas.ttl` | 10,935 |
 
-The RDF was generated with Morph-KGC 2.10 and serialized as Turtle with rdflib (Morph-KGC only writes N-Triples/N-Quads). To regenerate it, run `python mappings/generate_rdf.py` from the `Group04` directory. Verification queries are in `rdf/queries.sparql`: Q1–Q4 check the RDF, Q5–Q8 explore the data across the 3 datasets, and Q9–Q14 answer the competency questions of the application defined in Hands-on 1 (`requirements/applicationRequirements.html`).
+The RDF was generated with Morph-KGC 2.10 and serialized as N-Triples and Turtle with rdflib. To regenerate it, run `python mappings/generate_rdf.py` from the `Group04` directory (RML mappings), or `python mappings/generate_rdf.py yml` (YARRRML mappings); both commands produce exactly the same triples. Verification queries are in `rdf/queries.sparql`: Q1–Q4 check the RDF, Q5–Q8 explore the data across the 3 datasets, and Q9–Q14 answer the competency questions of the application defined in Hands-on 1 (`requirements/applicationRequirements.html`).
 
 **How the checklist was verified** (on the merged graph of the three files, 355,889 triples):
 
