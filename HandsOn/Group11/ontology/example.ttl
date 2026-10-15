@@ -17,34 +17,34 @@ ns:TrafficAccident/2026S000001
     ns:locatedIn ns:District/4 ;
     ns:hasAccidentType ns:AccidentType/ColisionLateral ;
     ns:hasWeatherCondition ns:WeatherCondition/Despejado ;
-    ns:involvesVehicle ns:Vehicle/2026S000001-1 ;
-    ns:involvesVehicle ns:Vehicle/2026S000001-2 .
+    ns:involvesVehicle ns:Vehicle/2026S000001-V1 ;
+    ns:involvesVehicle ns:Vehicle/2026S000001-V2 .
 
 ns:Location/2026S000001
     a ns:Location ;
     ns:streetName "CALL. GOYA"^^xsd:string ;
     ns:streetNumber "46"^^xsd:string ;
-    ns:xCoordinate "442386.41"^^xsd:double ; 
+    ns:xCoordinate "442386.41"^^xsd:double ;
     ns:yCoordinate "4475140.23"^^xsd:double .
 
 
 ns:District/4
     a ns:District ;
     ns:districtCode 4 ;
-    ns:districtName "Salamanca"^^xsd:string .
+    ns:districtName "SALAMANCA"^^xsd:string .
 
-ns:Vehicle/2026S000001-1
+ns:Vehicle/2026S000001-V1
     a ns:Vehicle ;
     ns:hasVehicleType ns:VehicleType/Turismo ;
-    ns:involvesPerson ns:Person/2026S000001-1 .
+    ns:involvesPerson ns:Person/2026S000001-P1 .
 
-ns:Vehicle/2026S000001-2
+ns:Vehicle/2026S000001-V2
     a ns:Vehicle ;
     ns:hasVehicleType ns:VehicleType/Turismo ;
-    ns:involvesPerson ns:Person/2026S000001-2 ;
-    ns:involvesPerson ns:Person/2026S000001-3 .
+    ns:involvesPerson ns:Person/2026S000001-P2 ;
+    ns:involvesPerson ns:Person/2026S000001-P3 .
 
-ns:Person/2026S000001-1
+ns:Person/2026S000001-P1
     a ns:Person ;
     ns:hasPersonType ns:PersonType/Conductor ;
     ns:hasAgeRange ns:AgeRange/21-24 ;
@@ -53,7 +53,7 @@ ns:Person/2026S000001-1
     ns:positiveAlcohol false ;
     ns:positiveDrug false .
 
-ns:Person/2026S000001-2
+ns:Person/2026S000001-P2
     a ns:Person ;
     ns:hasPersonType ns:PersonType/Conductor ;
     ns:hasAgeRange ns:AgeRange/30-34 ;
@@ -62,7 +62,7 @@ ns:Person/2026S000001-2
     ns:positiveAlcohol false ;
     ns:positiveDrug false .
 
-ns:Person/2026S000001-3
+ns:Person/2026S000001-P3
     a ns:Person ;
     ns:hasPersonType ns:PersonType/Pasajero ;
     ns:hasAgeRange ns:AgeRange/21-24 ;
@@ -86,8 +86,8 @@ ns:TrafficAccident/2026S000002
     ns:locatedIn ns:District/21 ;
     ns:hasAccidentType ns:AccidentType/ColisionFrontoLateral ;
     ns:hasWeatherCondition ns:WeatherCondition/Despejado ;
-    ns:involvesVehicle ns:Vehicle/2026S000002-1 ;
-    ns:involvesVehicle ns:Vehicle/2026S000002-2 .
+    ns:involvesVehicle ns:Vehicle/2026S000002-V1 ;
+    ns:involvesVehicle ns:Vehicle/2026S000002-V2 .
 
 ns:Location/2026S000002
     a ns:Location ;
@@ -100,30 +100,27 @@ ns:Location/2026S000002
 ns:District/21
     a ns:District ;
     ns:districtCode 21 ;
-    ns:districtName "Barajas"^^xsd:string .
+    ns:districtName "BARAJAS"^^xsd:string .
 
-ns:Vehicle/2026S000002-1
+ns:Vehicle/2026S000002-V1
     a ns:Vehicle ;
-    ns:involvesPerson ns:Person/2026S000002-1 .
+    ns:involvesPerson ns:Person/2026S000002-P1 .
 
-ns:Vehicle/2026S000002-2
+ns:Vehicle/2026S000002-V2
     a ns:Vehicle ;
     ns:hasVehicleType ns:VehicleType/Turismo ;
-    ns:involvesPerson ns:Person/2026S000002-2 .
+    ns:involvesPerson ns:Person/2026S000002-P2 .
 
-ns:Person/2026S000002-1
+# Gender and age are unknown so these properties are omitted in our implementation
+ns:Person/2026S000002-P1
     a ns:Person ;
     ns:hasPersonType ns:PersonType/Conductor ;
-    ns:hasAgeRange ns:AgeRange/Desconocido ;
-    ns:hasSex ns:Sex/Desconocido ;
     ns:positiveAlcohol false ;
     ns:positiveDrug false .
 
-ns:Person/2026S000002-2
+ns:Person/2026S000002-P2
     a ns:Person ;
     ns:hasPersonType ns:PersonType/Conductor ;
-    ns:hasAgeRange ns:AgeRange/Desconocido ;
-    ns:hasSex ns:Sex/Desconocido ;
     ns:positiveAlcohol false ;
     ns:positiveDrug false .
 
@@ -144,7 +141,7 @@ ns:TrafficAccident/2026S000353
     ns:locatedIn ns:District/15 ;
     ns:hasAccidentType ns:AccidentType/AtropelloAPersona ;
     ns:hasWeatherCondition ns:WeatherCondition/Despejado ;
-    ns:involvesVehicle ns:Vehicle/2026S000353-1 .
+    ns:involvesVehicle ns:Vehicle/2026S000353-V1 .
 
 ns:Location/2026S000353
     a ns:Location ;
@@ -154,13 +151,18 @@ ns:Location/2026S000353
     ns:yCoordinate "4475676.36"^^xsd:double . 
 
 
-
 ns:District/15
     a ns:District ;
     ns:districtCode 15 ;
     ns:districtName "Ciudad Lineal"^^xsd:string .
 
-ns:Person/2026S000353-1
+ns:Vehicle/2026S000353-V1
+    a ns:Vehicle ;
+    ns:hasVehicleType ns:VehicleType/MotocicletaMayor125cc ;
+    ns:involvesPerson ns:Person/2026S000353-P1 ;
+    ns:involvesPerson ns:Person/2026S000353-P2 .
+
+ns:Person/2026S000353-P1
     a ns:Person ;
     ns:hasPersonType ns:PersonType/Conductor ;
     ns:hasAgeRange ns:AgeRange/21-24 ;
@@ -169,7 +171,7 @@ ns:Person/2026S000353-1
     ns:positiveAlcohol true ;
     ns:positiveDrug false .
 
-ns:Person/2026S000353-2
+ns:Person/2026S000353-P2
     a ns:Person ;
     ns:hasPersonType ns:PersonType/Peaton ;
     ns:hasAgeRange ns:AgeRange/MasDe74 ;
@@ -177,12 +179,6 @@ ns:Person/2026S000353-2
     ns:hasInjurySeverity ns:InjurySeverity/3 ;
     ns:positiveAlcohol false ;
     ns:positiveDrug false .
-
-ns:Vehicle/2026S000353-1
-    a ns:Vehicle ;
-    ns:hasVehicleType ns:VehicleType/MotocicletaMayor125cc ;
-    ns:involvesPerson ns:Person/2026S000353-1 ;
-    ns:involvesPerson ns:Person/2026S000353-2 .
 
 
 
@@ -223,10 +219,6 @@ ns:AgeRange/30-34
     a ns:AgeRange ;
     skos:prefLabel "De 30 a 34 años"@es .
 
-ns:AgeRange/Desconocido
-    a ns:AgeRange ;
-    skos:prefLabel "Desconocido"@es .
-
 ns:Sex/Mujer
     a ns:Sex ;
     skos:prefLabel "Mujer"@es .
@@ -234,10 +226,6 @@ ns:Sex/Mujer
 ns:Sex/Hombre
     a ns:Sex ;
     skos:prefLabel "Hombre"@es .
-
-ns:Sex/Desconocido
-    a ns:Sex ;
-    skos:prefLabel "Desconocido"@es .
 
 ns:InjurySeverity/14
     a ns:InjurySeverity ;
