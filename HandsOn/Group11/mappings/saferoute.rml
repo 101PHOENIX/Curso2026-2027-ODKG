@@ -198,7 +198,7 @@ rr:predicateObjectMap [
     rml:referenceFormulation ql:CSV
   ];
   rr:subjectMap [
-    rr:template "https://w3id.org/saferoutemadrid/resource/District/{distrito}";
+    rr:template "https://w3id.org/saferoutemadrid/resource/District/{cod_distrito}";
     rr:class ns:District
   ];
 
