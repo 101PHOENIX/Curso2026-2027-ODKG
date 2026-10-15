@@ -137,6 +137,14 @@
   ];
 
   rr:predicateObjectMap [
+    rr:predicate ns:hasMapLink ;
+    rr:objectMap [
+        rr:template "https://www.google.com/maps?q={lat},{lon}" ;
+        rr:termType rr:IRI
+    ]
+  ];
+
+  rr:predicateObjectMap [
     rr:predicate ns:locatedIn;
     rr:objectMap [
       rr:parentTriplesMap <#District>
