@@ -16,6 +16,9 @@ from rdflib import XSD, Literal, Namespace
 BASE = "https://w3id.org/breatheplay-madrid/resource/"
 PREFIXES = {
     "bpm": "https://w3id.org/breatheplay-madrid/ontology#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "schema": "http://schema.org/",
     "obs": BASE + "observation/",
     "sp": BASE + "sampling-point/",
     "pol": BASE + "pollutant/",
@@ -53,7 +56,7 @@ mappings: mappings/{name}.rml
         graph.remove((s, p, o))
         graph.add((s, p, Literal(str(o), datatype=XSD.string)))
     for prefix, uri in PREFIXES.items():
-        graph.bind(prefix, Namespace(uri))
+        graph.bind(prefix, Namespace(uri), override=True, replace=True)
     out = Path("rdf", f"{name}.ttl")
     graph.serialize(destination=out, format="turtle", encoding="utf-8")
     print(f"{out}: {len(graph)} triples")
