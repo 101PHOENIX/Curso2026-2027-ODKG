@@ -39,6 +39,7 @@ mappings:
       - [ns:streetNumber, $(numero), xsd:string]
       - [ns:xCoordinate, $(coordenada_x_utm), xsd:double]
       - [ns:yCoordinate, $(coordenada_y_utm), xsd:double]
+      - [ns:hasMapLink, "https://www.google.com/maps?q=$(latitud),$(longitud)", iri]
       - [ns:locatedIn, https://w3id.org/saferoutemadrid/resource/District/$(distrito)]
 
   District:
