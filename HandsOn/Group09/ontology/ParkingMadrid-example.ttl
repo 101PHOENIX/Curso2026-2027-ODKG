@@ -55,7 +55,7 @@ bar:1-2 a pm:Neighbourhood ;
 
 # -------------------------------------------------------- Car parks
 
-# Examples from the historical data.
+# Examples from the historical (occupa) data.
 
 par:5000 a pm:RotationalParkingFacility ;
     pm:hasParCode 5000 ;
@@ -94,6 +94,9 @@ par:1419 a pm:RotationalParkingFacility ;
 
 # Examples from the supplied inventory data. 
 # Empty source cells are omitted rather than converted to zero.
+# Note that there are some mismatch in the entities of Parking Lot,
+# so the distinguishing is just for comparison and demostration. 
+# It doesn't necessarily means the final resolution.
 
 par:912 a pm:ResidentParkingFacility ;
     pm:hasParCode 912 ;
