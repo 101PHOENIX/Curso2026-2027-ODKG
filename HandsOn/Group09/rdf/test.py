@@ -199,12 +199,12 @@ def main() -> int:
     print(f"  Errors: {errors}")
     print(f"  Warnings: {warnings}")
 
-    # if errors:
-    #     print("RESULT: FAILED")
-    #     return 1
+    if errors:
+        print("RESULT: FAILED")
+        return 1
 
-    # print("RESULT: PASSED")
-    
+    print("RESULT: PASSED")
+
     return 0
 
 

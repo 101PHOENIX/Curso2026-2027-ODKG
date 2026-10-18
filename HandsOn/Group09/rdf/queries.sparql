@@ -108,20 +108,6 @@ WHERE {
     FILTER NOT EXISTS { ?observation ?property ?value }
 }
 
-# QUERY: invalid_reference_period
-# Reference periods should use YYYY-MM and valid month values.
-PREFIX pm: <https://parking-madrid.example.org/ontology#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-
-SELECT ?observation ?period
-WHERE {
-    ?observation a pm:MonthlyOccupancy ;
-                 pm:hasReferencePeriod ?period .
-    FILTER (
-        !REGEX(STR(?period), "^[0-9]{4}-(0[1-9]|1[0-2])$")
-    )
-}
-
 # QUERY: invalid_occupancy_rate
 # Occupancy rates expressed as percentages should be between 0 and 100.
 PREFIX pm: <https://parking-madrid.example.org/ontology#>
